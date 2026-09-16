@@ -156,9 +156,9 @@ López de Prado, M., 2018. *Advances in Financial Machine Learning*. Wiley, Hobo
 
 Novy-Marx, R., Velikov, M., 2016. A taxonomy of anomalies and their trading costs. *Review of Financial Studies* 29(1), 104–147.
 
-Shi, Y., Duan, Y., Li, J., 2026. Navigating the alpha jungle: An LLM-powered Monte Carlo tree search framework for formulaic alpha factor mining. *Proceedings of the AAAI Conference on Artificial Intelligence*.
+Shi, Y., Duan, Y., Li, J., 2026. Navigating the alpha jungle: An LLM-powered Monte Carlo tree search framework for formulaic alpha factor mining. *Proceedings of the AAAI Conference on Artificial Intelligence*. arXiv:2505.11122.
 
-Tang, Z., Chen, Z., Yang, J., Mai, J., Zheng, Y., Wang, K., Chen, J., Lin, L., 2025. AlphaAgent: LLM-driven alpha mining with regularized exploration to counteract alpha decay. *Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining*.
+Tang, Z., Chen, Z., Yang, J., Mai, J., Zheng, Y., Wang, K., Chen, J., Lin, L., 2025. AlphaAgent: LLM-driven alpha mining with regularized exploration to counteract alpha decay. *Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining*. https://doi.org/10.1145/3711896.3736838
 
 Yang, H., Liu, X.-Y., Wang, C.D., 2023. FinGPT: Open-source financial large language models. *arXiv preprint* arXiv:2306.06031.
 
