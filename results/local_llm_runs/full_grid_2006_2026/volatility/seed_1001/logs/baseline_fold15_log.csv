@@ -1,0 +1,52 @@
+iteration,mode,factor_code,error,Gross_IR,Turnover,Cost_Impact,Net_IR,node_count,reward
+0,baseline,"rank(-1 * stddev(delta(close, 1), 20))",,-0.11687837533978139,16.897180610012786,0.07069783477036841,-0.8169824635151557,5,-0.11687837533978139
+1,baseline,cs_rank(high - low),,-0.030732797092127572,112.91709938830378,0.5046238977217086,-5.039901583379095,2,-0.030732797092127572
+2,baseline,cs_rank(high - low + close - open),,-0.3522085352574813,196.15565638271252,0.932262335840626,-8.763764064970077,4,-0.3522085352574813
+3,baseline,cs_rank((close - open) / (high - low + 1e-5)),,-0.6740968751410814,337.44139510442346,1.7088196503488648,-14.51762392965947,5,-0.6740968751410814
+4,baseline,"cs_rank(close - sma(close, 20))",,-0.9820762453646412,81.96851505923614,0.3870339950329128,-4.038563601694922,3,-0.9820762453646412
+5,baseline,cs_rank(close - vwap),,-1.6134650576453602,322.76087934736125,1.6608003925720007,-15.998676605017838,2,-1.6134650576453602
+6,baseline,cs_rank(close - open),,-0.949124890542764,323.1403732105661,1.6598581568497037,-15.620328965085566,2,-0.949124890542764
+7,baseline,cs_rank(vwap - open),,-0.5107588818799493,319.8846001037072,1.643963960474575,-15.534472992284247,2,-0.5107588818799493
+8,baseline,"cs_rank(decay_linear(high - low, 20))",,0.17189404419083962,12.100746887762648,0.04921632867905399,-0.2943069646302526,3,0.17189404419083962
+9,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(ts_rank(volume, 20))",,0.3191464913304651,191.00804747881182,0.9068776435449124,-5.640135423673008,8,0.3191464913304651
+10,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(ts_rank(volume, 20)) - cs_rank(ts_rank(close - open, 20))",,0.7201027945480918,260.0246290043928,1.2832153248219158,-8.03847982991708,12,0.5201027945480918
+11,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+12,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+13,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+14,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(ts_rank(close, 20))",,0.6102331111655579,181.79915499859112,0.8710552840276093,-5.460683708477808,13,0.3602331111655579
+15,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+16,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+17,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(sma(close, 20))",,0.8484868318628637,236.8102121326488,1.1719755180854547,-7.203838795383432,13,0.5984868318628637
+18,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+19,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+20,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(vwap - open)",,0.5312504970575543,92.26023988769902,0.4161077342807152,-1.902932607603537,13,0.28125049705755434
+21,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+22,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+23,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+24,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(zscore(close, 60))",,0.7433766416307465,187.46745144502182,0.9003508520869095,-6.000177849154946,13,0.49337664163074646
+25,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+26,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+27,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(zscore(close, 20))",,0.6195902329228872,180.70814420213247,0.8633317036530431,-5.387485423246885,13,0.3695902329228872
+28,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+29,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+30,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(vwap - open)",,0.5312504970575543,92.26023988769902,0.4161077342807152,-1.902932607603537,13,0.28125049705755434
+31,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+32,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+33,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(zscore(close, 20))",,0.6195902329228872,180.70814420213247,0.8633317036530431,-5.387485423246885,13,0.3695902329228872
+34,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+35,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+36,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(zscore(close, 20))",,0.6195902329228872,180.70814420213247,0.8633317036530431,-5.387485423246885,13,0.3695902329228872
+37,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+38,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+39,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(zscore(close, 20))",,0.6195902329228872,180.70814420213247,0.8633317036530431,-5.387485423246885,13,0.3695902329228872
+40,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+41,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+42,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(zscore(close, 20))",,0.6195902329228872,180.70814420213247,0.8633317036530431,-5.387485423246885,13,0.3695902329228872
+43,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+44,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+45,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(zscore(close, 20))",,0.6195902329228872,180.70814420213247,0.8633317036530431,-5.387485423246885,13,0.3695902329228872
+46,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+47,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume)",,0.341981060047109,58.62614094967866,0.25701279652603426,-1.1348641507507102,7,0.341981060047109
+48,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open) + cs_rank(vwap - open)",,0.5312504970575543,92.26023988769902,0.4161077342807152,-1.902932607603537,13,0.28125049705755434
+49,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412
+50,baseline,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",,0.774974654157412,202.5333503444946,0.9811493096148394,-5.1899182255108025,10,0.674974654157412

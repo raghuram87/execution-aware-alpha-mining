@@ -1,0 +1,3 @@
+Mode,Factor,Gross_Sharpe,Net_Sharpe_5bps,Net_Sharpe_10bps,Net_Sharpe_20bps,Net_Sharpe_full_cost_model,Annual_Turnover_pct,Max_Drawdown,Cumulative_Return
+Baseline,"rank(ts_mean(returns, 20)) * rank(volume) * rank(ts_std(returns, 20)) * rank(correlation(returns, volume, 20))",0.8812469346586803,0.5609465341232875,0.24072195228721852,-0.39929742914685784,-0.6702154380042284,12045.516156774665,-0.41952606534618153,-0.35104019261779573
+Execution-Aware,"ts_rank(decay_linear(close - vwap, 20), 20)",-0.24410541468618635,-1.367979517866251,-2.4922850824498854,-4.73952406672159,-5.177783787326687,25535.424974275913,-0.8361883765331,-0.8373172423657693

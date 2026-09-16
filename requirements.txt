@@ -1,0 +1,16 @@
+pandas>=2.2
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+yfinance>=0.2.40
+anthropic>=0.34
+pyarrow>=15.0
+tqdm>=4.66
+tabulate>=0.9
+huggingface_hub>=0.24
+
+# llama-cpp-python (local LLM backend) needs a CUDA-enabled build; the plain
+# PyPI wheel is CPU-only. Install separately with a matching CUDA wheel index,
+# e.g. for CUDA 12.2:
+#   pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu122
+# See README.md "Local LLM backend" for details / other CUDA versions.

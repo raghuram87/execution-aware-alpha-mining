@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+data/processed/
+data/processed_20y/
+data/processed_pit/
+data/processed_pit_top150/
+models/
+*.gguf

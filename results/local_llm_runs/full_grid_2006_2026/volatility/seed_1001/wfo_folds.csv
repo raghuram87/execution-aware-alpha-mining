@@ -1,0 +1,43 @@
+Mode,Fold,Train,Test,Factor,OOS_Gross_IR,OOS_Turnover,OOS_Net_IR
+Baseline,0,2001-01-01 to 2005-12-31,2006-01-01 to 2006-12-31,"rank(-1 * (stddev(delta(close, 1), 20) + decay_linear(close, 20)))",1.6768979423201178,4.126468852203022,1.4088081744516223
+Baseline,1,2002-01-01 to 2006-12-31,2007-01-01 to 2007-12-31,"rank(-1 * (stddev(delta(close, 1), 20) + cs_rank(high - low) - cs_rank(volume) + decay_linear(ts_rank(close, 20), 10)))",0.6592674816114236,48.09061735284918,-2.242975545555049
+Baseline,2,2003-01-01 to 2007-12-31,2008-01-01 to 2008-12-31,"rank(-1 * (stddev(delta(close, 1), 20) + decay_linear(ts_rank(vwap, 20), 20)))",1.4168802252323718,21.315881313008532,0.7857852220733371
+Baseline,3,2004-01-01 to 2008-12-31,2009-01-01 to 2009-12-31,"rank(-1 * stddev(delta(close, 1), 20) + cs_rank(volume))",0.4392339469437328,36.1733747257901,-1.095731592655626
+Baseline,4,2005-01-01 to 2009-12-31,2010-01-01 to 2010-12-31,"cs_rank(-1 * (stddev(delta(close, 1), 20) + zscore(vwap, 20) + decay_linear(close, 20)))",0.7893174811791136,8.090724358852128,0.12135693969584609
+Baseline,5,2006-01-01 to 2010-12-31,2011-01-01 to 2011-12-31,"rank(-1 * (ts_rank(close, 20) + decay_linear(ts_rank(vwap, 20), 10)))",0.522746279983227,82.20912536102504,-3.055950283533928
+Baseline,6,2007-01-01 to 2011-12-31,2012-01-01 to 2012-12-31,"cs_rank(-1 * stddev(delta(close, 1), 20) + decay_linear(cs_rank(volume), 20) + ts_rank(vwap - close, 20) + cs_rank(open - close))",2.656627394674678,202.4184329662053,-12.666451127999586
+Baseline,7,2008-01-01 to 2012-12-31,2013-01-01 to 2013-12-31,"rank(-1 * cs_rank(stddev(delta(close, 1), 20) / (volume + 1e-5) * vwap))",1.255266682333776,36.7804079125225,-2.0156378551957683
+Baseline,8,2009-01-01 to 2013-12-31,2014-01-01 to 2014-12-31,"cs_rank(-1 * decay_linear(stddev(delta(close, 1), 20), 20)) + cs_rank(volume / (vwap + 1e-5))",0.9818348802447506,30.331649180522213,-1.03186388825932
+Baseline,9,2010-01-01 to 2014-12-31,2015-01-01 to 2015-12-31,"rank(-1 * (stddev(delta(close, 1), 20) + zscore(close - vwap, 20)))",-0.007804941493595365,222.7107012068287,-13.485271301164525
+Baseline,10,2011-01-01 to 2015-12-31,2016-01-01 to 2016-12-31,"rank(-1 * stddev(delta(close, 1), 20) + ts_rank(volume, 20) - decay_linear(close - open, 20) + cs_rank(vwap - close))",3.0728308854403465,151.6083486368031,-6.094853485787654
+Baseline,11,2012-01-01 to 2016-12-31,2017-01-01 to 2017-12-31,"cs_rank(-1 * stddev(delta(close, 1), 20) / (volume + 1e-5)) * cs_rank(vwap - close)",-0.11443115468264099,215.21009461572967,-13.83740462028248
+Baseline,12,2013-01-01 to 2017-12-31,2018-01-01 to 2018-12-31,"cs_rank(-1 * zscore(stddev(delta(close, 1), 20) / (volume + 1e-5), 20) + vwap - close)",1.1827741203502922,246.28694783807867,-17.838288145731216
+Baseline,13,2014-01-01 to 2018-12-31,2019-01-01 to 2019-12-31,"cs_rank((stddev(delta(close, 1), 20) * cs_rank(volume)) + (vwap - close) * decay_linear(close, 20))",1.37905581883084,307.7304701299896,-18.512736122180375
+Baseline,14,2015-01-01 to 2019-12-31,2020-01-01 to 2020-12-31,cs_rank(-1 * (close - open) / (high - low + 1e-5)) + cs_rank(vwap - close),1.1132993419489512,344.0063131700219,-9.220021650391498
+Baseline,15,2016-01-01 to 2020-12-31,2021-01-01 to 2021-12-31,"cs_rank(decay_linear((high - low) / (vwap + 1e-5), 20)) + cs_rank(volume) - cs_rank(close - open)",1.4763952574330694,195.79235429100655,-2.570651954997072
+Baseline,16,2017-01-01 to 2021-12-31,2022-01-01 to 2022-12-31,"rank(-1 * stddev(delta(close, 1), 20) + cs_rank((vwap - close) / (close + 1e-5)))",0.8915982793642594,57.59679774438807,-1.4355572561646766
+Baseline,17,2018-01-01 to 2022-12-31,2023-01-01 to 2023-12-31,"rank(-1 * stddev(delta(close, 1), 20) * cs_rank(volume) * zscore(vwap, 60) * cs_rank(high - low))",-0.06319390260151965,66.97612011271536,-2.741320820112649
+Baseline,18,2019-01-01 to 2023-12-31,2024-01-01 to 2024-12-31,"cs_rank(-1 * (stddev(delta(close, 1), 20) + zscore(volume, 20) + decay_linear(vwap, 20)))",0.6139104132896175,5.162510587507983,0.33736168879858464
+Baseline,19,2020-01-01 to 2024-12-31,2025-01-01 to 2025-12-31,"cs_rank(-1 * (stddev(delta(close, 1), 20) + zscore(volume, 20)))",0.27237449271684255,80.50022240778807,-3.5893042823525585
+Baseline,20,2021-01-01 to 2025-12-31,2026-01-01 to 2026-08-13,"cs_rank(-1 * stddev(delta(close, 1), 20) + zscore(vwap, 20) + cs_rank(volume))",-0.750277021699309,36.45748177556049,-1.5957324859915583
+Execution-Aware,0,2001-01-01 to 2005-12-31,2006-01-01 to 2006-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)",1.1282046043201934,3.1977504527614062,0.976425540778105
+Execution-Aware,1,2002-01-01 to 2006-12-31,2007-01-01 to 2007-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)",0.40294008344600185,3.304464401520236,0.22266888030556575
+Execution-Aware,2,2003-01-01 to 2007-12-31,2008-01-01 to 2008-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 252)",1.265931005898831,6.132113344984926,1.1040290314219048
+Execution-Aware,3,2004-01-01 to 2008-12-31,2009-01-01 to 2009-12-31,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 120)), 252)",-0.2279628192436403,5.006675734384948,-0.3724335390763486
+Execution-Aware,4,2005-01-01 to 2009-12-31,2010-01-01 to 2010-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 252)",-0.5673943001790566,2.9957438301485793,-0.717005001494147
+Execution-Aware,5,2006-01-01 to 2010-12-31,2011-01-01 to 2011-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)",1.1030983474218186,3.219144596110077,0.9521521623909971
+Execution-Aware,6,2007-01-01 to 2011-12-31,2012-01-01 to 2012-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 252)",1.4488605951288094,3.116693743665658,1.2707577380058277
+Execution-Aware,7,2008-01-01 to 2012-12-31,2013-01-01 to 2013-12-31,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 180)",1.1248349626731289,2.9251441448477333,0.8900994870145144
+Execution-Aware,8,2009-01-01 to 2013-12-31,2014-01-01 to 2014-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)",0.5898245211978869,2.7508520382678534,0.4390429139833918
+Execution-Aware,9,2010-01-01 to 2014-12-31,2015-01-01 to 2015-12-31,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",-1.5076776927780076,3.0305187778588194,-1.7021016712063601
+Execution-Aware,10,2011-01-01 to 2015-12-31,2016-01-01 to 2016-12-31,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",1.8697229698272666,3.2537068209241196,1.6738978125054684
+Execution-Aware,11,2012-01-01 to 2016-12-31,2017-01-01 to 2017-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 200)",-1.0487008625759608,2.837446095494307,-1.2402899590878744
+Execution-Aware,12,2013-01-01 to 2017-12-31,2018-01-01 to 2018-12-31,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 40) / (cs_rank(volume) + 1e-5)), 240)",-1.0284230542783612,3.019389052020747,-1.215362036700653
+Execution-Aware,13,2014-01-01 to 2018-12-31,2019-01-01 to 2019-12-31,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 240) + decay_linear(cs_rank(volume), 240)",0.2573198693232629,2.7467462017361646,0.07532726919825375
+Execution-Aware,14,2015-01-01 to 2019-12-31,2020-01-01 to 2020-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 252)",-0.9076883867561567,4.181777174239846,-1.033943295012795
+Execution-Aware,15,2016-01-01 to 2020-12-31,2021-01-01 to 2021-12-31,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 60)), 240)",1.3970412643607653,4.082304652286716,1.2688502689937011
+Execution-Aware,16,2017-01-01 to 2021-12-31,2022-01-01 to 2022-12-31,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 40)), 240)",1.233928810554808,4.272050601332105,1.1024966947480497
+Execution-Aware,17,2018-01-01 to 2022-12-31,2023-01-01 to 2023-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 252)",0.036519430824328576,3.187904807421984,-0.15032289847509656
+Execution-Aware,18,2019-01-01 to 2023-12-31,2024-01-01 to 2024-12-31,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",1.2415379300178375,3.4147261560655404,1.0793071774910088
+Execution-Aware,19,2020-01-01 to 2024-12-31,2025-01-01 to 2025-12-31,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)",0.6635332582308162,3.554824353786646,0.4869205065884643
+Execution-Aware,20,2021-01-01 to 2025-12-31,2026-01-01 to 2026-08-13,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",0.09098116238366459,5.25860024464798,-0.04764281184626515

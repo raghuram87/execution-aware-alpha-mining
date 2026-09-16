@@ -1,0 +1,52 @@
+iteration,mode,factor_code,error,Gross_IR,Turnover,Cost_Impact,Net_IR,node_count,reward
+0,baseline,"rank(delta(close, 60) / (stddev(delta(close, 1), 60) + 1e-5))",,-0.2251039573448376,41.61641940432342,0.18144786469594512,-1.3349204927364866,6.0,-0.2251039573448376
+1,baseline,"cs_rank((close - vwap) / (stddev(close - vwap, 60) + 1e-5))",,-1.254308516994151,335.9054348255502,1.7106190760551425,-14.847838003440408,6.0,-1.254308516994151
+2,baseline,"cs_rank((close - vwap) / (stddev(close - vwap, 60) + 1e-5)) * cs_rank(volume / (sma(volume, 60) + 1e-5))",,-0.9471278795985616,294.1937636359275,1.5193222922954117,-14.301822676701402,11.0,-1.0971278795985615
+3,baseline,"cs_rank((close - vwap) / (stddev(close - vwap, 60) + 1e-5))",,-1.254308516994151,335.9054348255502,1.7106190760551425,-14.847838003440408,6.0,-1.254308516994151
+4,baseline,"cs_rank((close - sma(close, 20)) / (stddev(close, 60) + 1e-5))",,-0.40132097388153104,87.96642110771667,0.4101053404029245,-3.368377730409088,6.0,-0.40132097388153104
+5,baseline,"rank((close - sma(close, 50)) / (stddev(close, 60) + 1e-5))",,-0.2423987352879463,65.11991324069696,0.3012671506972429,-2.320369853260093,6.0,-0.2423987352879463
+6,baseline,"rank((close - sma(close, 20)) / (stddev(close, 60) + 1e-5))",,-0.40132097388153104,87.96642110771667,0.4101053404029245,-3.368377730409088,6.0,-0.40132097388153104
+7,baseline,"cs_rank((close - sma(close, 20)) / (stddev(close, 60) + 1e-5))",,-0.40132097388153104,87.96642110771667,0.4101053404029245,-3.368377730409088,6.0,-0.40132097388153104
+8,baseline,"cs_rank(((close - sma(close, 20)) / (stddev(close, 60) + 1e-5)) - (vwap - sma(vwap, 20)) / (stddev(vwap, 60) + 1e-5))",,-0.9085710627470313,327.7708054197693,1.67213454377042,-14.806918507997503,12.0,-1.1085710627470313
+9,baseline,"rank(delta(close, 60) / (stddev(delta(close, 1), 60) + 1e-5))",,-0.2251039573448376,41.61641940432342,0.18144786469594512,-1.3349204927364866,6.0,-0.2251039573448376
+10,baseline,cs_rank((close - vwap) / (high - low + 1e-5)),,-1.4364618339776143,337.1518929608951,1.6984049694677377,-15.535641199216093,5.0,-1.4364618339776143
+11,baseline,rank((close - open) / (high - low + 1e-5)),,-0.6740968751410814,337.44139510442346,1.7088196503488648,-14.51762392965947,5.0,-0.6740968751410814
+12,baseline,"cs_rank((close - open) / (high - low + 1e-5) * stddev(close, 60))",,-1.2937204222150804,318.8316407880976,1.6333186717712216,-16.14988698159633,7.0,-1.2937204222150804
+13,baseline,"rank(delta(close, 60) / (stddev(delta(close, 1), 60) + 1e-5) * cs_rank(volume / (vwap + 1e-5)))",,-0.17226399063402895,46.45947047421172,0.2042640021966569,-1.5723532262111117,10.0,-0.27226399063402895
+14,baseline,"rank(delta(close, 60) / (stddev(delta(close, 1), 60) + 1e-5) * cs_rank(volume / (vwap + 1e-5)))",,-0.17226399063402895,46.45947047421172,0.2042640021966569,-1.5723532262111117,10.0,-0.27226399063402895
+15,baseline,"rank(delta(close, 60) / (stddev(delta(close, 1), 60) + 1e-5))",,-0.2251039573448376,41.61641940432342,0.18144786469594512,-1.3349204927364866,6.0,-0.2251039573448376
+16,baseline,cs_rank((high - low) / (vwap + 1e-5)),,0.08408147071494672,230.35960886748066,1.1038270229839307,-7.439253621447939,4.0,0.08408147071494672
+17,baseline,"cs_rank((high - low) / (vwap + 1e-5) + ts_rank(volume, 20))",,-0.040098164125694453,250.28283400161263,1.223626858036185,-14.028718013651728,6.0,-0.040098164125694453
+18,baseline,cs_rank((close - open) / (vwap + 1e-5)),,-0.8348595593579198,334.73490918291577,1.7665382530203864,-13.702684365574244,4.0,-0.8348595593579198
+19,baseline,cs_rank((close - open) / (volume + 1e-5)),,-0.6901948943404644,313.14263176735335,1.6178517416695497,-16.597247855043875,4.0,-0.6901948943404644
+20,baseline,cs_rank((close - open) / (vwap + 1e-5)),,-0.8348595593579198,334.73490918291577,1.7665382530203864,-13.702684365574244,4.0,-0.8348595593579198
+21,baseline,"cs_rank((close - open) / (vwap + 1e-5) + ts_rank(volume, 10))",,-0.47425873402062,270.8748191878157,1.3418208696152452,-16.605619984611835,6.0,-0.47425873402062
+22,baseline,cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume)),,0.16238176764977796,70.65516385750759,0.31569342946546897,-3.3309940686952526,6.0,0.16238176764977796
+23,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+24,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(zscore(high - low, 20)))",,-0.31388927727947064,240.1032503377817,1.172444810101976,-13.130759519633717,12.0,-0.5138892772794706
+25,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+26,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + ts_rank(close - low, 20))",,-0.7655528560278484,233.04866037535814,1.1317480140651022,-12.031771989378306,11.0,-0.9155528560278484
+27,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+28,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(high - low))",,0.19536443234485817,116.57769573098663,0.5340351909138213,-5.1494940964369755,11.0,0.04536443234485815
+29,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+30,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + ts_rank(stddev(close, 50), 20))",,-9.73357751495378e-05,63.64486493728705,0.2846493251173143,-2.835125055336302,11.0,-0.15009733577514955
+31,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+32,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(high - low))",,0.19536443234485817,116.57769573098663,0.5340351909138213,-5.1494940964369755,11.0,0.04536443234485815
+33,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+34,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(high - low))",,0.19536443234485817,116.57769573098663,0.5340351909138213,-5.1494940964369755,11.0,0.04536443234485815
+35,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+36,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(zscore(close, 20)))",,-0.21682798477684917,108.74310732964571,0.5126629599887307,-4.821452431442749,11.0,-0.3668279847768492
+37,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+38,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank((high - low) / close))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+39,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank((high - low) / (close + 1e-5)))",,0.25055552813849885,176.66752459469237,0.8292648383803289,-5.59523084591097,13.0,0.0005555281384988509
+40,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank((high - low) / (close + 1e-5)))",,0.25055552813849885,176.66752459469237,0.8292648383803289,-5.59523084591097,13.0,0.0005555281384988509
+41,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+42,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(zscore(close, 20)))",,-0.21682798477684917,108.74310732964571,0.5126629599887307,-4.821452431442749,11.0,-0.3668279847768492
+43,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+44,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(zscore(close, 60)))",,0.05152631455702171,83.97294090784936,0.38939959908967225,-3.386482661817145,11.0,-0.09847368544297831
+45,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+46,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(abs(close - open) / (high - low + 1e-5)))",,0.05779246144091974,253.61030890046877,1.2409493053605005,-13.666551762819532,15.0,-0.29220753855908027
+47,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(close / vwap))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+48,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(close / (vwap + 1e-5)))",,-0.9680854343742819,253.00586952201817,1.2867655637607804,-12.482442361960478,12.0,-1.168085434374282
+49,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)))",,0.29827916623813994,89.039099204891,0.4087992542011571,-3.6148114104113174,8.0,0.29827916623813994
+50,baseline,"cs_rank((close - open) / (vwap + 1e-5) + cs_rank(volume * stddev(close, 20)) + cs_rank(volume / (volume + 1e-5)))",,0.2703226848795907,90.47672584027409,0.4123433004119465,-4.038029373637901,12.0,0.0703226848795907

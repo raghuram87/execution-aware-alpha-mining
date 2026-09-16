@@ -1,0 +1,52 @@
+iteration,mode,factor_code,error,Gross_IR,Turnover,Cost_Impact,Net_IR,node_count,reward
+0,baseline,"rank(-1 * zscore(volume, 20))",,-0.6376319774429406,246.06583814607617,1.6448054194174664,-14.721780126468664,4.0,-0.6376319774429406
+1,baseline,rank((close - open) / (high - low + 1e-5)),,-1.1640192229881814,333.1952053489643,2.3340327136510335,-15.243242709567012,5.0,-1.1640192229881814
+2,baseline,cs_rank(close - vwap),,-1.6923439778185463,327.48041897775937,2.329012024376886,-15.363479859178108,2.0,-1.6923439778185463
+3,baseline,"cs_rank(close - decay_linear(vwap, 20))",,-1.1817074298603503,107.47529201521942,0.6793820149729978,-5.350617281631841,3.0,-1.1817074298603503
+4,baseline,"cs_rank(close - decay_linear(vwap, 20) - zscore(volume, 20))",,-1.2768059588398395,167.03516324217208,1.0592333949182107,-8.248214181644734,5.0,-1.2768059588398395
+5,baseline,"cs_rank(close - decay_linear(vwap, 20))",,-1.1817074298603503,107.47529201521942,0.6793820149729978,-5.350617281631841,3.0,-1.1817074298603503
+6,baseline,"cs_rank(-1 * zscore(close - vwap, 20))",,2.011654385406137,334.8519873413107,2.337854744280358,-14.78774131903514,5.0,2.011654385406137
+7,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + zscore(volume, 20))",,1.9812491501028713,290.18109030538096,1.9716624807675547,-14.434902557418763,7.0,1.9812491501028713
+8,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+9,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+10,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(close - open, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+11,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(close - open))",,2.310997910048262,316.676609061995,2.186906136714741,-15.505611388423832,10.0,2.210997910048262
+12,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+13,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + decay_linear(close, 20))",,-1.1296105378953687,15.845568327146164,0.0827844565628645,-1.7668962648581554,9.0,-1.1796105378953687
+14,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+15,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + decay_linear(close - open, 20))",,1.9606638510329357,308.88835553465043,2.115028562900939,-14.842760570724819,10.0,1.8606638510329356
+16,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+17,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+18,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+19,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low))",,1.7200280550020193,300.0737786031759,2.047189000947547,-13.491897073209126,10.0,1.6200280550020192
+20,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+21,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + decay_linear(close - open, 10))",,1.635235474144191,307.7032508291251,2.1003604497427957,-15.255580114073808,10.0,1.535235474144191
+22,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+23,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(close / (open + 1e-5)))",,2.1845724281401413,314.80735020153,2.1699436883747034,-14.191769315276824,11.0,2.0345724281401414
+24,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+25,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + decay_linear(close - open, 20))",,1.9606638510329357,308.88835553465043,2.115028562900939,-14.842760570724819,10.0,1.8606638510329356
+26,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+27,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + decay_linear(close, 20))",,-1.1296105378953687,15.845568327146164,0.0827844565628645,-1.7668962648581554,9.0,-1.1796105378953687
+28,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+29,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + decay_linear(close, 20))",,-1.1296105378953687,15.845568327146164,0.0827844565628645,-1.7668962648581554,9.0,-1.1796105378953687
+30,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+31,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + decay_linear(close, 20))",,-1.1296105378953687,15.845568327146164,0.0827844565628645,-1.7668962648581554,9.0,-1.1796105378953687
+32,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
+33,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+34,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+35,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+36,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+37,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+38,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+39,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+40,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+41,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+42,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+43,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+44,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+45,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+46,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) + cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+47,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) - cs_rank(high - low, 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+48,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) - cs_rank(abs(high - low), 20))",rank() takes 1 positional argument but 2 were given,,,,,,-inf
+49,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20) - abs(high - low))",,2.052552053548075,243.89798451150256,1.5785162664317465,-10.454023851769618,10.0,1.9525520535480747
+50,baseline,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(volume, 20))",,2.244337351848346,327.41639123718807,2.276187108867445,-14.889387197077244,7.0,2.244337351848346
