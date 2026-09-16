@@ -107,7 +107,7 @@ The author(s) declare no known competing financial interests or personal relatio
 
 ## Funding
 
-*[None / grant details, as applicable.]*
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
 
 ---
 
