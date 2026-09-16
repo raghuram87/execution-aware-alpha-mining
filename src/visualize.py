@@ -362,7 +362,7 @@ def plot_architecture(out_path: str | Path = config.FIGURES / "fig1_architecture
         linewidth=1.2, edgecolor=COLOR_REGION_EDGE, facecolor=COLOR_REGION_FILL, zorder=0,
     ))
     _pill(ax, (region_xy[0] + 0.18, region_xy[1] + region_h - 0.22),
-          "INNER LOOP · per candidate", COLOR_REGION_EDGE, "white")
+          "INNER LOOP · per candidate", COLOR_ACCENT, "white")
     _pill(ax, (llm_box[0] + 0.05, llm_box[1] + llm_box[3] + 0.28),
           "OUTER LOOP · N rounds", COLOR_BASELINE, "white")
 
