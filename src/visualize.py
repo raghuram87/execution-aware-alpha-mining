@@ -282,75 +282,117 @@ def plot_grid_bps_sensitivity(
     return out_path
 
 
-def _box(ax, xy, w, h, text, facecolor, edgecolor=COLOR_TEXT_SECONDARY, fontsize=8.5, textcolor=COLOR_TEXT):
+COLOR_ACCENT = "#4a3aa7"      # categorical slot 7 (violet) -- Fig 1's Cost Engine highlight only;
+                               # deliberately NOT slot 2 orange, which means "Execution-Aware" in Figs 2-3
+COLOR_ACCENT_FILL = "#efebfa"
+COLOR_NEUTRAL_FILL = "#f7f7f5"
+COLOR_NEUTRAL_EDGE = "#8a8977"
+COLOR_REGION_FILL = "#f8f7fc"
+COLOR_REGION_EDGE = "#ded9f0"
+
+
+def _box(ax, xy, w, h, title, subtitle, facecolor, edgecolor, title_color=None):
+    """Two-tier label (bold component name + regular detail line) inside a
+    clean rounded card -- consistent corner radius and stroke weight across
+    every box is what reads as "designed" rather than default-matplotlib."""
     box = FancyBboxPatch(
-        xy, w, h, boxstyle="round,pad=0.02,rounding_size=0.04",
-        linewidth=1.2, edgecolor=edgecolor, facecolor=facecolor,
+        xy, w, h, boxstyle="round,pad=0.018,rounding_size=0.09",
+        linewidth=1.4, edgecolor=edgecolor, facecolor=facecolor,
+        joinstyle="round",
     )
     ax.add_patch(box)
-    ax.text(xy[0] + w / 2, xy[1] + h / 2, text, ha="center", va="center",
-             fontsize=fontsize, color=textcolor, wrap=True)
+    cx = xy[0] + w / 2
+    title_color = title_color or COLOR_TEXT
+    if subtitle:
+        ax.text(cx, xy[1] + h * 0.66, title, ha="center", va="center",
+                 fontsize=9.2, color=title_color, fontweight="bold")
+        ax.text(cx, xy[1] + h * 0.30, subtitle, ha="center", va="center",
+                 fontsize=7.8, color=COLOR_TEXT_SECONDARY, linespacing=1.5)
+    else:
+        ax.text(cx, xy[1] + h / 2, title, ha="center", va="center",
+                 fontsize=9.2, color=title_color, fontweight="bold")
     return box
 
 
-def _arrow(ax, start, end, color=COLOR_TEXT_SECONDARY, connectionstyle="arc3,rad=0.0", label=None, label_offset=(0, 0.02)):
+def _arrow(ax, start, end, color=COLOR_TEXT_SECONDARY, connectionstyle="arc3,rad=0.0", label=None, label_pos=None):
     arrow = FancyArrowPatch(
-        start, end, arrowstyle="-|>", mutation_scale=14, linewidth=1.4,
-        color=color, connectionstyle=connectionstyle, shrinkA=2, shrinkB=2,
+        start, end, arrowstyle="-|>", mutation_scale=15, linewidth=1.6,
+        color=color, connectionstyle=connectionstyle, shrinkA=3, shrinkB=3,
+        capstyle="round",
     )
     ax.add_patch(arrow)
     if label:
-        mx, my = (start[0] + end[0]) / 2, (start[1] + end[1]) / 2
-        ax.text(mx + label_offset[0], my + label_offset[1], label, ha="center", va="center",
-                 fontsize=7.5, color=COLOR_TEXT_SECONDARY, style="italic")
+        lx, ly = label_pos if label_pos else ((start[0] + end[0]) / 2, (start[1] + end[1]) / 2)
+        ax.text(lx, ly, label, ha="center", va="center", fontsize=7.8, color=COLOR_TEXT,
+                 style="italic", bbox=dict(boxstyle="round,pad=0.22", facecolor="white",
+                                            edgecolor="none", alpha=0.92))
+
+
+def _pill(ax, xy, text, facecolor, textcolor):
+    ax.text(xy[0], xy[1], text, ha="left", va="center", fontsize=7.6, color=textcolor,
+             fontweight="bold", family="sans-serif",
+             bbox=dict(boxstyle="round,pad=0.32", facecolor=facecolor, edgecolor="none"))
 
 
 def plot_architecture(out_path: str | Path = config.FIGURES / "fig1_architecture.png") -> Path:
-    """Figure 1: LLM outer loop (propose factor) + backtest inner loop
-    (evaluate -> cost engine -> diagnostics -> feedback)."""
-    fig, ax = plt.subplots(figsize=(8.0, 5.6), dpi=300)
-    ax.set_xlim(0, 10.6)
-    ax.set_ylim(0, 8.0)
+    """Figure 1: LLM outer loop (propose factor, repeated each round) wrapping
+    a backtest inner loop (evaluate -> cost engine -> diagnostics), evaluated
+    once per candidate."""
+    fig, ax = plt.subplots(figsize=(8.6, 5.1), dpi=300)
+    ax.set_xlim(0, 10.3)
+    ax.set_ylim(0, 6.5)
     ax.axis("off")
     fig.patch.set_facecolor("white")
+    ax.set_facecolor("white")
 
-    llm_box = (0.6, 6.2, 3.1, 1.15)
-    code_box = (5.9, 6.2, 3.4, 1.0)
-    eval_box = (5.9, 3.9, 3.4, 1.1)
-    cost_box = (5.9, 1.6, 3.4, 1.1)
-    diag_box = (0.6, 3.15, 3.4, 1.55)
+    llm_box = (0.5, 4.55, 3.15, 1.15)
+    code_box = (6.35, 4.75, 3.25, 0.95)
+    eval_box = (6.35, 3.35, 3.25, 0.95)
+    cost_box = (6.35, 1.95, 3.25, 0.95)
+    diag_box = (0.5, 1.55, 3.15, 1.5)
 
-    _box(ax, llm_box[:2], llm_box[2], llm_box[3],
-         "LLM Agent\n(system prompt +\nround feedback)", "#eaf2fc", edgecolor=COLOR_BASELINE)
-    _box(ax, code_box[:2], code_box[2], code_box[3],
-         "factor_code (DSL expression)", "#f7f7f5")
-    _box(ax, eval_box[:2], eval_box[2], eval_box[3],
-         "Factor Evaluator\nscores -> weights -> turnover", "#f7f7f5")
-    _box(ax, cost_box[:2], cost_box[2], cost_box[3],
-         "Cost Engine\nCorwin-Schultz spread +\nsqrt impact model", "#fdece3", edgecolor=COLOR_EXECUTION_AWARE)
-    _box(ax, diag_box[:2], diag_box[2], diag_box[3],
-         "Diagnostics\nGross_IR, Turnover,\nCost_Impact, Net_IR, Reward", "#eaf2fc", edgecolor=COLOR_BASELINE)
+    # Inner-loop grouping: a soft filled region (not a crude dashed outline)
+    # sized to fully contain its three boxes with even padding.
+    region_pad = 0.28
+    region_xy = (code_box[0] - region_pad, cost_box[1] - region_pad)
+    region_w = code_box[2] + 2 * region_pad
+    region_h = (code_box[1] + code_box[3]) - cost_box[1] + 2 * region_pad
+    ax.add_patch(FancyBboxPatch(
+        region_xy, region_w, region_h, boxstyle="round,pad=0.02,rounding_size=0.12",
+        linewidth=1.2, edgecolor=COLOR_REGION_EDGE, facecolor=COLOR_REGION_FILL, zorder=0,
+    ))
+    _pill(ax, (region_xy[0] + 0.18, region_xy[1] + region_h - 0.22),
+          "INNER LOOP · per candidate", COLOR_REGION_EDGE, "white")
+    _pill(ax, (llm_box[0] + 0.05, llm_box[1] + llm_box[3] + 0.28),
+          "OUTER LOOP · N rounds", COLOR_BASELINE, "white")
+
+    _box(ax, llm_box[:2], llm_box[2], llm_box[3], "LLM Agent",
+         "system prompt +\nround feedback", "#eaf2fc", COLOR_BASELINE, title_color=COLOR_BASELINE)
+    _box(ax, code_box[:2], code_box[2], code_box[3], "factor_code",
+         "DSL expression", COLOR_NEUTRAL_FILL, COLOR_NEUTRAL_EDGE)
+    _box(ax, eval_box[:2], eval_box[2], eval_box[3], "Factor Evaluator",
+         "scores → weights → turnover", COLOR_NEUTRAL_FILL, COLOR_NEUTRAL_EDGE)
+    _box(ax, cost_box[:2], cost_box[2], cost_box[3], "Cost Engine",
+         "Corwin-Schultz spread +\nsqrt impact model", COLOR_ACCENT_FILL, COLOR_ACCENT, title_color=COLOR_ACCENT)
+    _box(ax, diag_box[:2], diag_box[2], diag_box[3], "Diagnostics",
+         "Gross_IR, Turnover,\nCost_Impact, Net_IR, Reward", "#eaf2fc", COLOR_BASELINE, title_color=COLOR_BASELINE)
 
     # outer loop: LLM -> code -> evaluator -> cost -> diagnostics -> back to LLM
-    _arrow(ax, (llm_box[0] + llm_box[2], llm_box[1] + llm_box[3] * 0.75),
-           (code_box[0], code_box[1] + code_box[3] * 0.75), label="propose", label_offset=(0, 0.22))
+    _arrow(ax, (llm_box[0] + llm_box[2], llm_box[1] + llm_box[3] * 0.6),
+           (code_box[0], code_box[1] + code_box[3] * 0.5),
+           label="propose", label_pos=(4.95, 5.42))
     _arrow(ax, (code_box[0] + code_box[2] / 2, code_box[1]),
-           (eval_box[0] + eval_box[2] / 2, eval_box[1] + eval_box[3]), label="backtest", label_offset=(0.75, 0))
+           (eval_box[0] + eval_box[2] / 2, eval_box[1] + eval_box[3]),
+           label="backtest", label_pos=(code_box[0] + code_box[2] / 2 + 1.05, (code_box[1] + eval_box[1] + eval_box[3]) / 2))
     _arrow(ax, (eval_box[0] + eval_box[2] / 2, eval_box[1]),
-           (cost_box[0] + cost_box[2] / 2, cost_box[1] + cost_box[3]), label="turnover", label_offset=(0.75, 0))
-    _arrow(ax, (cost_box[0], cost_box[1] + cost_box[3] / 2),
+           (cost_box[0] + cost_box[2] / 2, cost_box[1] + cost_box[3]),
+           label="turnover", label_pos=(eval_box[0] + eval_box[2] / 2 + 1.0, (eval_box[1] + cost_box[1] + cost_box[3]) / 2))
+    _arrow(ax, (cost_box[0], cost_box[1] + cost_box[3] * 0.35),
            (diag_box[0] + diag_box[2], diag_box[1] + diag_box[3] * 0.3),
-           connectionstyle="arc3,rad=-0.15", label="net returns", label_offset=(0, -0.3))
-    _arrow(ax, (diag_box[0] + diag_box[2] * 0.75, diag_box[1] + diag_box[3]),
-           (llm_box[0] + llm_box[2] * 0.75, llm_box[1]),
-           connectionstyle="arc3,rad=0.0", label="feedback (reward)", label_offset=(1.1, 0))
-
-    ax.add_patch(FancyBboxPatch((5.7, 1.4), 3.8, 5.0, boxstyle="round,pad=0.02",
-                                 linewidth=1.0, linestyle="--", edgecolor=COLOR_TEXT_SECONDARY, facecolor="none"))
-    ax.text(7.6, 0.95, "inner loop: backtest + cost feedback per candidate",
-            ha="center", fontsize=8, color=COLOR_TEXT_SECONDARY, style="italic")
-    ax.text(2.15, 7.75, "outer loop: LLM proposes N candidate factors, refined each round",
-            ha="center", fontsize=8.5, color=COLOR_TEXT_SECONDARY, style="italic")
+           connectionstyle="arc3,rad=-0.18", label="net returns", label_pos=(5.0, 1.62))
+    _arrow(ax, (diag_box[0] + diag_box[2] * 0.8, diag_box[1] + diag_box[3]),
+           (llm_box[0] + llm_box[2] * 0.8, llm_box[1]),
+           connectionstyle="arc3,rad=0.0", label="feedback (reward)", label_pos=(4.15, 3.2))
 
     fig.tight_layout()
     out_path = Path(out_path)
