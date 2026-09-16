@@ -1,8 +1,8 @@
 # Execution-Aware Alpha Mining: Teaching LLM Factor Agents to Price Their Own Trading Costs
 
-**Raghuram Nagireddy¹**
+**Raghuram Nagireddy**
 
-¹ [Affiliation/address — placeholder: fill in before submission], raghuram87@gmail.com
+Independent researcher. Email: raghuram87@gmail.com
 
 *Prepared for submission to Finance Research Letters*
 
@@ -30,7 +30,7 @@ Large language model (LLM) agents increasingly generate candidate trading signal
 
 Generative language models are now routinely used as a search process over candidate trading signals: an LLM proposes a factor expression, a backtest scores it, and the loop repeats (in the spirit of automated formulaic-alpha search, Kakushadze, 2016). This turns factor discovery into a search problem in which the reward function *is* the research objective. If that reward is gross in-sample return quality — the default in almost every published or informally circulated pipeline — the search will systematically favor short-horizon, high-turnover signals, because fast cross-sectional effects are well known to carry attractive raw Sharpe ratios that are largely compensation for the spread and impact a real trader would pay to capture them (Novy-Marx and Velikov, 2016; Korajczyk and Sadka, 2004).
 
-This paper asks whether telling a factor-mining LLM agent about turnover and cost *during* the search, not only at final evaluation, changes what it finds and whether that finding survives cost better. We build a reproducible pipeline: an LLM proposes factor expressions in a whitelisted, AST-validated expression grammar over price-volume panels; each candidate becomes a daily-rebalanced, dollar-neutral long/short portfolio; its cost is priced with a Corwin and Schultz (2012) spread estimator plus a square-root impact model; and the resulting diagnostics are returned to the agent. We compare two reward specifications on the identical loop — a *baseline* agent rewarded on gross return quality alone, and an *execution-aware* agent rewarded net of an explicit turnover and cost penalty — each bootstrapped from the same seed expression and LLM sampling seed, so the two searches differ only in reward.
+This paper sits alongside a growing literature on LLM-based financial agents (e.g., open-source financial LLMs, Yang, Liu and Wang, 2023) and asks whether telling a factor-mining LLM agent about turnover and cost *during* the search, not only at final evaluation, changes what it finds and whether that finding survives cost better. We build a reproducible pipeline: an LLM proposes factor expressions in a whitelisted, AST-validated expression grammar over price-volume panels; each candidate becomes a daily-rebalanced, dollar-neutral long/short portfolio; its cost is priced with a Corwin and Schultz (2012) spread estimator plus a square-root impact model; and the resulting diagnostics are returned to the agent. We compare two reward specifications on the identical loop — a *baseline* agent rewarded on gross return quality alone, and an *execution-aware* agent rewarded net of an explicit turnover and cost penalty — each bootstrapped from the same seed expression and LLM sampling seed, so the two searches differ only in reward.
 
 Two design choices distinguish this study from related work. First, we use true point-in-time S&P constituent membership (1999-2026) rather than a present-day snapshot, avoiding the survivorship bias that a static universe of currently-listed names introduces into any long-history backtest. Second, we cross four seed alphas from economically distinct predictor categories — short-term reversal (Jegadeesh, 1990), abnormal-volume fade (Gervais, Kaniel and Mingelgrin, 2001), the low-volatility anomaly (Ang, Hodrick, Xing and Zhang, 2006), and cross-sectional momentum (Jegadeesh and Titman, 1993) — with three independent LLM sampling seeds each, so the comparison is not a single lucky search but 12 independently re-optimized outcomes. To our knowledge this is the first study to place a realistic cost model inside an LLM's feedback loop, rather than applying it only as an ex-post filter, and to test the resulting effect for robustness across both sampling randomness and the economic mechanism the search is warm-started from.
 
@@ -44,7 +44,7 @@ Two design choices distinguish this study from related work. First, we use true 
 
 **Agent and reward.** Figure 1 summarizes the closed loop linking these components. The Generator/Refiner is Qwen2.5-Coder-14B-Instruct (Q4\_K\_M, run locally via llama.cpp, temperature 0.7 — validated against temperature 0 and 0.3, both of which collapse to a fixed point after 1-2 rounds rather than sustaining search, Appendix A.3). Each of the two reward conditions uses an independently-constructed, identically-seeded LLM client bootstrapped from the same seed alpha, so baseline and execution-aware are apples-to-apples: same starting expression, same sampling seed, same 50-round budget, differing only in reward. Baseline reward is Gross\_IR; execution-aware reward is `Gross_IR - gamma1*Turnover - gamma2*Cost_Impact` (gamma1=0.5, gamma2=8), both penalized identically for expression complexity above an 8-node budget. Turnover is computed against the drift-adjusted pre-rebalance weight (not the prior day's stale target), avoiding double-counting passive price drift as a trade (Appendix A.4).
 
-**Walk-forward design.** Twenty-one non-overlapping-test rolling folds span the point-in-time sample: a 5-year train window, immediately followed by a 1-year test window, rolling forward one year at a time, with test windows from 2006 through mid-2026. On each fold the agent runs its full 50-round search restricted to that fold's train window; the winning factor is frozen and scored once on the held-out test window; the 21 folds' out-of-sample return streams are stitched into one continuous curve per (seed alpha, sampling seed, mode). We report the average daily turnover and its inverse, the average holding period in trading days, alongside net Sharpe under the full cost model and flat 5/10/20bps scenarios.
+**Walk-forward design.** Iterated search over many candidates scored on the same data can overstate apparent skill even absent true edge (Bailey et al., 2014), so we favor rolling re-search with held-out evaluation over a single train/test split (López de Prado, 2018). Twenty-one non-overlapping-test rolling folds span the point-in-time sample: a 5-year train window, immediately followed by a 1-year test window, rolling forward one year at a time, with test windows from 2006 through mid-2026. On each fold the agent runs its full 50-round search restricted to that fold's train window; the winning factor is frozen and scored once on the held-out test window; the 21 folds' out-of-sample return streams are stitched into one continuous curve per (seed alpha, sampling seed, mode). We report the average daily turnover and its inverse, the average holding period in trading days, alongside net Sharpe under the full cost model and flat 5/10/20bps scenarios.
 
 ## 3. Results
 
@@ -83,11 +83,17 @@ Holding the search process, universe, and cost model fixed, and varying only whe
 
 ---
 
-## Figure captions
+## Figures
+
+![Figure 1](../results/figures/fig1_architecture.png)
 
 **Figure 1.** Architecture of the closed-loop system: the LLM agent proposes a factor expression, which is turned into weights and backtested by the Factor Evaluator, priced by the Cost Engine (Corwin-Schultz spread plus square-root impact), summarized into diagnostics (Gross\_IR, Turnover, Cost\_Impact, Net\_IR, Reward), and fed back to the agent for the next round.
 
+![Figure 2](../results/figures/fig2_cumulative_returns.png)
+
 **Figure 2.** Out-of-sample cumulative net-of-cost return, baseline (blue) vs. execution-aware (orange), one panel per seed-alpha category, for a single representative LLM sampling seed (1001); dashed vertical lines mark each walk-forward fold's annual refit date. Table 1 reports the full three-seed mean/standard deviation this figure illustrates one instance of.
+
+![Figure 3](../results/figures/fig3_bps_sensitivity.png)
 
 **Figure 3.** Net Sharpe ratio as a function of the assumed one-way trading cost, from a lenient flat 5bps through 10bps and 20bps to the realistic full Corwin-Schultz-plus-impact model, baseline (blue) vs. execution-aware (orange), one panel per seed-alpha category, averaged across all three LLM sampling seeds. The baseline's steep leftward slope even at 5bps shows its edge is cost-fragile at any assumption tested; the execution-aware line's flatness across all four cost scenarios shows its low turnover, not a favorable cost assumption, is what protects it.
 
@@ -161,4 +167,4 @@ Reported turnover follows a drift-adjusted, weight-based definition: today's tar
 
 ---
 
-*[Main text word count (Sections 1-5 only, excluding title/highlights/abstract/keywords/Table 1/statements/references/Appendix A/figure captions): 1,758 words (measured), well within FRL's 2,500-word letter format limit. Figures generated and ready for insertion: `results/figures/fig1_architecture.pdf` (architecture), `fig2_cumulative_returns.pdf` (small-multiples cumulative return by category, representative seed 1001), `fig3_bps_sensitivity.pdf` (small-multiples Net Sharpe vs. cost scenario, 3-seed mean) — to be inserted as Figures 1-3 when formatting for Elsevier Editorial Manager.]*
+*[Main text word count (Sections 1-5 only, excluding title/highlights/abstract/keywords/Table 1/statements/references/Appendix A/figure captions): 1,816 words (measured), well within FRL's 2,500-word letter format limit. All references are cited in-text and vice versa (verified). Figures generated and ready for insertion: `results/figures/fig1_architecture.pdf` (architecture), `fig2_cumulative_returns.pdf` (small-multiples cumulative return by category, representative seed 1001), `fig3_bps_sensitivity.pdf` (small-multiples Net Sharpe vs. cost scenario, 3-seed mean) — to be inserted as Figures 1-3 when formatting for Elsevier Editorial Manager.]*
