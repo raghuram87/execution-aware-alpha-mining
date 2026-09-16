@@ -1,8 +1,8 @@
 # Execution-Aware Alpha Mining: Teaching LLM Factor Agents to Account for Trading Costs
 
-**Raghuram Nagireddy**
+**Raghuram Nagireddy** (ORCID: 0009-0002-2203-3367)
 
-Independent researcher. Email: raghuram87@gmail.com
+Independent researcher. Email: rrn2111@caa.columbia.edu
 
 *Prepared for submission to Finance Research Letters*
 
