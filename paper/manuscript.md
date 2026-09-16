@@ -1,8 +1,8 @@
 # Execution-Aware Alpha Mining: Teaching LLM Factor Agents to Price Their Own Trading Costs
 
-**[Author Name]¹**
+**Raghuram Nagireddy¹**
 
-¹ [Affiliation, address, email] — *placeholder: fill in before submission*
+¹ [Affiliation/address — placeholder: fill in before submission], raghuram87@gmail.com
 
 *Prepared for submission to Finance Research Letters*
 
@@ -95,13 +95,11 @@ Holding the search process, universe, and cost model fixed, and varying only whe
 
 ## CRediT authorship contribution statement
 
-**[Author Name]**: Conceptualization, Methodology, Software, Formal analysis, Data curation, Writing – original draft, Writing – review & editing, Visualization.
-
-*[Adjust roles/co-authors as applicable before submission.]*
+**Raghuram Nagireddy**: Conceptualization, Methodology, Software, Formal analysis, Data curation, Writing – original draft, Writing – review & editing, Visualization.
 
 ## Data availability statement
 
-Point-in-time S&P constituent membership is sourced from a public historical-components record; daily OHLCV is sourced from a local multi-vendor price archive supplemented by the `yfinance` Python package (Yahoo Finance), subject to the respective sources' terms of use. All code implementing the point-in-time universe construction, cost engine, factor expression language and guardrails, LLM agent loop, and walk-forward experiment scripts, together with the cached data panels and full result logs underlying Table 1 (`grid_summary.csv` and per-fold tables for all 12 seed-alpha/sampling-seed combinations) and all figures, are available at: *[repository URL to be added upon submission / acceptance]*.
+Point-in-time S&P constituent membership is sourced from a public historical-components record; daily OHLCV is sourced from a local multi-vendor price archive supplemented by the `yfinance` Python package (Yahoo Finance), subject to the respective sources' terms of use. All code implementing the point-in-time universe construction, cost engine, factor expression language and guardrails, LLM agent loop, and walk-forward experiment scripts, together with the full result logs underlying Table 1 (`grid_summary.csv` and per-fold tables for all 12 seed-alpha/sampling-seed combinations) and all figures, are available at: https://github.com/raghuram87/execution-aware-alpha-mining. The point-in-time price panels themselves are not stored in the repository, as they are fully regenerable from the code and public/local sources cited above (`src/pit_universe.get_pit_panels`); the local multi-vendor price archive used to supplement point-in-time coverage is not itself publicly redistributable, but is not required to reproduce results, since a `yfinance`-only fallback path is available at reduced pre-2016 coverage.
 
 ## Declaration of competing interest
 

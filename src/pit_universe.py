@@ -116,24 +116,41 @@ def _fetch_local(con: sqlite3.Connection, table: str, tickers: list[str], start:
 
 
 def _resolve_from_local_db(all_tickers: list[str], start: str, end: str, db_path: Path) -> dict[str, pd.DataFrame]:
-    con = sqlite3.connect(str(db_path))
+    """Best-effort: this local multi-vendor archive is not itself publicly
+    redistributable (see manuscript Data Availability statement), so a
+    reproducer without it should still get a working, yfinance-only run at
+    reduced pre-2016 coverage rather than a crash -- any failure to open the
+    DB or query its expected tables is treated as "0 tickers resolved
+    locally," falling through entirely to `_yf_gap_fill`."""
     frames: dict[str, pd.DataFrame] = {}
-    for table in ("tiingo_prices", "prices"):
-        remaining = [t for t in all_tickers if t not in frames]
-        if not remaining:
-            break
-        cand_map = {c: t for t in remaining for c in _ticker_candidates(t)}
-        raw = _fetch_local(con, table, list(cand_map.keys()), start, end)
-        if raw.empty:
-            continue
-        raw["orig_ticker"] = raw["ticker"].map(cand_map)
-        for orig_t, g in raw.groupby("orig_ticker"):
-            if orig_t in frames:
+    if not db_path.exists():
+        print(f"[pit_universe] local DB not found at {db_path}; falling back to yfinance-only")
+        return frames
+    try:
+        con = sqlite3.connect(str(db_path))
+        for table in ("tiingo_prices", "prices"):
+            remaining = [t for t in all_tickers if t not in frames]
+            if not remaining:
+                break
+            cand_map = {c: t for t in remaining for c in _ticker_candidates(t)}
+            try:
+                raw = _fetch_local(con, table, list(cand_map.keys()), start, end)
+            except Exception as e:
+                print(f"[pit_universe] local DB table '{table}' unavailable ({e}); skipping")
                 continue
-            g = g.drop_duplicates("date").set_index("date").sort_index()
-            if len(g) >= MIN_HISTORY_DAYS:
-                frames[orig_t] = g[["open", "high", "low", "close", "volume"]]
-    con.close()
+            if raw.empty:
+                continue
+            raw["orig_ticker"] = raw["ticker"].map(cand_map)
+            for orig_t, g in raw.groupby("orig_ticker"):
+                if orig_t in frames:
+                    continue
+                g = g.drop_duplicates("date").set_index("date").sort_index()
+                if len(g) >= MIN_HISTORY_DAYS:
+                    frames[orig_t] = g[["open", "high", "low", "close", "volume"]]
+        con.close()
+    except Exception as e:
+        print(f"[pit_universe] local DB unavailable ({e}); falling back to yfinance-only")
+        return {}
     print(f"[pit_universe] local DB resolved {len(frames)}/{len(all_tickers)} tickers")
     return frames
 
