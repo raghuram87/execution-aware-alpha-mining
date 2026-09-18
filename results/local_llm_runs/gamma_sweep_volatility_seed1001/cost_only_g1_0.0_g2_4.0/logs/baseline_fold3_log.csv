@@ -1,0 +1,52 @@
+iteration,mode,factor_code,error,Gross_IR,Turnover,Cost_Impact,Net_IR,node_count,reward
+0,baseline,"rank(-1 * stddev(delta(close, 1), 20))",,0.9413283664092578,18.589144832332472,0.09436433409652112,0.16304087270853315,5.0,0.9413283664092578
+1,baseline,"cs_rank(-1 * decay_linear(ts_rank(stddev(delta(close, 1), 20), 20), 20))",,-0.15380373072867548,36.028103084607615,0.18613465196088644,-1.9308192747154718,7.0,-0.15380373072867548
+2,baseline,"cs_rank(-1 * ts_rank(close / (open + 1e-5), 20))",,0.3644419894878462,332.9024545533667,2.2410864264929358,-18.89432807218772,6.0,0.3644419894878462
+3,baseline,"cs_rank(-1 * decay_linear(stddev(delta(close, 1), 20), 20))",,0.8914955427209877,8.814325062423027,0.0435928010335242,0.5385634754764334,6.0,0.8914955427209877
+4,baseline,"cs_rank(-1 * decay_linear(zscore(stddev(delta(close, 1), 20), 20), 20))",,-0.36837133071274386,35.37962972481105,0.18241532930510612,-2.135790061037671,7.0,-0.36837133071274386
+5,baseline,"cs_rank(-1 * zscore(close / open, 20))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+6,baseline,"cs_rank(-1 * zscore(close / (open + 1e-5), 20))",,0.4064571670564954,332.6503314206787,2.2392670793656344,-18.18008492746879,6.0,0.4064571670564954
+7,baseline,"cs_rank(-1 * (stddev(delta(close, 1), 20) + zscore(close / (open + 1e-5), 20)))",,0.9161494391000663,275.882325920738,1.7654509209599938,-15.527744168966393,9.0,0.8661494391000663
+8,baseline,"rank(-1 * (stddev(delta(close, 1), 20) + zscore(close / (open + 1e-5), 20)))",,0.9161494391000663,275.882325920738,1.7654509209599938,-15.527744168966393,9.0,0.8661494391000663
+9,baseline,"rank(-1 * (stddev(delta(close, 1), 20) + zscore(close / (open + 1e-5), 20)))",,0.9161494391000663,275.882325920738,1.7654509209599938,-15.527744168966393,9.0,0.8661494391000663
+10,baseline,"rank(-1 * stddev(delta(close, 1), 20))",,0.9413283664092578,18.589144832332472,0.09436433409652112,0.16304087270853315,5.0,0.9413283664092578
+11,baseline,"rank(-1 * decay_linear(stddev(delta(close, 1), 20), 20))",,0.8914955427209877,8.814325062423027,0.0435928010335242,0.5385634754764334,6.0,0.8914955427209877
+12,baseline,"rank(-1 * decay_linear(zscore(stddev(delta(close, 1), 20), 60), 20))",,-0.3278448708734122,24.605006969418554,0.12478049962812662,-1.39694576379156,7.0,-0.3278448708734122
+13,baseline,rank(-1 * cs_rank(volume)),,-1.196856493797013,81.19282143603748,0.4731487573675715,-6.734741551738881,4.0,-1.196856493797013
+14,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
+15,baseline,"rank(-1 * (stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5) + decay_linear(cs_rank(high - low), 20)))",,1.0213907772518327,14.205868361434101,0.06873730366831647,0.4490265926034511,12.0,0.8213907772518327
+16,baseline,"rank(-1 * (stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5) + decay_linear(cs_rank(high - low), 20)))",,1.0213907772518327,14.205868361434101,0.06873730366831647,0.4490265926034511,12.0,0.8213907772518327
+17,baseline,"rank(-1 * (stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5) + cs_rank(high - low)))",,1.1388677957174245,134.82995065647347,0.793124109913148,-5.812158926751838,11.0,0.9888677957174244
+18,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
+19,baseline,"rank(-1 * (stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5) + ts_rank(close, 20)))",,0.8671737340657585,129.58486451839718,0.7764670255755893,-5.649349989573989,10.0,0.7671737340657585
+20,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
+21,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5) * cs_rank(vwap / close))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+22,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5) * cs_rank(vwap / (close + 1e-5)))",,-0.10269376778622545,157.23451698856937,1.0253466573145986,-9.102795184196804,12.0,-0.3026937677862255
+23,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) * cs_rank(close / (vwap + 1e-5))",,-0.5977273772166525,235.33858628238508,1.5684755320296007,-12.208872296934258,12.0,-0.7977273772166524
+24,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) * cs_rank(close / (vwap + 1e-5))",,-0.5977273772166525,235.33858628238508,1.5684755320296007,-12.208872296934258,12.0,-0.7977273772166524
+25,baseline,"cs_rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) * cs_rank(close / (vwap + 1e-5))",,-0.5977273772166525,235.33858628238508,1.5684755320296007,-12.208872296934258,12.0,-0.7977273772166524
+26,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
+27,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+28,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
+29,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close) + rank(cs_rank(volume) - cs_rank(close))",,2.048061428325777,150.2501175009949,0.9029675561621097,-7.0131600391823,16.0,1.6480614283257773
+30,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+31,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+32,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+33,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+34,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
+35,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close) + rank(high - low)",,1.1462142327575104,298.80087917417,2.008442665281839,-15.190629524219059,14.0,0.8462142327575104
+36,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+37,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+38,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+39,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
+40,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+41,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
+42,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank((high - low) / (vwap + 1e-5))",,0.3516189609476683,170.71162635756855,1.028327443565191,-6.301368984164032,13.0,0.10161896094766831
+43,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+44,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+45,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
+46,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank((vwap - close) / close)",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+47,baseline,"cs_rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + cs_rank((vwap - close) / (close + 1e-5))",,1.9137024270365954,245.32332289502654,1.6261385762737737,-11.842557468441978,13.0,1.6637024270365954
+48,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+49,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5)) + rank(vwap - close)",,2.0136440119494834,250.2000660277851,1.6354001216440652,-12.368069826941372,11.0,1.8636440119494835
+50,baseline,"rank(-1 * stddev(delta(close, 1), 20) / (stddev(volume, 20) + 1e-5))",,1.164936942439238,15.896896587682914,0.08119672191818018,0.33685674048127945,8.0,1.164936942439238
