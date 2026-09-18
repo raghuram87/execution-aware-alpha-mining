@@ -103,6 +103,14 @@ def significance_test(full: pd.DataFrame, n_boot: int = 10_000, seed: int = 42) 
         print(f"{cat}: {(g['delta'] > 0).sum()}/{len(g)} folds favor execution-aware "
               f"({100 * (g['delta'] > 0).mean():.1f}%)")
 
+    print("\n=== complementary check: exact sign test on the 12 cluster-level mean deltas ===")
+    from scipy import stats
+    cluster_means = piv.groupby(["seed_alpha", "llm_seed"])["delta"].mean()
+    n_pos = int((cluster_means > 0).sum())
+    n = len(cluster_means)
+    sign_p = stats.binomtest(n_pos, n, 0.5, alternative="two-sided").pvalue
+    print(f"{n_pos}/{n} clusters have positive mean delta; exact sign test p-value: {sign_p:.4f}")
+
 
 if __name__ == "__main__":
     full = load_all_folds()
