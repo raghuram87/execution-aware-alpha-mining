@@ -1,0 +1,5 @@
+- An LLM mines equity factors under a raw-return reward vs. a cost-penalized reward.
+- A 21-fold walk-forward test (2006-2026) uses point-in-time S&P membership.
+- Cost-blind search reaches 49-101%/day turnover and loses its notional in all four.
+- Penalizing turnover cuts it 22-38x and makes one category net profitable.
+- Net Sharpe gains +9.96 (95% CI 8.3-11.6) in a cluster bootstrap over 252 folds.

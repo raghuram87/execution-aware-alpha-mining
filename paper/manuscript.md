@@ -146,6 +146,10 @@ The author(s) declare no known competing financial interests or personal relatio
 
 This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
 
+## Declaration of generative AI and AI-assisted technologies in the manuscript preparation process
+
+During the preparation of this work the author used Claude (Anthropic) to assist with drafting, editing, and structuring the manuscript text, and with writing and debugging the analysis and figure-generation code. All experimental design, code execution, results, and interpretations are the author's own. After using this tool, the author reviewed and edited the content as needed and takes full responsibility for the content of the published article.
+
 ---
 
 ## References
