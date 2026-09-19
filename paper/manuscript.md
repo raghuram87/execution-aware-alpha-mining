@@ -8,14 +8,6 @@ Independent researcher. Email: rrn2111@caa.columbia.edu
 
 ---
 
-## Highlights
-
-- An LLM mines equity factors under a raw-return reward vs. a cost-penalized reward.
-- A 21-fold walk-forward test (2006-2026) uses point-in-time S&P membership.
-- Cost-blind search reaches 49-101%/day turnover and loses its notional in all four.
-- Penalizing turnover cuts it 22-38x and makes one category net profitable.
-- Net Sharpe gains +9.96 (95% CI 8.3-11.6) in a cluster bootstrap over 252 folds.
-
 ## Abstract
 
 Large language model (LLM) agents increasingly generate candidate trading signals, but many "alpha mining" pipelines reward the agent on in-sample return quality alone, leaving transaction costs to be discovered at implementation. We build a closed-loop system in which a locally-hosted LLM (Qwen2.5-Coder-14B-Instruct) proposes daily cross-sectional equity factors in an AST-validated expression language; each candidate is backtested on a reconstructed point-in-time S&P universe (1999-2026, not a survivorship-biased snapshot) and priced with an explicit spread-and-impact transaction-cost model; diagnostics feed back to the agent every round. We isolate the effect of an execution-cost penalty in the search objective using matched, independently seeded re-optimizations: 21 five-year-train/one-year-test walk-forward folds (2006-2026) crossed with four seed alphas from distinct predictor categories (reversal, volume, volatility, momentum) and three LLM seeds, for 12 re-optimized comparisons. An agent rewarded purely on gross return converges to 49-101%/day turnover in every category and produces a -100% cumulative return (net Sharpe -4.7 to -11.2) despite positive average gross Sharpe (0.67); a cluster bootstrap over the 252 underlying fold-level comparisons (paired execution-aware minus baseline) puts the Net Sharpe improvement at +9.96 (95% CI [8.3, 11.6]). Rewarding the identical search net of cost cuts turnover 22-38x, drives near-universal adoption of long-lookback smoothing operators, and, for the volatility-anomaly seed, produces a net-profitable factor (Sharpe +0.35, CAGR ~3.8%). The other three categories remain net-negative, by substantially smaller margins. These results identify the objective specification of an automated search as an economically consequential research choice in its own right.
