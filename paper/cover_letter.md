@@ -13,17 +13,3 @@ Raghuram Nagireddy
 Independent researcher
 rrn2111@caa.columbia.edu
 ORCID: 0009-0002-2203-3367
-
----
-
-## Suggested reviewers
-
-Note: Elsevier's Editorial Manager sometimes prompts authors for suggested reviewers during submission, but this is a general platform feature rather than a rule I could confirm is specifically mandatory for *Finance Research Letters* — the submission form itself will indicate whether it is required or optional for this journal. The following three researchers work directly on the paper's core themes and are all cited in the manuscript; please verify their current institutional email addresses independently (e.g., via their faculty page) before entering them into the submission system, since I have not confirmed current contact details.
-
-1. **Mihail Velikov** — Associate Professor of Finance, Smeal College of Business, Pennsylvania State University. Directly relevant: co-author of "A Taxonomy of Anomalies and Their Trading Costs" (Novy-Marx and Velikov, 2016, cited in this manuscript), the closest existing work to this paper's core turnover/cost-survival question.
-
-2. **Marcos López de Prado** — Professor of Practice, Cornell University (College of Engineering); Global Head of Quantitative R&D, Abu Dhabi Investment Authority. Directly relevant: author of *Advances in Financial Machine Learning* and co-author of the backtest-overfitting paper this manuscript's walk-forward design is motivated by (both cited).
-
-3. **Xiao-Yang Liu** — Researcher, Department of Electrical Engineering, Columbia University (TensorLet Lab). Directly relevant: co-author of FinGPT (Yang, Liu and Wang, 2023, cited), directly on LLM-based financial agents, the methodological category this paper's Generator/Refiner belongs to.
-
-*[If the submission form asks whether you oppose any reviewers, leave blank unless you have a specific reason.]*
