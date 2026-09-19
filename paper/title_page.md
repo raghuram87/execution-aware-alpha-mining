@@ -5,3 +5,5 @@
 Independent researcher
 
 Corresponding author. Email: rrn2111@caa.columbia.edu
+
+Code and result logs: https://github.com/raghuram87/execution-aware-alpha-mining (withheld from the anonymized manuscript file to preserve author anonymity during peer review; see that file's Data availability statement)
