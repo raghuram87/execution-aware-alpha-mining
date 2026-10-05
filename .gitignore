@@ -6,3 +6,5 @@ data/processed_pit/
 data/processed_pit_top150/
 models/
 *.gguf
+# Sharadar-derived panels: licensed data, regenerable via src/sharadar_universe.py; never commit
+data/processed_pit_sharadar/
