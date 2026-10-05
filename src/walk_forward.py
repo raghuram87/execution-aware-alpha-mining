@@ -103,18 +103,12 @@ class WFOFoldResult:
     flat_oos_results: dict[float, FactorEvalResult] = field(repr=False)  # bps -> result
 
 
-def _run_fold(
-    llm_client: LLMClient, mode: str, window: WFOWindow, panels: dict[str, pd.DataFrame],
-    n_iterations: int, gamma1: float, gamma2: float, cost_params, log_dir: Path | None, verbose: bool,
-    seed_alpha: str = config.SEED_ALPHA,
-    fold_universe_size: int | None = 150,
-    fold_lookback_days: int = 504,
-) -> WFOFoldResult:
-    w = window
-    if verbose:
-        print(f"[wfo:{mode}] fold {w.fold_id}: train {w.train_start.date()}..{w.train_end.date()} "
-              f"-> test {w.test_start.date()}..{w.test_end.date()}")
-
+def fold_panels(
+    panels: dict[str, pd.DataFrame], w: "WFOWindow",
+    fold_universe_size: int | None = 150, fold_lookback_days: int = 504,
+) -> dict[str, pd.DataFrame]:
+    """The panels one fold trades: its causal liquidity-capped universe,
+    truncated at the fold's test_end."""
     if fold_universe_size is not None:
         # Causal, periodically-reconstituted per-fold universe: one
         # liquidity reconstitution point per training year plus one at
@@ -158,7 +152,22 @@ def _run_fold(
     # over 15-20 years of dates it will never look at. Dropping future dates
     # this fold can't see anyway is a pure compute win, not a methodology
     # change -- all rolling-window history *before* test_end is untouched.
-    panels_fold = {k: v.loc[:w.test_end] for k, v in panels.items()}
+    return {k: v.loc[:w.test_end] for k, v in panels.items()}
+
+
+def _run_fold(
+    llm_client: LLMClient, mode: str, window: WFOWindow, panels: dict[str, pd.DataFrame],
+    n_iterations: int, gamma1: float, gamma2: float, cost_params, log_dir: Path | None, verbose: bool,
+    seed_alpha: str = config.SEED_ALPHA,
+    fold_universe_size: int | None = 150,
+    fold_lookback_days: int = 504,
+) -> WFOFoldResult:
+    w = window
+    if verbose:
+        print(f"[wfo:{mode}] fold {w.fold_id}: train {w.train_start.date()}..{w.train_end.date()} "
+              f"-> test {w.test_start.date()}..{w.test_end.date()}")
+
+    panels_fold = fold_panels(panels, w, fold_universe_size, fold_lookback_days)
     loop_result = run_agent_loop(
         llm_client, mode=mode, n_iterations=n_iterations, gamma1=gamma1, gamma2=gamma2,
         panels=panels_fold, cost_params=cost_params, eval_window=(w.train_start, w.train_end),
@@ -294,10 +303,13 @@ def stitch_folds(
 
 
 def evaluate_fixed_factor_across_folds(
-    factor_code: str,
+    factor_code: str | list[str],
     panels: dict[str, pd.DataFrame],
     windows: list[WFOWindow],
     cost_params: config.CostParams | None = None,
+    rebalance_every: int = 1,
+    fold_universe_size: int | None = 150,
+    fold_lookback_days: int = 504,
 ) -> tuple[StitchedResult, dict[float, StitchedResult]]:
     """The no-LLM-feedback control: score ONE fixed, never-refined expression
     (e.g. `config.SEED_ALPHA`) on every fold's OOS test window -- no search,
@@ -305,22 +317,28 @@ def evaluate_fixed_factor_across_folds(
     the exact same `stitch_folds` machinery used for baseline/execution-aware,
     so the comparison is apples-to-apples against the LLM-driven results.
     Returns (full-cost-model StitchedResult, {bps: flat-cost StitchedResult}).
+
+    `factor_code` may also be a list with one expression per window (e.g.
+    each fold's discovered factor, re-scored under a different
+    `rebalance_every`).
     """
+    codes = factor_code if isinstance(factor_code, list) else [factor_code] * len(windows)
     fold_results = []
-    for w in windows:
+    for w, code in zip(windows, codes):
+        pf = fold_panels(panels, w, fold_universe_size, fold_lookback_days)
         oos_full = evaluate_factor(
-            factor_code, panels=panels, cost_params=cost_params, cost_model="full",
-            eval_window=(w.test_start, w.test_end),
+            code, panels=pf, cost_params=cost_params, cost_model="full",
+            eval_window=(w.test_start, w.test_end), rebalance_every=rebalance_every,
         )
         flat_oos = {
             bps: evaluate_factor(
-                factor_code, panels=panels, cost_model="flat", flat_bps=bps,
-                eval_window=(w.test_start, w.test_end),
+                code, panels=pf, cost_model="flat", flat_bps=bps,
+                eval_window=(w.test_start, w.test_end), rebalance_every=rebalance_every,
             )
             for bps in config.FLAT_COST_SCENARIOS_BPS
         }
         fold_results.append(WFOFoldResult(
-            window=w, mode="seed_only", factor_code=factor_code,
+            window=w, mode="seed_only", factor_code=code,
             agent_log=pd.DataFrame(), in_sample_result=oos_full,  # no search occurred; in_sample unused here
             out_of_sample_result=oos_full, flat_oos_results=flat_oos,
         ))
@@ -412,7 +430,8 @@ def run_wfo_experiment(
                 fold_universe_size, fold_lookback_days,
             ))
 
-    labels = {lbl: m for lbl, m in {"Baseline": "baseline", "Execution-Aware": "execution_aware"}.items() if m in modes}
+    labels = {lbl: m for lbl, m in {"Baseline": "baseline", "Execution-Aware": "execution_aware",
+                                     "Reward-Only": "reward_only"}.items() if m in modes}
     stitched: dict[str, dict[str, StitchedResult]] = {}
     table_rows = []
     for label, mode in labels.items():

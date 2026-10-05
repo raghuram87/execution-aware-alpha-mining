@@ -93,7 +93,8 @@ if __name__ == "__main__":
     parser.add_argument("--alphas", nargs="+", default=list(config.SEED_ALPHAS.keys()))
     parser.add_argument("--out-root", type=str, default=str(OUT_ROOT))
     parser.add_argument("--modes", nargs="+", default=["baseline", "execution_aware"],
-                        choices=["baseline", "execution_aware"])
+                        choices=["baseline", "execution_aware", "reward_only"])
+    parser.add_argument("--tag", default="", help="suffix for this process's summary file when several processes share a mode")
     args = parser.parse_args()
 
     out_root = Path(args.out_root)
@@ -110,7 +111,8 @@ if __name__ == "__main__":
     print(f"[run_full_grid] panels: {panels['close'].shape[1]} tickers x {panels['close'].shape[0]} days "
           f"({panels['close'].index.min().date()} .. {panels['close'].index.max().date()})")
 
-    summary_path = out_root / ("grid_summary.csv" if len(args.modes) == 2 else f"grid_summary_{args.modes[0]}.csv")
+    tag = f"_{args.tag}" if args.tag else ""
+    summary_path = out_root / ("grid_summary.csv" if len(args.modes) == 2 else f"grid_summary_{args.modes[0]}{tag}.csv")
     all_rows: list[dict] = []
     if summary_path.exists():
         all_rows = pd.read_csv(summary_path).to_dict("records")

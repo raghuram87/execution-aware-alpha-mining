@@ -132,7 +132,7 @@ def reward_fn(
 ) -> float:
     if mode == "baseline":
         base = result.Gross_IR
-    elif mode == "execution_aware":
+    elif mode in ("execution_aware", "reward_only"):
         base = result.Gross_IR - gamma1 * result.Turnover - gamma2 * result.Cost_Impact
     else:
         raise ValueError(f"Unknown mode: {mode}")
@@ -245,19 +245,35 @@ def build_user_prompt(
     """Both `last` and `best` are always populated from round 1 onward: the
     loop bootstraps by evaluating `config.SEED_ALPHA` before round 1, so
     baseline and execution-aware both start round 1 from an identical,
-    already-scored seed rather than a blank slate."""
-    reward_def = (
-        "Reward = Gross_IR (raw pre-cost return quality; turnover and cost are NOT scored), minus a "
-        "penalty if expression complexity exceeds the node budget stated in the system prompt."
-        if mode == "baseline"
-        else f"Reward = Gross_IR - {gamma1}*Turnover - {gamma2}*Cost_Impact (turnover and transaction "
-             "cost ARE penalized), minus a penalty if expression complexity exceeds the node budget. "
-             f"Aim for the best Net_IR (net of realistic costs) while keeping annualized turnover under "
-             f"{config.EXECUTION_AWARE_TURNOVER_TARGET * 100:.0f}%."
-    )
+    already-scored seed rather than a blank slate.
+
+    "reward_only" scores candidates with the execution-aware reward but shows
+    the agent the baseline's prompt verbatim (Mode=baseline, baseline
+    critique), except that the reward sentence is neutral and does not say
+    what is penalized. It isolates the reward as pure selection pressure
+    from the cost-focused language the execution-aware arm also receives."""
+    if mode == "baseline":
+        reward_def = (
+            "Reward = Gross_IR (raw pre-cost return quality; turnover and cost are NOT scored), minus a "
+            "penalty if expression complexity exceeds the node budget stated in the system prompt."
+        )
+    elif mode == "reward_only":
+        reward_def = (
+            "Reward = a scalar score computed from the backtest diagnostics reported below (its formula "
+            "is not disclosed), minus a penalty if expression complexity exceeds the node budget stated "
+            "in the system prompt."
+        )
+    else:
+        reward_def = (
+            f"Reward = Gross_IR - {gamma1}*Turnover - {gamma2}*Cost_Impact (turnover and transaction "
+            "cost ARE penalized), minus a penalty if expression complexity exceeds the node budget. "
+            f"Aim for the best Net_IR (net of realistic costs) while keeping annualized turnover under "
+            f"{config.EXECUTION_AWARE_TURNOVER_TARGET * 100:.0f}%."
+        )
+    shown_mode = "baseline" if mode == "reward_only" else mode
 
     lines = [
-        f"Round {iteration}/{n_iterations}. Mode={mode}.",
+        f"Round {iteration}/{n_iterations}. Mode={shown_mode}.",
         reward_def,
         "",
         f"Best factor so far: {_fmt_metrics(best)}",

@@ -1,6 +1,6 @@
 """Generate the paper's Figure 2 (cumulative returns, small multiples by
 seed-alpha category) and Figure 3 (bps cost sensitivity, small multiples)
-from the completed full_grid_2006_2026 run -- no rerun needed, everything
+from the completed full_grid_sharadar_2006_2026 run -- no rerun needed, everything
 is read from the already-saved per-combo CSVs and grid_summary.csv.
 
 Usage: python scripts/generate_paper_figures.py
@@ -17,7 +17,7 @@ import pandas as pd
 from src import config
 from src.visualize import plot_grid_bps_sensitivity, plot_grid_cumulative_returns
 
-GRID_DIR = config.RESULTS / "local_llm_runs" / "full_grid_2006_2026"
+GRID_DIR = config.RESULTS / "local_llm_runs" / "full_grid_sharadar_2006_2026"
 CATEGORIES = ["reversal", "volume", "volatility", "momentum"]
 REPRESENTATIVE_SEED = 1001
 COST_SCENARIOS = ["Net_Sharpe_5bps", "Net_Sharpe_10bps", "Net_Sharpe_20bps", "Net_Sharpe_full_cost_model"]

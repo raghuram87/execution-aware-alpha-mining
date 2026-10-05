@@ -1,6 +1,6 @@
 """Reproduces the manuscript's Table 2 (discovered-factor mechanism stats)
 and the cluster-bootstrap statistical significance test (Section 3/4),
-entirely from already-completed full_grid_2006_2026 run data -- no new
+entirely from already-completed full_grid_sharadar_2006_2026 run data -- no new
 LLM/GPU experiments required.
 
 Usage: python scripts/analyze_mechanism_and_significance.py
@@ -20,13 +20,13 @@ import pandas as pd
 
 from src.factor_eval import _SMOOTHER_FUNCS, _WINDOWED_FUNCS, count_ast_nodes
 
-GRID_DIR = Path(__file__).resolve().parent.parent / "results" / "local_llm_runs" / "full_grid_2006_2026"
+GRID_DIR = Path(__file__).resolve().parent.parent / "results" / "local_llm_runs" / "full_grid_sharadar_2006_2026"
 
 
 def load_all_folds() -> pd.DataFrame:
     rows = []
     for f in glob.glob(str(GRID_DIR / "*/seed_*/wfo_folds.csv")):
-        m = re.search(r"full_grid_2006_2026/([a-z]+)/seed_(\d+)/wfo_folds\.csv", f.replace("\\", "/"))
+        m = re.search(r"/([a-z]+)/seed_(\d+)/wfo_folds\.csv$", f.replace("\\", "/"))
         alpha, seed = m.group(1), m.group(2)
         df = pd.read_csv(f)
         df["seed_alpha"] = alpha
