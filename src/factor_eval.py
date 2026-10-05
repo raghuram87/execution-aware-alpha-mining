@@ -361,6 +361,26 @@ def _pre_rebalance_weights(
     return drifted.div(norm, axis=0) * gross_exposure
 
 
+def _hold_between_rebalances(
+    target: pd.DataFrame, returns: pd.DataFrame, every: int, gross_exposure: float,
+) -> pd.DataFrame:
+    """Held weights when trading only on every `every`-th day: on rebalance
+    days the book jumps to `target`; otherwise yesterday's book drifts with
+    today's returns (renormalized to gross exposure, as in
+    `_pre_rebalance_weights`), so the turnover calculation sees no trade."""
+    tgt = target.to_numpy()
+    ret = returns.reindex_like(target).fillna(0.0).to_numpy()
+    held = np.empty_like(tgt)
+    for i in range(len(tgt)):
+        if i % every == 0:
+            held[i] = tgt[i]
+        else:
+            drifted = held[i - 1] * (1.0 + ret[i])
+            norm = np.abs(drifted).sum()
+            held[i] = drifted / norm * gross_exposure if norm > 0 else tgt[i]
+    return pd.DataFrame(held, index=target.index, columns=target.columns)
+
+
 def annualized_ir(returns: pd.Series, periods_per_year: int = config.TRADING_DAYS_PER_YEAR) -> float:
     r = returns.dropna()
     if len(r) < 2 or r.std(ddof=0) == 0:
@@ -401,8 +421,13 @@ def evaluate_factor(
     gross_exposure: float = config.LONG_SHORT_GROSS_EXPOSURE,
     nav: float = config.PORTFOLIO_NAV,
     eval_window: tuple[pd.Timestamp | str | None, pd.Timestamp | str | None] | None = None,
+    rebalance_every: int = 1,
 ) -> FactorEvalResult:
     """Standalone factor evaluation harness (Week 1 deliverable).
+
+    `rebalance_every=k` trades to the target weights only every k trading
+    days and lets positions drift with returns in between, so it isolates
+    how much turnover portfolio construction alone can remove.
 
     Parameters
     ----------
@@ -443,6 +468,8 @@ def evaluate_factor(
         # weight rather than participating in the cross-sectional rank.
         scores = scores.where(eligible.reindex_like(scores).fillna(False))
     weights = scores_to_weights(scores, gross_exposure)
+    if rebalance_every > 1:
+        weights = _hold_between_rebalances(weights, panels["returns"], rebalance_every, gross_exposure)
 
     weights_lagged = weights.shift(1).fillna(0.0)
     gross_ret = (weights_lagged * panels["returns"]).sum(axis=1)

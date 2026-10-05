@@ -25,15 +25,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import pandas as pd
 
-from papers.execution_aware_alpha_mining.src import config
-from papers.execution_aware_alpha_mining.src.pit_universe import get_pit_panels
-from papers.execution_aware_alpha_mining.src.visualize import plot_bps_sensitivity, plot_cumulative_returns
-from papers.execution_aware_alpha_mining.src.walk_forward import run_wfo_experiment, save_wfo_tables
+from src import config
+from src.pit_universe import get_pit_panels
+from src.visualize import plot_bps_sensitivity, plot_cumulative_returns
+from src.walk_forward import run_wfo_experiment, save_wfo_tables
 
-OUT_ROOT = config.RESULTS / "local_llm_runs" / "full_grid_2006_2026"
+OUT_ROOT = config.RESULTS / "local_llm_runs" / "full_grid_sharadar_2006_2026"
 
 
-def run_one_combo(alpha_name, alpha_code, llm_seed, panels, n_iterations, out_root, verbose=True):
+def run_one_combo(alpha_name, alpha_code, llm_seed, panels, n_iterations, out_root, modes, verbose=True):
     combo_dir = out_root / alpha_name / f"seed_{llm_seed}"
     combo_dir.mkdir(parents=True, exist_ok=True)
     log_dir = combo_dir / "logs"
@@ -52,10 +52,28 @@ def run_one_combo(alpha_name, alpha_code, llm_seed, panels, n_iterations, out_ro
         seed_alpha=alpha_code,
         log_dir=log_dir,
         verbose=verbose,
+        modes=tuple(modes),
     )
 
-    save_wfo_tables(result, out_dir=combo_dir)
-    result.table1.to_csv(combo_dir / "table1_wfo.csv")
+    suffix = "" if len(modes) == 2 else f"_{modes[0]}"
+    save_wfo_tables(result, out_dir=combo_dir, suffix=suffix)
+    labels = list(result.table1.index)
+
+    for label in labels:
+        result.stitched[label]["full_cost_model"].net_returns.to_csv(
+            combo_dir / f"net_returns_{label.lower().replace('-', '_')}.csv"
+        )
+        result.stitched[label]["full_cost_model"].daily_turnover.to_csv(
+            combo_dir / f"daily_turnover_{label.lower().replace('-', '_')}.csv"
+        )
+
+    rows = []
+    for label in labels:
+        row = result.table1.loc[label].to_dict()
+        row.update({"seed_alpha": alpha_name, "seed_alpha_code": alpha_code, "llm_seed": llm_seed, "mode": label})
+        rows.append(row)
+    if len(modes) < 2:
+        return rows
 
     fold_boundaries = [w.test_start for w in result.windows]
     plot_cumulative_returns(
@@ -65,20 +83,6 @@ def run_one_combo(alpha_name, alpha_code, llm_seed, panels, n_iterations, out_ro
         fold_boundaries=fold_boundaries,
     )
     plot_bps_sensitivity(result.stitched, out_path=combo_dir / "fig3_bps_sensitivity.png")
-
-    for label in ("Baseline", "Execution-Aware"):
-        result.stitched[label]["full_cost_model"].net_returns.to_csv(
-            combo_dir / f"net_returns_{label.lower().replace('-', '_')}.csv"
-        )
-        result.stitched[label]["full_cost_model"].daily_turnover.to_csv(
-            combo_dir / f"daily_turnover_{label.lower().replace('-', '_')}.csv"
-        )
-
-    rows = []
-    for label in ("Baseline", "Execution-Aware"):
-        row = result.table1.loc[label].to_dict()
-        row.update({"seed_alpha": alpha_name, "seed_alpha_code": alpha_code, "llm_seed": llm_seed, "mode": label})
-        rows.append(row)
     return rows
 
 
@@ -88,6 +92,8 @@ if __name__ == "__main__":
     parser.add_argument("--n-iterations", type=int, default=config.N_ITERATIONS)
     parser.add_argument("--alphas", nargs="+", default=list(config.SEED_ALPHAS.keys()))
     parser.add_argument("--out-root", type=str, default=str(OUT_ROOT))
+    parser.add_argument("--modes", nargs="+", default=["baseline", "execution_aware"],
+                        choices=["baseline", "execution_aware"])
     args = parser.parse_args()
 
     out_root = Path(args.out_root)
@@ -104,7 +110,7 @@ if __name__ == "__main__":
     print(f"[run_full_grid] panels: {panels['close'].shape[1]} tickers x {panels['close'].shape[0]} days "
           f"({panels['close'].index.min().date()} .. {panels['close'].index.max().date()})")
 
-    summary_path = out_root / "grid_summary.csv"
+    summary_path = out_root / ("grid_summary.csv" if len(args.modes) == 2 else f"grid_summary_{args.modes[0]}.csv")
     all_rows: list[dict] = []
     if summary_path.exists():
         all_rows = pd.read_csv(summary_path).to_dict("records")
@@ -120,7 +126,7 @@ if __name__ == "__main__":
                 print(f"[run_full_grid] skipping already-completed alpha={alpha_name} seed={llm_seed}")
                 continue
             try:
-                rows = run_one_combo(alpha_name, alpha_code, llm_seed, panels, args.n_iterations, out_root)
+                rows = run_one_combo(alpha_name, alpha_code, llm_seed, panels, args.n_iterations, out_root, args.modes)
                 all_rows.extend(rows)
             except Exception:
                 print(f"[run_full_grid] COMBO FAILED: alpha={alpha_name} seed={llm_seed}")

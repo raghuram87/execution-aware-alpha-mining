@@ -356,8 +356,14 @@ def run_wfo_experiment(
     train_start: pd.Timestamp | str | None = None,
     fold_universe_size: int | None = 150,
     fold_lookback_days: int = 504,
+    modes: tuple[str, ...] = ("baseline", "execution_aware"),
 ) -> WFOExperimentResult:
-    """Constructs ONE matched pair of LLM clients (`llm_client.make_matched_pair`)
+    """`modes` restricts the run to a subset of arms. Each arm's client is
+    constructed with the same seed and only ever sees its own prompts, so
+    running ("baseline",) and ("execution_aware",) in two processes (one
+    GPU each) gives the same outputs as one lockstep run, in half the time.
+
+    Constructs ONE matched pair of LLM clients (`llm_client.make_matched_pair`)
     before the fold loop and reuses those same two instances across all
     folds -- baseline and execution-aware each get their own
     independently-constructed, identically-seeded client, called the same
@@ -387,16 +393,26 @@ def run_wfo_experiment(
         raise RuntimeError("No walk-forward folds fit inside the available sample")
 
     log_dir = Path(log_dir) if log_dir else None
-    baseline_client, ea_client = make_matched_pair(llm_kind, seed=matched_seed, **(llm_kwargs or {}))
-    fold_results: dict[str, list[WFOFoldResult]] = {"baseline": [], "execution_aware": []}
+    if len(modes) == 2:
+        baseline_client, ea_client = make_matched_pair(llm_kind, seed=matched_seed, **(llm_kwargs or {}))
+        clients = {"baseline": baseline_client, "execution_aware": ea_client}
+    else:
+        from .llm_client import make_client
+        kwargs = dict(llm_kwargs or {})
+        if llm_kind in ("local", "local_qwen", "qwen"):
+            kwargs.setdefault("main_gpu", 0)
+        if llm_kind != "claude":
+            kwargs["seed"] = matched_seed if matched_seed is not None else config.RANDOM_SEED
+        clients = {modes[0]: make_client(llm_kind, **kwargs)}
+    fold_results: dict[str, list[WFOFoldResult]] = {m: [] for m in modes}
     for w in windows:
-        for mode, client in (("baseline", baseline_client), ("execution_aware", ea_client)):
+        for mode in modes:
             fold_results[mode].append(_run_fold(
-                client, mode, w, panels, n_iterations, gamma1, gamma2, cost_params, log_dir, verbose, seed_alpha,
+                clients[mode], mode, w, panels, n_iterations, gamma1, gamma2, cost_params, log_dir, verbose, seed_alpha,
                 fold_universe_size, fold_lookback_days,
             ))
 
-    labels = {"Baseline": "baseline", "Execution-Aware": "execution_aware"}
+    labels = {lbl: m for lbl, m in {"Baseline": "baseline", "Execution-Aware": "execution_aware"}.items() if m in modes}
     stitched: dict[str, dict[str, StitchedResult]] = {}
     table_rows = []
     for label, mode in labels.items():
@@ -448,11 +464,11 @@ def run_wfo_experiment(
     )
 
 
-def save_wfo_tables(result: WFOExperimentResult, out_dir: str | Path = config.TABLES) -> None:
+def save_wfo_tables(result: WFOExperimentResult, out_dir: str | Path = config.TABLES, suffix: str = "") -> None:
     out_dir = Path(out_dir)
-    result.table1.to_csv(out_dir / "table1_wfo.csv")
-    with open(out_dir / "table1_wfo.md", "w") as f:
+    result.table1.to_csv(out_dir / f"table1_wfo{suffix}.csv")
+    with open(out_dir / f"table1_wfo{suffix}.md", "w") as f:
         f.write(result.table1.round(4).to_markdown())
-    result.fold_table.to_csv(out_dir / "wfo_folds.csv", index=False)
-    with open(out_dir / "wfo_folds.md", "w") as f:
+    result.fold_table.to_csv(out_dir / f"wfo_folds{suffix}.csv", index=False)
+    with open(out_dir / f"wfo_folds{suffix}.md", "w") as f:
         f.write(result.fold_table.round(4).to_markdown(index=False))

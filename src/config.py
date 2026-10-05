@@ -49,6 +49,13 @@ WFO_MIN_TEST_DAYS = 20  # drop a trailing fold if its test window would be short
 # first test window lands in 2006 as intended (5y train immediately before).
 PIT_FETCH_START = "1999-06-01"
 PIT_TRAIN_START = "2001-01-01"
+# "sharadar": survivorship-free SEP prices + SP500 membership events.
+# "legacy": the original Tiingo/yfinance panels (kept only to reproduce the
+# superseded results; it splices sources on 2021-11-29 and misses most
+# pre-2013 delistings).
+PRICE_SOURCE = "sharadar"
+# Pin the panel end so reruns are reproducible regardless of run date.
+PIT_END = "2026-08-13"
 
 # ---------------------------------------------------------------------------
 # Portfolio construction

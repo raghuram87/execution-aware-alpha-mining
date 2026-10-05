@@ -357,8 +357,12 @@ def get_pit_panels(
     panel_start: str = "2001-01-01",
     end: str | None = None,
     max_tickers: int | None = 150,
+    source: str | None = None,
 ) -> dict[str, pd.DataFrame]:
-    """Main entry point. `fetch_start` is when raw price history begins
+    """Main entry point. With `source="sharadar"` (the default, set by
+    config.PRICE_SOURCE) and no ticker cap, panels come from
+    sharadar_universe; `source="legacy"` rebuilds the original
+    Tiingo/yfinance panels. `fetch_start` is when raw price history begins
     (extra ~1.5y of buffer before `panel_start` so rolling windows up to
     ~252 days have real history from day one of the delivered panel);
     `panel_start` is the first date actually in the returned panels (and
@@ -366,6 +370,12 @@ def get_pit_panels(
     caps the point-in-time universe to the most liquid names for compute
     tractability -- see `assemble_pit_panels`; pass None for the full,
     uncapped ~500-name index."""
+    source = source or config.PRICE_SOURCE
+    if source == "sharadar":
+        if max_tickers is not None:
+            raise ValueError("Sharadar panels are built uncapped; per-fold liquidity caps happen in walk_forward")
+        from .sharadar_universe import get_pit_panels_sharadar
+        return get_pit_panels_sharadar(force_refresh=force_refresh, fetch_start=fetch_start, end=end or config.PIT_END)
     paths = _cache_paths(max_tickers)
     if not force_refresh and all(p.exists() for p in paths.values()):
         return {k: pd.read_parquet(p) for k, p in paths.items()}

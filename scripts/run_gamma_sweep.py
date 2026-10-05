@@ -27,7 +27,7 @@ from src.walk_forward import run_wfo_experiment, save_wfo_tables
 
 ALPHA_NAME = "volatility"
 LLM_SEED = 1001
-OUT_ROOT = config.RESULTS / "local_llm_runs" / "gamma_sweep_volatility_seed1001"
+OUT_ROOT = config.RESULTS / "local_llm_runs" / "gamma_sweep_sharadar_volatility_seed1001"
 
 GAMMA_SETTINGS = [
     ("turnover_only", 0.1, 0.0),
@@ -64,27 +64,30 @@ def run_one_setting(kind: str, gamma1: float, gamma2: float, panels, out_root: P
         seed_alpha=config.SEED_ALPHAS[ALPHA_NAME],
         log_dir=log_dir,
         verbose=True,
+        modes=("execution_aware",),
     )
     save_wfo_tables(result, out_dir=combo_dir)
-    result.table1.to_csv(combo_dir / "table1_wfo.csv")
+    result.stitched["Execution-Aware"]["full_cost_model"].net_returns.to_csv(combo_dir / "net_returns_execution_aware.csv")
 
-    # run_wfo_experiment always runs both modes in lockstep (no cheap way
-    # to skip baseline without touching that already-validated function),
-    # so this pays for a baseline re-run every setting even though baseline
-    # reward never uses gamma1/gamma2 -- but only the execution-aware row
-    # is reported: baseline is scientifically redundant across all 9
-    # settings and against the main grid's baseline/volatility/seed1001 run.
+    # Only the execution-aware arm: the baseline reward ignores gamma1/gamma2,
+    # so its run is identical to the main grid's baseline for this seed.
     row = result.table1.loc["Execution-Aware"].to_dict()
     row.update({"kind": kind, "gamma1": gamma1, "gamma2": gamma2, "seed_alpha": ALPHA_NAME, "llm_seed": LLM_SEED})
     return row
 
 
 if __name__ == "__main__":
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--settings", type=int, nargs="+", default=list(range(len(GAMMA_SETTINGS))),
+                    help="indices into GAMMA_SETTINGS, to split the sweep across GPUs")
+    ap.add_argument("--tag", default="all", help="suffix for this process's summary file")
+    args = ap.parse_args()
     OUT_ROOT.mkdir(parents=True, exist_ok=True)
     print("[gamma_sweep] loading full point-in-time panels (cached if already built)...")
     panels = get_pit_panels(fetch_start=config.PIT_FETCH_START, panel_start=config.PIT_FETCH_START, max_tickers=None)
 
-    summary_path = OUT_ROOT / "gamma_sweep_summary.csv"
+    summary_path = OUT_ROOT / f"gamma_sweep_summary_{args.tag}.csv"
     rows = []
     if summary_path.exists():
         rows = pd.read_csv(summary_path).to_dict("records")
@@ -93,7 +96,7 @@ if __name__ == "__main__":
     else:
         done = set()
 
-    for kind, g1, g2 in GAMMA_SETTINGS:
+    for kind, g1, g2 in [GAMMA_SETTINGS[i] for i in args.settings]:
         if (g1, g2) in done:
             print(f"[gamma_sweep] skipping already-completed g1={g1} g2={g2}")
             continue
