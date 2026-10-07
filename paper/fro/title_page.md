@@ -2,9 +2,9 @@
 
 **Raghuram Nagireddy**^a^ (ORCID: 0009-0002-2203-3367)
 
-^a^ [AFFILIATION: "Independent researcher" or institution, to be confirmed], [FULL POSTAL ADDRESS, INCLUDING COUNTRY]
+^a^ Independent Researcher; Columbia University (Alumni)
 
-**Corresponding author:** Raghuram Nagireddy, [FULL POSTAL ADDRESS]. Email: rrn2111@caa.columbia.edu
+**Corresponding author:** Raghuram Nagireddy. Email: rrn2111@caa.columbia.edu
 
 **Code and results:** https://github.com/raghuram87/execution-aware-alpha-mining (withheld from the anonymized manuscript to preserve anonymity during review).
 

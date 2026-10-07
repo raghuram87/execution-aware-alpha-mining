@@ -24,7 +24,6 @@ Thank you for your consideration.
 Sincerely,
 
 Raghuram Nagireddy
-[AFFILIATION]
-[FULL POSTAL ADDRESS]
+Independent Researcher; Columbia University (Alumni)
 rrn2111@caa.columbia.edu
 ORCID: 0009-0002-2203-3367
