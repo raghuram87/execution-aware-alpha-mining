@@ -23,7 +23,7 @@ Thank you for your consideration.
 
 Sincerely,
 
-Raghuram Nagireddy
-Independent Researcher; Columbia University (Alumni)
-rrn2111@caa.columbia.edu
+Raghuram Nagireddy\
+Independent Researcher; Columbia University (Alumni)\
+rrn2111@caa.columbia.edu\
 ORCID: 0009-0002-2203-3367
