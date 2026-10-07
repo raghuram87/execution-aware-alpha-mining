@@ -1,0 +1,3 @@
+| Mode     |   N_Folds |   Gross_Sharpe |   Net_Sharpe_5bps |   Net_Sharpe_10bps |   Net_Sharpe_20bps |   Net_Sharpe_full_cost_model |   Avg_Daily_Turnover_pct |   Avg_Holding_Period_Days |   Max_Drawdown |   Cumulative_Return |
+|:---------|----------:|---------------:|------------------:|-------------------:|-------------------:|-----------------------------:|-------------------------:|--------------------------:|---------------:|--------------------:|
+| Baseline |        21 |         0.2629 |           -1.8734 |            -3.9951 |            -8.1521 |                     -11.1861 |                  97.6131 |                    1.0245 |             -1 |                  -1 |

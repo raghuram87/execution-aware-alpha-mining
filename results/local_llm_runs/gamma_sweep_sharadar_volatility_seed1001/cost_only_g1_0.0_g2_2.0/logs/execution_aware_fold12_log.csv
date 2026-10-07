@@ -1,0 +1,52 @@
+iteration,mode,factor_code,error,Gross_IR,Turnover,Cost_Impact,Net_IR,node_count,reward
+0,execution_aware,"rank(-1 * stddev(delta(close, 1), 20))",,1.3607295861062423,18.85785455349906,0.07817033501590999,0.20364045445509116,5.0,1.2043889160744223
+1,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 60)",,0.9646697181572499,4.683747153090148,0.019577838625961345,0.6775448209601345,6.0,0.9255140409053272
+2,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 120)",,0.9544245400949507,3.6957121776736033,0.015926999016286525,0.72081027488479,6.0,0.9225705420623777
+3,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)",,0.9829751563102269,3.241411387883008,0.01429634142888217,0.7723382305908408,6.0,0.9543824734524626
+4,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+5,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 100)",,0.9476653929391327,3.890073901871405,0.016636648862913102,0.7037221628997583,6.0,0.9143920952133064
+6,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 200)",,0.9727334469982082,3.3248574626205842,0.014579780895393508,0.7583094526325005,6.0,0.9435738852074211
+7,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+8,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",,0.9875130174770407,3.219276880036248,0.014206131685281825,0.7781544517408325,6.0,0.959100754106477
+9,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+10,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 200)",,0.9727334469982082,3.3248574626205842,0.014579780895393508,0.7583094526325005,6.0,0.9435738852074211
+11,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 300)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 300) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+12,execution_aware,"rank(-1 * stddev(delta(close, 1), 20) / (volume + 1e-5))",,1.4132344107577965,45.235306620545366,0.19529756646658727,-1.8956236941220066,7.0,1.022639277824622
+13,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 60)",,0.9646697181572499,4.683747153090148,0.019577838625961345,0.6775448209601345,6.0,0.9255140409053272
+14,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 120)",,0.9544245400949507,3.6957121776736033,0.015926999016286525,0.72081027488479,6.0,0.9225705420623777
+15,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)",,0.9829751563102269,3.241411387883008,0.01429634142888217,0.7723382305908408,6.0,0.9543824734524626
+16,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+17,execution_aware,"rank(-1 * sma(delta(close, 1), 20))",,0.28658160785761105,68.08548308808766,0.3128432641521449,-3.1230933921134962,5.0,-0.3391049204466788
+18,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 60)",,0.9646697181572499,4.683747153090148,0.019577838625961345,0.6775448209601345,6.0,0.9255140409053272
+19,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 120)",,0.9544245400949507,3.6957121776736033,0.015926999016286525,0.72081027488479,6.0,0.9225705420623777
+20,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)",,0.9829751563102269,3.241411387883008,0.01429634142888217,0.7723382305908408,6.0,0.9543824734524626
+21,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+22,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 252)",,0.9875130174770407,3.219276880036248,0.014206131685281825,0.7781544517408325,6.0,0.959100754106477
+23,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+24,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 200)",,0.9727334469982082,3.3248574626205842,0.014579780895393508,0.7583094526325005,6.0,0.9435738852074211
+25,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 400)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 400) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+26,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",,0.9875130174770407,3.219276880036248,0.014206131685281825,0.7781544517408325,6.0,0.959100754106477
+27,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+28,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",,0.9875130174770407,3.219276880036248,0.014206131685281825,0.7781544517408325,6.0,0.959100754106477
+29,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 504)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 504) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+30,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 120)",,0.9544245400949507,3.6957121776736033,0.015926999016286525,0.72081027488479,6.0,0.9225705420623777
+31,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 240)",,0.9829751563102269,3.241411387883008,0.01429634142888217,0.7723382305908408,6.0,0.9543824734524626
+32,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 480)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 480) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+33,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",,0.9875130174770407,3.219276880036248,0.014206131685281825,0.7781544517408325,6.0,0.959100754106477
+34,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+35,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",,0.9875130174770407,3.219276880036248,0.014206131685281825,0.7781544517408325,6.0,0.959100754106477
+36,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+37,execution_aware,"cs_rank(-1 * stddev(delta(close, 1), 20))",,1.3607295861062423,18.85785455349906,0.07817033501590999,0.20364045445509116,5.0,1.2043889160744223
+38,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 120)",,0.9544245400949507,3.6957121776736033,0.015926999016286525,0.72081027488479,6.0,0.9225705420623777
+39,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 240)",,0.9829751563102269,3.241411387883008,0.01429634142888217,0.7723382305908408,6.0,0.9543824734524626
+40,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 360)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 360) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+41,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 120)",,0.9544245400949507,3.6957121776736033,0.015926999016286525,0.72081027488479,6.0,0.9225705420623777
+42,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 240)",,0.9829751563102269,3.241411387883008,0.01429634142888217,0.7723382305908408,6.0,0.9543824734524626
+43,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+44,execution_aware,"rank(-1 * stddev(delta(close, 1), 20))",,1.3607295861062423,18.85785455349906,0.07817033501590999,0.20364045445509116,5.0,1.2043889160744223
+45,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 60)",,0.9646697181572499,4.683747153090148,0.019577838625961345,0.6775448209601345,6.0,0.9255140409053272
+46,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 120)",,0.9544245400949507,3.6957121776736033,0.015926999016286525,0.72081027488479,6.0,0.9225705420623777
+47,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)",,0.9829751563102269,3.241411387883008,0.01429634142888217,0.7723382305908408,6.0,0.9543824734524626
+48,execution_aware,"decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf
+49,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)",,0.9875130174770407,3.219276880036248,0.014206131685281825,0.7781544517408325,6.0,0.959100754106477
+50,execution_aware,"decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 500)","Rejected by AST anti-pattern guardrails: INVALID_LOOKBACKS: decay_linear(..., 500) — lookback must be an integer with 2 <= N <= 252.",,,,,,-inf

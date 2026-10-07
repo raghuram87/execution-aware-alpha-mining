@@ -1,0 +1,23 @@
+| Mode            |   Fold | Train                    | Test                     | Factor                                                        |   OOS_Gross_IR |   OOS_Turnover |   OOS_Net_IR |
+|:----------------|-------:|:-------------------------|:-------------------------|:--------------------------------------------------------------|---------------:|---------------:|-------------:|
+| Execution-Aware |      0 | 2001-01-01 to 2005-12-31 | 2006-01-01 to 2006-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 200)     |         1.2237 |         3.5054 |       1.0546 |
+| Execution-Aware |      1 | 2002-01-01 to 2006-12-31 | 2007-01-01 to 2007-12-31 | decay_linear(cs_rank(-1 * stddev(delta(close, 1), 30)), 240)  |         1.0839 |         3.277  |       0.9215 |
+| Execution-Aware |      2 | 2003-01-01 to 2007-12-31 | 2008-01-01 to 2008-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)     |         1.016  |         6.4709 |       0.8783 |
+| Execution-Aware |      3 | 2004-01-01 to 2008-12-31 | 2009-01-01 to 2009-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)     |         0.3634 |         5.0262 |       0.2107 |
+| Execution-Aware |      4 | 2005-01-01 to 2009-12-31 | 2010-01-01 to 2010-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)     |        -0.5163 |         3.2323 |      -0.6612 |
+| Execution-Aware |      5 | 2006-01-01 to 2010-12-31 | 2011-01-01 to 2011-12-31 | decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 252)  |         0.8047 |         3.3739 |       0.6664 |
+| Execution-Aware |      6 | 2007-01-01 to 2011-12-31 | 2012-01-01 to 2012-12-31 | decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 240)  |         1.3926 |         3.1213 |       1.2421 |
+| Execution-Aware |      7 | 2008-01-01 to 2012-12-31 | 2013-01-01 to 2013-12-31 | decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 250)  |         2.5335 |         2.8178 |       2.3391 |
+| Execution-Aware |      8 | 2009-01-01 to 2013-12-31 | 2014-01-01 to 2014-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)     |        -0.0387 |         2.9996 |      -0.2087 |
+| Execution-Aware |      9 | 2010-01-01 to 2014-12-31 | 2015-01-01 to 2015-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)     |         0.4165 |         3.1579 |       0.2244 |
+| Execution-Aware |     10 | 2011-01-01 to 2015-12-31 | 2016-01-01 to 2016-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)     |         1.7089 |         3.5269 |       1.4845 |
+| Execution-Aware |     11 | 2012-01-01 to 2016-12-31 | 2017-01-01 to 2017-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 252)     |         0.592  |         2.8002 |       0.3558 |
+| Execution-Aware |     12 | 2013-01-01 to 2017-12-31 | 2018-01-01 to 2018-12-31 | decay_linear(cs_rank(-1 * stddev(delta(close, 1), 252)), 200) |         0.6575 |         2.9664 |       0.443  |
+| Execution-Aware |     13 | 2014-01-01 to 2018-12-31 | 2019-01-01 to 2019-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)     |         0.3427 |         2.9533 |       0.1454 |
+| Execution-Aware |     14 | 2015-01-01 to 2019-12-31 | 2020-01-01 to 2020-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 252)     |        -0.2975 |         4.1049 |      -0.4537 |
+| Execution-Aware |     15 | 2016-01-01 to 2020-12-31 | 2021-01-01 to 2021-12-31 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)     |         0.6442 |         3.3204 |       0.4901 |
+| Execution-Aware |     16 | 2017-01-01 to 2021-12-31 | 2022-01-01 to 2022-12-31 | decay_linear(cs_rank(-1 * stddev(delta(close, 1), 252)), 252) |         1.2928 |         3.8466 |       1.1534 |
+| Execution-Aware |     17 | 2018-01-01 to 2022-12-31 | 2023-01-01 to 2023-12-31 | decay_linear(cs_rank(-1 * stddev(delta(close, 1), 20)), 240)  |         0.0882 |         3.2099 |      -0.0933 |
+| Execution-Aware |     18 | 2019-01-01 to 2023-12-31 | 2024-01-01 to 2024-12-31 | decay_linear(cs_rank(-1 * stddev(delta(close, 1), 252)), 240) |         1.6826 |         3.2404 |       1.5119 |
+| Execution-Aware |     19 | 2020-01-01 to 2024-12-31 | 2025-01-01 to 2025-12-31 | decay_linear(cs_rank(-1 * stddev(delta(close, 1), 252)), 252) |         0.936  |         3.52   |       0.7454 |
+| Execution-Aware |     20 | 2021-01-01 to 2025-12-31 | 2026-01-01 to 2026-08-13 | decay_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)     |         0.0088 |         5.2364 |      -0.1273 |

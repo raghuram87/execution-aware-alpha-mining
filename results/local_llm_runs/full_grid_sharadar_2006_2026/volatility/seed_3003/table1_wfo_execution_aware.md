@@ -1,0 +1,3 @@
+| Mode            |   N_Folds |   Gross_Sharpe |   Net_Sharpe_5bps |   Net_Sharpe_10bps |   Net_Sharpe_20bps |   Net_Sharpe_full_cost_model |   Avg_Daily_Turnover_pct |   Avg_Holding_Period_Days |   Max_Drawdown |   Cumulative_Return |
+|:----------------|----------:|---------------:|------------------:|-------------------:|-------------------:|-----------------------------:|-------------------------:|--------------------------:|---------------:|--------------------:|
+| Execution-Aware |        21 |         0.6992 |            0.6695 |             0.6397 |             0.5802 |                       0.5566 |                   1.4047 |                   71.1872 |        -0.2208 |              2.3735 |

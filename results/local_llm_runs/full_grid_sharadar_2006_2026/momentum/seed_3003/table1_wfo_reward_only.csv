@@ -1,0 +1,2 @@
+Mode,N_Folds,Gross_Sharpe,Net_Sharpe_5bps,Net_Sharpe_10bps,Net_Sharpe_20bps,Net_Sharpe_full_cost_model,Avg_Daily_Turnover_pct,Avg_Holding_Period_Days,Max_Drawdown,Cumulative_Return
+Reward-Only,21,0.11532986500988243,-0.023413205161113983,-0.1620969243061536,-0.4392242728012765,-0.5630236084363283,9.536653020565737,10.485859114759714,-0.9120736184251075,-0.9022207538552497

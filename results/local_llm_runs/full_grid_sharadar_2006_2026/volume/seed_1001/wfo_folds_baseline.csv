@@ -1,0 +1,22 @@
+Mode,Fold,Train,Test,Factor,OOS_Gross_IR,OOS_Turnover,OOS_Net_IR
+Baseline,0,2001-01-01 to 2005-12-31,2006-01-01 to 2006-12-31,"cs_rank(-1 * ts_rank((close - open) / (high - low + 1e-5), 20) * close)",1.2507050561659117,217.7796941103752,-16.13498896273779
+Baseline,1,2002-01-01 to 2006-12-31,2007-01-01 to 2007-12-31,"cs_rank(-1 * (vwap - open) / (high - low + 1e-5) * close * ts_rank(decay_linear(close, 20), 20))",-2.567142536757343,304.5163296339032,-29.08020173568421
+Baseline,2,2003-01-01 to 2007-12-31,2008-01-01 to 2008-12-31,"cs_rank(-1 * zscore(volume, 20) * cs_rank(vwap / (close + 1e-5)) * ts_rank(close, 20))",-0.16162776996608896,254.90631558525865,-8.967850033433564
+Baseline,3,2004-01-01 to 2008-12-31,2009-01-01 to 2009-12-31,"cs_rank(zscore(close - open, 20) * zscore(volume, 20) * ts_rank(vwap, 20) * cs_rank(stddev(close, 20)))",-0.7702782784811667,315.29081840559354,-19.87292361551616
+Baseline,4,2005-01-01 to 2009-12-31,2010-01-01 to 2010-12-31,"cs_rank(-1 * zscore(close - open, 20) + ts_rank(volume, 20) + zscore(vwap - close, 20))",0.8228339931092641,331.6507288987336,-24.49323068124437
+Baseline,5,2006-01-01 to 2010-12-31,2011-01-01 to 2011-12-31,"cs_rank(-1 * zscore(close - open, 20) * sma(volume, 20) * ts_rank(vwap, 20))",1.1308778312806584,316.57822924452046,-18.674690123725565
+Baseline,6,2007-01-01 to 2011-12-31,2012-01-01 to 2012-12-31,"rank(-1 * zscore((high - low) / (high + low + 1e-5), 20) + cs_rank(volume))",1.089508752388343,291.6884462049061,-24.492881927229966
+Baseline,7,2008-01-01 to 2012-12-31,2013-01-01 to 2013-12-31,cs_rank((vwap - close) / (high - low + 1e-5)),1.5518550911975495,332.1442894055716,-26.27146230091887
+Baseline,8,2009-01-01 to 2013-12-31,2014-01-01 to 2014-12-31,"cs_rank(-1 * (zscore(close - open, 20) + decay_linear(close - low, 20) + ts_rank(high - low, 20)))",-0.6083807252259915,279.41893344646087,-21.317410569284867
+Baseline,9,2010-01-01 to 2014-12-31,2015-01-01 to 2015-12-31,"cs_rank(-1 * zscore(close - open, 20) + volume / (vwap + 1e-5))",0.34125366049233224,45.75197062383512,-2.629355083325316
+Baseline,10,2011-01-01 to 2015-12-31,2016-01-01 to 2016-12-31,"rank(-1 * (zscore(close - open, 20) + zscore(high - low, 20)))",0.3722319998180364,315.22536056139666,-17.203145379855346
+Baseline,11,2012-01-01 to 2016-12-31,2017-01-01 to 2017-12-31,"cs_rank(zscore(volume, 20) * (high - low) / (high + low + 1e-5) * close)",-0.40857966923676803,224.42938076229478,-18.012511735761723
+Baseline,12,2013-01-01 to 2017-12-31,2018-01-01 to 2018-12-31,"cs_rank(-1 * close / (high + low + 1e-5)) * zscore(volume, 20) * ts_rank(close, 20)",-0.36159697367511323,307.91298400002347,-17.52071026876912
+Baseline,13,2014-01-01 to 2018-12-31,2019-01-01 to 2019-12-31,"cs_rank((close - open) / (high - low + 1e-5)) + cs_rank(volume - vwap) + cs_rank(zscore(volume, 20))",0.8314001777915537,255.9880870612784,-14.667870079736648
+Baseline,14,2015-01-01 to 2019-12-31,2020-01-01 to 2020-12-31,"rank(-1 * zscore(close - open, 20) * decay_linear(volume, 20) * ts_rank(vwap, 20))",1.199842583289164,331.86336096422866,-8.904133675806918
+Baseline,15,2016-01-01 to 2020-12-31,2021-01-01 to 2021-12-31,cs_rank((vwap - close) / (close + open + 1e-5)) * cs_rank(volume / cs_rank(volume)),1.9243978916424764,258.01101656562037,-9.364859651694985
+Baseline,16,2017-01-01 to 2021-12-31,2022-01-01 to 2022-12-31,"rank(-1 * (zscore(volume, 20) + zscore(close - open, 20) + zscore(high - low, 20) + zscore(close - vwap, 20)))",0.039004938380583574,298.1847199111256,-13.682681969391883
+Baseline,17,2018-01-01 to 2022-12-31,2023-01-01 to 2023-12-31,"cs_rank(-1 * zscore(volume, 20) + ts_rank(stddev(close, 20), 20) + cs_rank(vwap - close))",-0.3619915420286247,245.128885985006,-14.941424382041067
+Baseline,18,2019-01-01 to 2023-12-31,2024-01-01 to 2024-12-31,"cs_rank(-1 * (zscore(volume, 20) + decay_linear(close, 20)))",0.6198804501075945,5.18687333064508,0.3514135244811317
+Baseline,19,2020-01-01 to 2024-12-31,2025-01-01 to 2025-12-31,"rank(-1 * zscore(volume, 20) + cs_rank(vwap - close))",-0.6855888394830671,262.93012327159227,-16.055466348832198
+Baseline,20,2021-01-01 to 2025-12-31,2026-01-01 to 2026-08-13,"rank(-1 * zscore(close - open, 20) + cs_rank(volume))",0.03927263657104389,321.4751467863782,-9.591809574093485

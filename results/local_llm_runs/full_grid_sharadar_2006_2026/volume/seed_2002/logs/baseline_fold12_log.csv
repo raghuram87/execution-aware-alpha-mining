@@ -1,0 +1,52 @@
+iteration,mode,factor_code,error,Gross_IR,Turnover,Cost_Impact,Net_IR,node_count,reward
+0,baseline,"rank(-1 * zscore(volume, 20))",,-0.9259000230394628,242.673240543229,1.1858449219328666,-17.382133947339515,4,-0.9259000230394628
+1,baseline,rank(close - open),,0.029331927852583692,320.4953022617578,1.676295274630729,-17.990766809111854,2,0.029331927852583692
+2,baseline,rank(close - open) + rank(volume),,0.587525797136912,257.9343005205752,1.3077918919974858,-14.953508488258692,4,0.587525797136912
+3,baseline,"cs_rank(close - open) + cs_rank(volume) * cs_rank(zscore(vwap, 20))",,0.286173780303441,269.0060752003502,1.3667484272235038,-14.487656930580307,7,0.286173780303441
+4,baseline,"cs_rank(close - open) + cs_rank(volume) * cs_rank(stddev(close, 20))",,-0.19915072768440728,298.6491921544431,1.5487167234768426,-17.58448995711203,7,-0.19915072768440728
+5,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+6,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+7,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+8,baseline,cs_rank(close - open) + cs_rank(volume),,0.587525797136912,257.9343005205752,1.3077918919974858,-14.953508488258692,4,0.587525797136912
+9,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)) + cs_rank(vwap - close),,1.8644303515049587,269.5816225079905,1.3470934954088534,-18.409098479954345,14,1.5644303515049587
+10,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+11,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+12,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+13,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+14,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)) + cs_rank(vwap - close),,1.8644303515049587,269.5816225079905,1.3470934954088534,-18.409098479954345,14,1.5644303515049587
+15,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+16,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+17,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)) + cs_rank(vwap - close),,1.8644303515049587,269.5816225079905,1.3470934954088534,-18.409098479954345,14,1.5644303515049587
+18,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+19,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+20,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+21,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+22,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+23,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+24,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+25,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+26,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+27,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+28,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+29,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+30,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+31,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+32,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+33,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+34,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+35,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+36,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+37,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)) + cs_rank(vwap - close),,1.8644303515049587,269.5816225079905,1.3470934954088534,-18.409098479954345,14,1.5644303515049587
+38,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+39,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)) + cs_rank(vwap - close),,1.8644303515049587,269.5816225079905,1.3470934954088534,-18.409098479954345,14,1.5644303515049587
+40,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+41,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)) + cs_rank(vwap - close),,1.8644303515049587,269.5816225079905,1.3470934954088534,-18.409098479954345,14,1.5644303515049587
+42,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+43,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+44,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+45,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+46,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+47,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+48,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+49,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744
+50,baseline,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)),,0.9121150777133744,287.8266114926499,1.4645290509049915,-16.78739074280747,11,0.7621150777133744

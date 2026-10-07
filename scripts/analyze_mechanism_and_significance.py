@@ -77,43 +77,44 @@ def mechanism_table(full: pd.DataFrame) -> None:
         print(" ", top.index[0])
 
 
-def significance_test(full: pd.DataFrame, n_boot: int = 10_000, seed: int = 42) -> None:
+def significance_test(full: pd.DataFrame, treated: str = "Execution-Aware", control: str = "Baseline",
+                      n_boot: int = 10_000, seed: int = 42) -> dict:
+    """Paired fold-level Net Sharpe difference (treated minus control),
+    with a cluster bootstrap over (seed alpha, sampling seed) combinations
+    and an exact sign test on the 12 combination-level means."""
+    from scipy import stats
     piv = full.pivot_table(index=["seed_alpha", "llm_seed", "Fold"], columns="Mode", values="OOS_Net_IR").reset_index()
-    piv["delta"] = piv["Execution-Aware"] - piv["Baseline"]
+    piv = piv.dropna(subset=[treated, control])
+    piv["delta"] = piv[treated] - piv[control]
 
-    print("\n=== Paired fold-level Net Sharpe delta (n=252 fold-pairs) ===")
+    print(f"\n=== {treated} minus {control}: paired fold-level Net Sharpe delta (n={len(piv)}) ===")
     print("mean:", round(piv["delta"].mean(), 3), " median:", round(piv["delta"].median(), 3))
 
     rng = np.random.default_rng(seed)
-    combo_groups = {
-        (a, s): g["delta"].values
-        for (a, s), g in piv.groupby(["seed_alpha", "llm_seed"])
-    }
+    combo_groups = {(a, s): g["delta"].values for (a, s), g in piv.groupby(["seed_alpha", "llm_seed"])}
     combo_keys = list(combo_groups.keys())
     boot = []
     for _ in range(n_boot):
         sampled = rng.choice(len(combo_keys), size=len(combo_keys), replace=True)
         boot.append(np.concatenate([combo_groups[combo_keys[i]] for i in sampled]).mean())
     lo, hi = np.percentile(boot, [2.5, 97.5])
-    print(f"cluster (by seed-alpha/sampling-seed combo) bootstrap 95% CI: [{lo:.3f}, {hi:.3f}]")
-    print(f"cluster bootstrap mean: {np.mean(boot):.3f}")
+    print(f"cluster bootstrap 95% CI: [{lo:.3f}, {hi:.3f}]  (mean {np.mean(boot):.3f})")
 
-    print("\n=== per-category fold-win-rate ===")
     for cat, g in piv.groupby("seed_alpha"):
-        print(f"{cat}: {(g['delta'] > 0).sum()}/{len(g)} folds favor execution-aware "
-              f"({100 * (g['delta'] > 0).mean():.1f}%)")
+        print(f"  {cat}: {(g['delta'] > 0).sum()}/{len(g)} folds favor {treated} ({100 * (g['delta'] > 0).mean():.1f}%)")
 
-    print("\n=== complementary check: exact sign test on the 12 cluster-level mean deltas ===")
-    from scipy import stats
     cluster_means = piv.groupby(["seed_alpha", "llm_seed"])["delta"].mean()
-    n_pos = int((cluster_means > 0).sum())
-    n = len(cluster_means)
+    n_pos, n = int((cluster_means > 0).sum()), len(cluster_means)
     sign_p = stats.binomtest(n_pos, n, 0.5, alternative="two-sided").pvalue
-    print(f"{n_pos}/{n} clusters have positive mean delta; exact sign test p-value: {sign_p:.4f}")
+    print(f"  {n_pos}/{n} combinations positive; exact sign test p = {sign_p:.4f}")
+    return {"treated": treated, "control": control, "mean": piv["delta"].mean(), "ci_lo": lo, "ci_hi": hi,
+            "n_pos": n_pos, "n": n, "sign_p": sign_p,
+            "fold_win_rate": {cat: (g["delta"] > 0).mean() for cat, g in piv.groupby("seed_alpha")}}
 
 
 if __name__ == "__main__":
     full = load_all_folds()
     print(f"Loaded {len(full)} rows from {GRID_DIR}\n")
     mechanism_table(full)
-    significance_test(full)
+    for treated, control in [("Execution-Aware", "Baseline"), ("Reward-Only", "Baseline"), ("Execution-Aware", "Reward-Only")]:
+        significance_test(full, treated, control)

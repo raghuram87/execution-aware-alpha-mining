@@ -1,0 +1,64 @@
+Mode,Fold,Train,Test,Factor,OOS_Gross_IR,OOS_Turnover,OOS_Net_IR
+Baseline,0,2001-01-01 to 2005-12-31,2006-01-01 to 2006-12-31,"cs_rank(zscore((high - low) / (close + 1e-5), 20) * cs_rank(volume) * vwap)",-1.3369432967862425,288.9235107131556,-23.46420817361105
+Baseline,1,2002-01-01 to 2006-12-31,2007-01-01 to 2007-12-31,"cs_rank(-1 * ts_rank((close - open) / (open + 1e-5), 20) + zscore(volume, 60))",0.02157311578051,241.51006921615848,-18.145619441766996
+Baseline,2,2003-01-01 to 2007-12-31,2008-01-01 to 2008-12-31,"cs_rank(close - open) * zscore(volume, 20) * cs_rank(vwap - close) * ts_rank(close - vwap, 20)",0.7316532261310924,313.1566299275305,-8.228872090738765
+Baseline,3,2004-01-01 to 2008-12-31,2009-01-01 to 2009-12-31,cs_rank(close - open) + cs_rank(volume / (vwap + 1e-5)),0.339023529089284,256.8054458231469,-10.477148147225272
+Baseline,4,2005-01-01 to 2009-12-31,2010-01-01 to 2010-12-31,"cs_rank(-1 * zscore(volume, 20) * (close / (high - low + 1e-5))) + cs_rank(-1 * stddev(close, 20)) + cs_rank(vwap / (close + 1e-5))",1.7158694915109485,256.6509541491753,-16.822003592363
+Baseline,5,2006-01-01 to 2010-12-31,2011-01-01 to 2011-12-31,"cs_rank(-1 * (close - vwap) * cs_rank(volume) * ts_rank(close, 20))",2.093992459956436,325.3448934293631,-18.79992871302433
+Baseline,6,2007-01-01 to 2011-12-31,2012-01-01 to 2012-12-31,"rank(-1 * zscore(close, 20) * cs_rank(volume / (open + 1e-5)) * ts_rank(vwap, 20))",-0.7225536000622145,117.07625497316404,-8.071408957592418
+Baseline,7,2008-01-01 to 2012-12-31,2013-01-01 to 2013-12-31,"cs_rank(-1 * zscore(close - open, 20) + ts_rank(vwap - close, 20) + decay_linear(zscore(volume, 20), 20))",0.4688235870680408,314.8016797188004,-23.796681795310683
+Baseline,8,2009-01-01 to 2013-12-31,2014-01-01 to 2014-12-31,"cs_rank((close - open) / (high - low + 1e-5)) * zscore(volume, 20) * decay_linear(close, 20) * cs_rank(vwap - close)",2.106288049043859,330.76946747600067,-12.045690248064677
+Baseline,9,2010-01-01 to 2014-12-31,2015-01-01 to 2015-12-31,"cs_rank(-1 * zscore(close - open, 20) + ts_rank(vwap - close, 20))",-0.3015001696730339,334.2631103561563,-19.25660337563196
+Baseline,10,2011-01-01 to 2015-12-31,2016-01-01 to 2016-12-31,"cs_rank(-1 * zscore(close - vwap, 20) + ts_rank(close, 60) - cs_rank(high - low))",-0.2874316990864404,289.25128810271485,-16.0465793988497
+Baseline,11,2012-01-01 to 2016-12-31,2017-01-01 to 2017-12-31,"cs_rank((close - open) / (high - low + 1e-5) * decay_linear(ts_rank(volume, 20), 20) + cs_rank(zscore(volume, 20)))",0.1251734473128858,290.2490542836059,-20.093397321536862
+Baseline,12,2013-01-01 to 2017-12-31,2018-01-01 to 2018-12-31,cs_rank(close - open) + cs_rank(volume) - cs_rank(abs(close - open) / (high - low + 1e-5)) + cs_rank(vwap - close),0.8929120210736986,265.13408977507174,-17.769516461275373
+Baseline,13,2014-01-01 to 2018-12-31,2019-01-01 to 2019-12-31,"rank(-1 * zscore(close - open, 20) + cs_rank(volume) + ts_rank(vwap - close, 20))",0.2229214047447344,318.5656150332736,-18.30579317508271
+Baseline,14,2015-01-01 to 2019-12-31,2020-01-01 to 2020-12-31,"rank(-1 * zscore((high - low + 1e-5) / (volume + 1e-5), 20))",0.4579980642491473,293.87944912418584,-10.992034380205244
+Baseline,15,2016-01-01 to 2020-12-31,2021-01-01 to 2021-12-31,"cs_rank(zscore(close - vwap, 20) * zscore(volume, 20) * cs_rank(decay_linear(close - vwap, 20)))",0.0073528336200515,324.32919570238744,-19.437971700939038
+Baseline,16,2017-01-01 to 2021-12-31,2022-01-01 to 2022-12-31,"rank(-1 * (zscore(volume, 20) + zscore(close, 20) + zscore(high - low, 20)))",1.4026122762482358,230.68111866755737,-7.427204163182857
+Baseline,17,2018-01-01 to 2022-12-31,2023-01-01 to 2023-12-31,"cs_rank(-1 * zscore(volume, 20) + ts_rank(stddev(close, 20), 10) + cs_rank(vwap - close))",-0.5807073108402131,246.80376330319976,-15.269087764506644
+Baseline,18,2019-01-01 to 2023-12-31,2024-01-01 to 2024-12-31,"rank(-1 * zscore(volume, 20) + cs_rank(volume / (high - low + 1e-5)))",0.3846814052608182,217.61166215253365,-13.243823401782455
+Baseline,19,2020-01-01 to 2024-12-31,2025-01-01 to 2025-12-31,"cs_rank(-1 * zscore(volume, 20) + ts_rank(zscore(close, 20), 20) + zscore(stddev(close, 20), 20) + cs_rank(vwap - close))",0.2176769284318739,150.7981387935324,-7.994296779310387
+Baseline,20,2021-01-01 to 2025-12-31,2026-01-01 to 2026-08-13,"cs_rank(-1 * zscore(vwap - open, 20) + zscore(high - low, 20) + cs_rank(volume))",0.6337695056009687,305.22494308853385,-8.835638895420928
+Execution-Aware,0,2001-01-01 to 2005-12-31,2006-01-01 to 2006-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 250)), 250)",-0.8050480641795503,7.871407824922547,-1.2865385494570063
+Execution-Aware,1,2002-01-01 to 2006-12-31,2007-01-01 to 2007-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 252)), 252)",2.057717989125824,7.181081623194363,1.7988297357714118
+Execution-Aware,2,2003-01-01 to 2007-12-31,2008-01-01 to 2008-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 200)), 240)",0.3369469389650086,9.874510531999722,0.1781027936512144
+Execution-Aware,3,2004-01-01 to 2008-12-31,2009-01-01 to 2009-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 150)), 240)",-0.5637143008246057,9.489592750044936,-0.8037715331080401
+Execution-Aware,4,2005-01-01 to 2009-12-31,2010-01-01 to 2010-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 252)), 252)",-1.4804648194365368,7.35839554619036,-1.983361712852532
+Execution-Aware,5,2006-01-01 to 2010-12-31,2011-01-01 to 2011-12-31,"decay_linear(cs_rank(zscore(close, 200)), 252)",0.8486668049394438,4.656136617804419,0.7071418316831697
+Execution-Aware,6,2007-01-01 to 2011-12-31,2012-01-01 to 2012-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 252)), 252) + decay_linear(cs_rank(zscore(close, 252)), 252)",0.3105151187114224,4.3954600029014985,0.1867081800409059
+Execution-Aware,7,2008-01-01 to 2012-12-31,2013-01-01 to 2013-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 200)), 240)",0.2632209059143378,8.792557471129752,-0.2714740541578737
+Execution-Aware,8,2009-01-01 to 2013-12-31,2014-01-01 to 2014-12-31,"decay_linear(ts_rank(zscore(volume, 20), 240), 240) * cs_rank(close)",0.0621334410290951,6.444174163320304,-0.4366596162860366
+Execution-Aware,9,2010-01-01 to 2014-12-31,2015-01-01 to 2015-12-31,"decay_linear(rank(-1 * zscore(volume, 240)), 240)",1.4996302903049132,7.811444800529628,1.284899925583204
+Execution-Aware,10,2011-01-01 to 2015-12-31,2016-01-01 to 2016-12-31,"decay_linear(rank(-1 * zscore(volume, 120)), 240)",-1.6090720536087186,11.403744221079757,-1.9355499903903308
+Execution-Aware,11,2012-01-01 to 2016-12-31,2017-01-01 to 2017-12-31,"decay_linear(cs_rank(-1 * zscore(close, 252)), 240) + decay_linear(cs_rank(-1 * zscore(vwap, 252)), 240)",-1.00102599450562,3.9997938425267847,-1.1405604623986336
+Execution-Aware,12,2013-01-01 to 2017-12-31,2018-01-01 to 2018-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 240)), 240)",-0.2549011852848298,8.162776417829265,-0.7624341474567043
+Execution-Aware,13,2014-01-01 to 2018-12-31,2019-01-01 to 2019-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 250)), 240)",-0.640247668929103,7.831605593842914,-1.048368159212165
+Execution-Aware,14,2015-01-01 to 2019-12-31,2020-01-01 to 2020-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 252)), 252)",0.26316702506461,7.951906969631006,0.1254251113892457
+Execution-Aware,15,2016-01-01 to 2020-12-31,2021-01-01 to 2021-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 240)), 240)",-1.1896675129821594,8.145468311788939,-1.4918295413807476
+Execution-Aware,16,2017-01-01 to 2021-12-31,2022-01-01 to 2022-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 240)), 240)",0.1136403542496923,7.942481791701107,-0.1873938595226523
+Execution-Aware,17,2018-01-01 to 2022-12-31,2023-01-01 to 2023-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 250)), 250)",-1.0827336323176444,7.425474817590195,-1.3729505923144858
+Execution-Aware,18,2019-01-01 to 2023-12-31,2024-01-01 to 2024-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 240)), 240)",1.0935750396413626,8.042413789388972,0.7915819952192115
+Execution-Aware,19,2020-01-01 to 2024-12-31,2025-01-01 to 2025-12-31,"decay_linear(cs_rank(-1 * zscore(volume, 180)), 180)",-0.1709463238362282,10.623430897502608,-0.5822850309769954
+Execution-Aware,20,2021-01-01 to 2025-12-31,2026-01-01 to 2026-08-13,"decay_linear(ts_rank(-1 * zscore(volume, 200), 240), 240)",-1.6256075121594076,9.935451102168122,-2.023150849419179
+Reward-Only,0,2001-01-01 to 2005-12-31,2006-01-01 to 2006-12-31,"cs_rank(ts_rank(close, 20) + cs_rank(volume / (volume + 1e-5)))",0.7774250863613302,105.3575359787799,-6.107878293459639
+Reward-Only,1,2002-01-01 to 2006-12-31,2007-01-01 to 2007-12-31,"cs_rank(decay_linear((close - open) / (volume + 1e-5) + zscore(close, 20) + zscore(vwap, 20), 10))",0.3039949241040179,42.86356255031581,-1.857110763926658
+Reward-Only,2,2003-01-01 to 2007-12-31,2008-01-01 to 2008-12-31,"cs_rank(-1 * ts_rank(close, 20) * (high - low) / (volume + 1e-5) * decay_linear(zscore(close, 60), 10) * cs_rank(vwap))",-1.723668341332709,47.68657479282239,-3.232508198748616
+Reward-Only,3,2004-01-01 to 2008-12-31,2009-01-01 to 2009-12-31,"cs_rank(high - low) + rank(-1 * zscore(volume, 20))",-1.3975011127202164,190.33310901907612,-10.516031894915336
+Reward-Only,4,2005-01-01 to 2009-12-31,2010-01-01 to 2010-12-31,"cs_rank(-1 * (ts_rank(vwap, 20) + cs_rank(stddev(close, 20) / (stddev(volume, 20) + 1e-5))))",-0.9542786015765636,68.97048878087918,-5.232522403287388
+Reward-Only,5,2006-01-01 to 2010-12-31,2011-01-01 to 2011-12-31,"rank(-1 * zscore(volume, 20) + cs_rank(close / (open + 1e-5))) + rank(-1 * zscore(close, 20)) + decay_linear(close, 20)",-0.4469067165584146,3.2765230405302743,-0.5076156892252298
+Reward-Only,6,2007-01-01 to 2011-12-31,2012-01-01 to 2012-12-31,"cs_rank(high - low) + decay_linear(close, 20)",-0.97041925238491,3.654868228765193,-1.021559487707752
+Reward-Only,7,2008-01-01 to 2012-12-31,2013-01-01 to 2013-12-31,"cs_rank(ts_rank(close, 20) * cs_rank(volume) - zscore(close, 20) * decay_linear(close, 20) + cs_rank(vwap - open))",1.2578232950182404,93.78271940483042,-5.982794791755043
+Reward-Only,8,2009-01-01 to 2013-12-31,2014-01-01 to 2014-12-31,"cs_rank(zscore(close, 20)) * cs_rank(sma(volume, 10)) * cs_rank(decay_linear(high - low, 20)) * cs_rank(sma(close, 20) / (sma(close, 60) + 1e-5))",0.1543810184544943,62.24137636376756,-3.1939495377980736
+Reward-Only,9,2010-01-01 to 2014-12-31,2015-01-01 to 2015-12-31,"cs_rank(ts_rank(close, 20) - ts_rank(volume, 20) + zscore(vwap, 20) + decay_linear(close - open, 20))",0.1759376372714112,102.94201399558273,-4.424843171862498
+Reward-Only,10,2011-01-01 to 2015-12-31,2016-01-01 to 2016-12-31,"cs_rank(-1 * zscore(vwap, 20) * cs_rank(volume / (close + 1e-5)))",2.280545139413531,88.96426963863526,-2.105587217105875
+Reward-Only,11,2012-01-01 to 2016-12-31,2017-01-01 to 2017-12-31,"cs_rank(ts_rank(close, 20) - ts_rank(low, 20) + decay_linear(vwap, 20))",-0.0938575052471344,3.779762733846492,-0.3740792816567609
+Reward-Only,12,2013-01-01 to 2017-12-31,2018-01-01 to 2018-12-31,"rank(-1 * (vwap - sma(vwap, 20) + cs_rank(stddev(close, 20))))",-0.2194137576658645,72.00479209759916,-3.998564941097946
+Reward-Only,13,2014-01-01 to 2018-12-31,2019-01-01 to 2019-12-31,"rank(cs_rank(volume / (open + 1e-5)) + decay_linear(vwap - open, 50))",0.8431608250567533,42.112573787628286,-1.4492093345900348
+Reward-Only,14,2015-01-01 to 2019-12-31,2020-01-01 to 2020-12-31,"rank(-1 * zscore(volume, 20) + zscore(vwap, 20) + zscore(close, 20) + zscore(open, 20))",-0.680683210497057,114.39087860166154,-3.3811673688208126
+Reward-Only,15,2016-01-01 to 2020-12-31,2021-01-01 to 2021-12-31,cs_rank(volume / (vwap + 1e-5)),1.0173975692821469,34.24084342632854,-0.3384890280120318
+Reward-Only,16,2017-01-01 to 2021-12-31,2022-01-01 to 2022-12-31,"cs_rank(-1 * (zscore(volume, 20) + zscore(close, 20) + stddev(close, 20) + zscore(vwap, 20) + decay_linear(zscore(close, 20), 10)))",1.447593629768849,65.05796411592785,-1.298722523650818
+Reward-Only,17,2018-01-01 to 2022-12-31,2023-01-01 to 2023-12-31,"cs_rank(decay_linear(ts_rank(close - vwap, 10), 20) + cs_rank(volume / (volume + 1e-5)))",2.3985929445960696,58.99924828996277,-0.5209377217865058
+Reward-Only,18,2019-01-01 to 2023-12-31,2024-01-01 to 2024-12-31,"cs_rank(-1 * (zscore(close, 20) + zscore(vwap, 20) + zscore(decay_linear(high, 20), 20)))",-0.2104605613741845,71.3450469574098,-2.819073387387181
+Reward-Only,19,2020-01-01 to 2024-12-31,2025-01-01 to 2025-12-31,"cs_rank(-1 * zscore(volume, 20) + ts_rank(abs(close - open), 20) + decay_linear(zscore(close, 20), 20) + cs_rank(stddev(close, 20)))",-0.5930685442807243,155.93089577481643,-6.467521777782639
+Reward-Only,20,2021-01-01 to 2025-12-31,2026-01-01 to 2026-08-13,"cs_rank(-1 * zscore(close - open, 20) + zscore(volume, 20) + zscore(stddev(close, 20), 20) + cs_rank(zscore(close - vwap, 20)))",1.3345744845282512,171.72091951817404,-5.430845505704607

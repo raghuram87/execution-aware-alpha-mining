@@ -1,0 +1,22 @@
+Mode,Fold,Train,Test,Factor,OOS_Gross_IR,OOS_Turnover,OOS_Net_IR
+Reward-Only,0,2001-01-01 to 2005-12-31,2006-01-01 to 2006-12-31,"cs_rank((high - low) / (high + 1e-5) + sma(close, 21))",-1.4364594209207417,4.216196572088379,-1.6655423881169114
+Reward-Only,1,2002-01-01 to 2006-12-31,2007-01-01 to 2007-12-31,"cs_rank(-1 * zscore(vwap, 20) + ts_rank(close, 20) + decay_linear(volume, 20))",-0.42193566288442014,10.964441073664343,-1.118657215432921
+Reward-Only,2,2003-01-01 to 2007-12-31,2008-01-01 to 2008-12-31,"cs_rank(-1 * (zscore(close - open, 20) + zscore(volume, 20) + zscore(stddev(close, 20), 20) + zscore(vwap - close, 20)))",-2.1224744626990213,160.83617790905657,-7.462692553408826
+Reward-Only,3,2004-01-01 to 2008-12-31,2009-01-01 to 2009-12-31,"cs_rank(-1 * zscore(volume, 20) * ts_rank(close, 20) * cs_rank(high - low))",-0.9278072688971816,229.73743532027333,-15.207114649262843
+Reward-Only,4,2005-01-01 to 2009-12-31,2010-01-01 to 2010-12-31,"cs_rank(-1 * zscore(close - vwap, 20) + sma(volume, 20))",-0.2953520912395664,9.082545386945261,-0.9619027025279979
+Reward-Only,5,2006-01-01 to 2010-12-31,2011-01-01 to 2011-12-31,"cs_rank((close - open) / (volume + 1e-5) + cs_rank(decay_linear(close, 20)))",0.1786657554285211,4.137958858249069,-0.04798986599385232
+Reward-Only,6,2007-01-01 to 2011-12-31,2012-01-01 to 2012-12-31,"rank(-1 * zscore(close, 20) * cs_rank(volume) * cs_rank(stddev(close, 20)))",-0.09097977947131512,91.90497004030046,-5.574126082705957
+Reward-Only,7,2008-01-01 to 2012-12-31,2013-01-01 to 2013-12-31,"cs_rank(-1 * zscore(close, 20) * cs_rank(volume / (vwap + 1e-5))) * cs_rank(close / (close + 1e-5)) * cs_rank(decay_linear(close, 20))",-1.1926986098838415,48.55984052961465,-5.402722928710907
+Reward-Only,8,2009-01-01 to 2013-12-31,2014-01-01 to 2014-12-31,"rank(ts_rank(close, 20) + cs_rank(volume) + decay_linear(zscore(vwap - close, 20), 20))",0.989434701149243,97.69005170142718,-5.551359331227243
+Reward-Only,9,2010-01-01 to 2014-12-31,2015-01-01 to 2015-12-31,cs_rank(volume / (high - low + 1e-5)),0.8427657213054341,59.873890032456046,-3.0918761115203792
+Reward-Only,10,2011-01-01 to 2015-12-31,2016-01-01 to 2016-12-31,"rank(-1 * cs_rank(decay_linear(vwap, 20)))",2.2296982067819,4.384614350264592,2.0215941387907836
+Reward-Only,11,2012-01-01 to 2016-12-31,2017-01-01 to 2017-12-31,"cs_rank(-1 * ts_rank(close, 20) + decay_linear(volume, 10))",-0.10798040182131917,16.05725550907676,-1.409300186524076
+Reward-Only,12,2013-01-01 to 2017-12-31,2018-01-01 to 2018-12-31,"cs_rank((high - low) / (high + low + 1e-5) * volume * decay_linear(zscore(close, 20), 20) * cs_rank(volume))",0.6640597316539898,63.951665739400156,-2.472018418787878
+Reward-Only,13,2014-01-01 to 2018-12-31,2019-01-01 to 2019-12-31,"cs_rank(-1 * zscore(close - open, 20) + zscore(volume, 20) + zscore(close, 20) + zscore(vwap, 20))",-0.3184807234366332,147.937487712128,-9.028218628460136
+Reward-Only,14,2015-01-01 to 2019-12-31,2020-01-01 to 2020-12-31,"rank(-1 * (zscore(decay_linear(volume, 20), 20) + cs_rank(stddev(close, 20))))",1.4373052532207355,68.76664078471148,-1.1507434788081208
+Reward-Only,15,2016-01-01 to 2020-12-31,2021-01-01 to 2021-12-31,"rank(-1 * zscore(close, 20) + cs_rank(volume / (vwap + 1e-5)) + ts_rank(close - open, 20) + decay_linear(close, 20))",-0.7421995993811527,4.406535500085072,-0.8944588958081313
+Reward-Only,16,2017-01-01 to 2021-12-31,2022-01-01 to 2022-12-31,"cs_rank(-1 * (decay_linear(ts_rank(close, 20), 20) + decay_linear(ts_rank(vwap, 20), 20)))",-0.03748312404844886,30.396237930018227,-0.8486812650992687
+Reward-Only,17,2018-01-01 to 2022-12-31,2023-01-01 to 2023-12-31,"cs_rank(-1 * zscore(close, 20) + ts_rank(vwap, 20) + decay_linear(stddev(volume, 20), 20))",2.3168252057983465,9.828207004832914,1.8632337356096802
+Reward-Only,18,2019-01-01 to 2023-12-31,2024-01-01 to 2024-12-31,"rank(cs_rank(stddev(close, 20)) + ts_rank(vwap, 20) + decay_linear(zscore(close, 20), 20))",0.36900925924422084,41.642512690789346,-1.04198024255491
+Reward-Only,19,2020-01-01 to 2024-12-31,2025-01-01 to 2025-12-31,"cs_rank(-1 * zscore(volume, 20) + ts_rank(close, 20) + zscore(stddev(close, 20), 20) + cs_rank(vwap) + ts_rank(decay_linear(close, 20), 20))",-0.27207708496977334,130.06021232040501,-6.03565431332096
+Reward-Only,20,2021-01-01 to 2025-12-31,2026-01-01 to 2026-08-13,"cs_rank(-1 * (decay_linear(ts_rank(close, 20), 20) + cs_rank(volume / (vwap + 1e-5))))",-2.0539470457272895,38.952633712994334,-3.1291077579233013

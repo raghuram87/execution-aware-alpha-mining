@@ -1,0 +1,52 @@
+iteration,mode,factor_code,error,Gross_IR,Turnover,Cost_Impact,Net_IR,node_count,reward
+0,baseline,"rank(-1 * delta(close, 1))",,0.7197149902062308,324.4383247617465,1.7688121077727836,-12.510306606227823,4.0,0.7197149902062308
+1,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5)))",,0.448979252225946,334.0587359925449,1.8555514655939749,-10.23792741665473,6.0,0.448979252225946
+2,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5))) + cs_rank((vwap - open) / (vwap + 1e-5))",,0.4066380745587954,379.99760430116487,2.1622617250266565,-12.874898609825209,11.0,0.2566380745587954
+3,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5))) + cs_rank((vwap - open) / (vwap + 1e-5))",,0.4066380745587954,379.99760430116487,2.1622617250266565,-12.874898609825209,11.0,0.2566380745587954
+4,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5)))",,0.448979252225946,334.0587359925449,1.8555514655939749,-10.23792741665473,6.0,0.448979252225946
+5,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5))) + cs_rank(volume)",,0.5332256962787211,251.98982074561437,1.3463045168144405,-8.045948665005442,8.0,0.5332256962787211
+6,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5))) + cs_rank(volume)",,0.5332256962787211,251.98982074561437,1.3463045168144405,-8.045948665005442,8.0,0.5332256962787211
+7,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5))) + cs_rank(-1 * decay_linear(volume, 10))",,0.26380468657135475,250.48645492283893,1.3381550354673597,-9.610090865077568,11.0,0.11380468657135473
+8,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5))) + cs_rank(volume)",,0.5332256962787211,251.98982074561437,1.3463045168144405,-8.045948665005442,8.0,0.5332256962787211
+9,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5))) + rank(volume)",,0.5332256962787211,251.98982074561437,1.3463045168144405,-8.045948665005442,8.0,0.5332256962787211
+10,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5))) + rank(vwap)",,0.15793721782001854,253.07737124455906,1.3499939328702248,-9.335327973344459,8.0,0.15793721782001854
+11,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5))) + rank(stddev(close, 21))",,0.13578383139418135,249.87619581298827,1.3335921160582678,-8.931130989763615,9.0,0.08578383139418135
+12,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5))) + rank(stddev(close, 21))",,0.13578383139418135,249.87619581298827,1.3335921160582678,-8.931130989763615,9.0,0.08578383139418135
+13,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5))) + rank(volume)",,0.5332256962787211,251.98982074561437,1.3463045168144405,-8.045948665005442,8.0,0.5332256962787211
+14,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5))) + rank(zscore(volume, 20))",,0.2727249486427462,312.21192041582077,1.6997368157378465,-11.6131299846473,9.0,0.22272494864274622
+15,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5))) + rank(volume)",,0.5332256962787211,251.98982074561437,1.3463045168144405,-8.045948665005442,8.0,0.5332256962787211
+16,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5))) + rank(volume)",,0.5332256962787211,251.98982074561437,1.3463045168144405,-8.045948665005442,8.0,0.5332256962787211
+17,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5))) + cs_rank(volume)",,0.5332256962787211,251.98982074561437,1.3463045168144405,-8.045948665005442,8.0,0.5332256962787211
+18,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5))) + cs_rank(sma(volume, 10))",,0.5466851710151673,248.40745871651464,1.3254434402073298,-7.906055093676724,9.0,0.49668517101516735
+19,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5)))",,0.448979252225946,334.0587359925449,1.8555514655939749,-10.23792741665473,6.0,0.448979252225946
+20,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5)))",,0.448979252225946,334.0587359925449,1.8555514655939749,-10.23792741665473,6.0,0.448979252225946
+21,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5)) + decay_linear(cs_rank(volume), 20))",,0.4385903626099043,20.378231797640165,0.09468426077812077,-0.446718275860736,9.0,0.3885903626099043
+22,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5)))",,0.448979252225946,334.0587359925449,1.8555514655939749,-10.23792741665473,6.0,0.448979252225946
+23,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5)))",,0.448979252225946,334.0587359925449,1.8555514655939749,-10.23792741665473,6.0,0.448979252225946
+24,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5) + sma(volume, 20) / volume))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+25,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5) + cs_rank(sma(volume, 20) / volume)))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+26,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5) + ts_rank(sma(volume, 20) / volume, 20)))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+27,baseline,"cs_rank(-1 * (delta(close, 1) / (close + 1e-5) + sma(volume, 20) / (volume + 1e-5)))",,-0.2553926199031421,231.50819324139573,1.2040616722005104,-12.450134767909072,10.0,-0.3553926199031421
+28,baseline,"rank(-1 * (delta(close, 1) / (close + 1e-5) + vwap / (close + 1e-5)))",,0.047097313837640056,332.19779844582325,1.8437084280709792,-10.3070019889269,9.0,-0.0029026861623599465
+29,baseline,"rank(-1 * (delta(close, 1) + vwap / close))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+30,baseline,"rank(-1 * (delta(close, 1) + cs_rank(vwap / close)))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+31,baseline,"rank(-1 * (delta(close, 1) + cs_rank(vwap / (close + 1e-5))))",,0.39887385449636914,322.59314275316615,1.7636295057669802,-12.914029063887444,8.0,0.39887385449636914
+32,baseline,"rank(-1 * (delta(close, 1) + cs_rank(vwap / (close + 1e-5)) + zscore(volume, 20)))",,0.37374940445449506,303.5105716268517,1.647943374306575,-12.964262153227518,10.0,0.273749404454495
+33,baseline,"rank(-1 * (delta(close, 1) + zscore(volume, 20)))",,0.6477274658162011,308.2811342119155,1.673907486179148,-12.649469758629346,6.0,0.6477274658162011
+34,baseline,"rank(-1 * (delta(close, 1) + zscore(volume, 20) + decay_linear(vwap, 20)))",,0.4626895775877458,9.534458374089148,0.042412930100474054,0.15110133424752697,8.0,0.4626895775877458
+35,baseline,"cs_rank(-1 * (delta(close, 1) + decay_linear(vwap, 20)))",,0.44586412402969744,8.54717460533865,0.038252159154240135,0.16544594908592516,6.0,0.44586412402969744
+36,baseline,"cs_rank(-1 * (delta(close, 1) + decay_linear(volume, 20)))",,-0.43464393179450694,9.00464127779117,0.039235299660984574,-0.8120578549578721,6.0,-0.43464393179450694
+37,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5)))",,0.7238842788894831,324.5174007787167,1.7691380481915637,-12.550096730471456,8.0,0.7238842788894831
+38,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5) + zscore(volume, 20)))",,0.6492645222512148,308.2783257874664,1.6737660004710253,-12.674555872732196,10.0,0.5492645222512148
+39,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5) + ts_rank(volume, 20)))",,0.7377631813083314,321.85265295490547,1.753341464815278,-12.568035174807875,10.0,0.6377631813083314
+40,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5)))",,0.7238842788894831,324.5174007787167,1.7691380481915637,-12.550096730471456,8.0,0.7238842788894831
+41,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5) + ts_rank(volume, 21)))",,0.7475842519570893,321.84651561708125,1.7532835991995939,-12.563319893404818,10.0,0.6475842519570894
+42,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5)))",,0.7238842788894831,324.5174007787167,1.7691380481915637,-12.550096730471456,8.0,0.7238842788894831
+43,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5) + ts_rank(volume, 20)))",,0.7377631813083314,321.85265295490547,1.753341464815278,-12.568035174807875,10.0,0.6377631813083314
+44,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5)))",,0.7238842788894831,324.5174007787167,1.7691380481915637,-12.550096730471456,8.0,0.7238842788894831
+45,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5) + sma(volume, 20) / volume))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+46,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5) + cs_rank(volume) / volume))",Rejected by AST anti-pattern guardrails: UNPROTECTED_DIVISION: a division's denominator is not epsilon-protected (x / (y + 1e-5)) or a ranked value — it could be zero.,,,,,,-inf
+47,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5) + cs_rank(volume / (volume + 1e-5))))",,0.6273650629712472,317.8358519302058,1.7334267589147738,-12.738229726169472,12.0,0.42736506297124716
+48,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5) + zscore(volume, 20)))",,0.6492645222512148,308.2783257874664,1.6737660004710253,-12.674555872732196,10.0,0.5492645222512148
+49,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5)))",,0.7238842788894831,324.5174007787167,1.7691380481915637,-12.550096730471456,8.0,0.7238842788894831
+50,baseline,"cs_rank(-1 * (delta(close, 1) + (high - low) / (vwap + 1e-5) + decay_linear(zscore(volume, 20), 10)))",,0.7003714559297373,300.0626917727064,1.6352024818369053,-11.968735554824027,11.0,0.5503714559297372
