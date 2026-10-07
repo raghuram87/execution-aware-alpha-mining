@@ -1,0 +1,233 @@
+\begin{thebibliography}{25}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Ang et~al.(2006)Ang, Hodrick, Xing and Zhang}]{ang2006}
+\bibinfo{author}{Ang, A.}, \bibinfo{author}{Hodrick, R.J.},
+  \bibinfo{author}{Xing, Y.}, \bibinfo{author}{Zhang, X.},
+  \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{The cross-section of volatility and expected
+  returns}.
+\newblock \bibinfo{journal}{Journal of Finance} \bibinfo{volume}{61},
+  \bibinfo{pages}{259--299}.
+\newblock \DOIprefix\doi{10.1111/j.1540-6261.2006.00836.x}.
+%Type = Article
+\bibitem[{Bailey et~al.(2014)Bailey, Borwein, L{\'o}pez~de Prado and
+  Zhu}]{bailey2014}
+\bibinfo{author}{Bailey, D.H.}, \bibinfo{author}{Borwein, J.M.},
+  \bibinfo{author}{L{\'o}pez~de Prado, M.}, \bibinfo{author}{Zhu, Q.J.},
+  \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{Pseudo-mathematics and financial charlatanism: The
+  effects of backtest overfitting on out-of-sample performance}.
+\newblock \bibinfo{journal}{Notices of the American Mathematical Society}
+  \bibinfo{volume}{61}, \bibinfo{pages}{458--471}.
+\newblock \DOIprefix\doi{10.1090/noti1105}.
+%Type = Misc
+\bibitem[{Cao(2025)}]{cao2025}
+\bibinfo{author}{Cao, L.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{{Chain-of-Alpha}: Unleashing the power of large
+  language models for alpha mining in quantitative trading}.
+\newblock \DOIprefix\doi{10.48550/arXiv.2508.06312}. \bibinfo{note}{arXiv
+  preprint arXiv:2508.06312}.
+%Type = Article
+\bibitem[{Carhart(1997)}]{carhart1997}
+\bibinfo{author}{Carhart, M.M.}, \bibinfo{year}{1997}.
+\newblock \bibinfo{title}{On persistence in mutual fund performance}.
+\newblock \bibinfo{journal}{Journal of Finance} \bibinfo{volume}{52},
+  \bibinfo{pages}{57--82}.
+\newblock \DOIprefix\doi{10.1111/j.1540-6261.1997.tb03808.x}.
+%Type = Article
+\bibitem[{Chon et~al.(2025)Chon, Kim and Kim}]{chon2025}
+\bibinfo{author}{Chon, S.}, \bibinfo{author}{Kim, J.}, \bibinfo{author}{Kim,
+  J.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Multifaceted variability in {LLM}-driven stock
+  recommendations}.
+\newblock \bibinfo{journal}{Finance Research Letters} \bibinfo{volume}{86},
+  \bibinfo{pages}{108923}.
+\newblock \DOIprefix\doi{10.1016/j.frl.2025.108923}.
+%Type = Article
+\bibitem[{Corwin and Schultz(2012)}]{corwin2012}
+\bibinfo{author}{Corwin, S.A.}, \bibinfo{author}{Schultz, P.},
+  \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{A simple way to estimate bid-ask spreads from daily
+  high and low prices}.
+\newblock \bibinfo{journal}{Journal of Finance} \bibinfo{volume}{67},
+  \bibinfo{pages}{719--760}.
+\newblock \DOIprefix\doi{10.1111/j.1540-6261.2012.01729.x}.
+%Type = Article
+\bibitem[{Fama and French(2015)}]{fama2015}
+\bibinfo{author}{Fama, E.F.}, \bibinfo{author}{French, K.R.},
+  \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{A five-factor asset pricing model}.
+\newblock \bibinfo{journal}{Journal of Financial Economics}
+  \bibinfo{volume}{116}, \bibinfo{pages}{1--22}.
+\newblock \DOIprefix\doi{10.1016/j.jfineco.2014.10.010}.
+%Type = Misc
+\bibitem[{French(2026)}]{french2026}
+\bibinfo{author}{French, K.R.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Data library: {F}ama/{F}rench 5 factors (2x3) daily
+  and momentum factor daily [dataset]}.
+\newblock
+  \bibinfo{howpublished}{\url{https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html}}.
+\newblock \bibinfo{note}{Accessed 5 October 2026}.
+%Type = Article
+\bibitem[{Gervais et~al.(2001)Gervais, Kaniel and Mingelgrin}]{gervais2001}
+\bibinfo{author}{Gervais, S.}, \bibinfo{author}{Kaniel, R.},
+  \bibinfo{author}{Mingelgrin, D.H.}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{The high-volume return premium}.
+\newblock \bibinfo{journal}{Journal of Finance} \bibinfo{volume}{56},
+  \bibinfo{pages}{877--919}.
+\newblock \DOIprefix\doi{10.1111/0022-1082.00349}.
+%Type = Book
+\bibitem[{Grinold and Kahn(2000)}]{grinold2000}
+\bibinfo{author}{Grinold, R.C.}, \bibinfo{author}{Kahn, R.N.},
+  \bibinfo{year}{2000}.
+\newblock \bibinfo{title}{Active Portfolio Management}.
+\newblock \bibinfo{edition}{2nd} ed., \bibinfo{publisher}{McGraw-Hill},
+  \bibinfo{address}{New York}.
+%Type = Misc
+\bibitem[{Han et~al.(2026)Han, Zhang, Li, Dong, Hu, Zhu, Yu, Guo, Liu, Wang,
+  Liu, Jiang, An, Hu, Yang, Che and Wang}]{han2026}
+\bibinfo{author}{Han, J.}, \bibinfo{author}{Zhang, S.}, \bibinfo{author}{Li,
+  W.}, \bibinfo{author}{Dong, Y.}, \bibinfo{author}{Hu, T.},
+  \bibinfo{author}{Zhu, Y.}, \bibinfo{author}{Yu, X.}, \bibinfo{author}{Guo,
+  X.}, \bibinfo{author}{Liu, Z.}, \bibinfo{author}{Wang, K.},
+  \bibinfo{author}{Liu, J.}, \bibinfo{author}{Jiang, T.}, \bibinfo{author}{An,
+  R.}, \bibinfo{author}{Hu, S.}, \bibinfo{author}{Yang, Z.},
+  \bibinfo{author}{Che, R.}, \bibinfo{author}{Wang, H.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{{QuantaAlpha}: An evolutionary framework for
+  {LLM}-driven alpha mining}.
+\newblock \DOIprefix\doi{10.48550/arXiv.2602.07085}. \bibinfo{note}{arXiv
+  preprint arXiv:2602.07085}.
+%Type = Article
+\bibitem[{Jegadeesh(1990)}]{jegadeesh1990}
+\bibinfo{author}{Jegadeesh, N.}, \bibinfo{year}{1990}.
+\newblock \bibinfo{title}{Evidence of predictable behavior of security
+  returns}.
+\newblock \bibinfo{journal}{Journal of Finance} \bibinfo{volume}{45},
+  \bibinfo{pages}{881--898}.
+\newblock \DOIprefix\doi{10.1111/j.1540-6261.1990.tb05110.x}.
+%Type = Article
+\bibitem[{Jegadeesh and Titman(1993)}]{jegadeesh1993}
+\bibinfo{author}{Jegadeesh, N.}, \bibinfo{author}{Titman, S.},
+  \bibinfo{year}{1993}.
+\newblock \bibinfo{title}{Returns to buying winners and selling losers:
+  Implications for stock market efficiency}.
+\newblock \bibinfo{journal}{Journal of Finance} \bibinfo{volume}{48},
+  \bibinfo{pages}{65--91}.
+\newblock \DOIprefix\doi{10.1111/j.1540-6261.1993.tb04702.x}.
+%Type = Article
+\bibitem[{Kakushadze(2016)}]{kakushadze2016}
+\bibinfo{author}{Kakushadze, Z.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{101 formulaic alphas}.
+\newblock \bibinfo{journal}{Wilmott} \bibinfo{volume}{2016},
+  \bibinfo{pages}{72--81}.
+\newblock \DOIprefix\doi{10.1002/wilm.10525}.
+%Type = Article
+\bibitem[{Korajczyk and Sadka(2004)}]{korajczyk2004}
+\bibinfo{author}{Korajczyk, R.A.}, \bibinfo{author}{Sadka, R.},
+  \bibinfo{year}{2004}.
+\newblock \bibinfo{title}{Are momentum profits robust to trading costs?}
+\newblock \bibinfo{journal}{Journal of Finance} \bibinfo{volume}{59},
+  \bibinfo{pages}{1039--1082}.
+\newblock \DOIprefix\doi{10.1111/j.1540-6261.2004.00656.x}.
+%Type = Inproceedings
+\bibitem[{Liu et~al.(2026)Liu, Huang, Luo, Wang, Yang, Li, Hu, Feng and
+  Liu}]{liu2026}
+\bibinfo{author}{Liu, F.}, \bibinfo{author}{Huang, Y.}, \bibinfo{author}{Luo,
+  S.}, \bibinfo{author}{Wang, Y.}, \bibinfo{author}{Yang, Y.},
+  \bibinfo{author}{Li, X.}, \bibinfo{author}{Hu, Z.}, \bibinfo{author}{Feng,
+  J.}, \bibinfo{author}{Liu, Q.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Cognitive alpha mining via {LLM}-driven code-based
+  evolution}, in: \bibinfo{booktitle}{Proceedings of the 64th Annual Meeting of
+  the Association for Computational Linguistics (Volume 1: Long Papers)}, pp.
+  \bibinfo{pages}{11715--11749}.
+\newblock \DOIprefix\doi{10.18653/v1/2026.acl-long.538}.
+%Type = Misc
+\bibitem[{{Nasdaq Data Link}(2026)}]{sharadar2026}
+\bibinfo{author}{{Nasdaq Data Link}}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Sharadar core us equities bundle: {SEP} daily prices
+  and {SP500} constituent history [dataset]}.
+\newblock \bibinfo{howpublished}{\url{https://data.nasdaq.com/databases/SFA}}.
+\newblock \bibinfo{note}{Accessed 27 September 2026}.
+%Type = Article
+\bibitem[{Newey and West(1987)}]{newey1987}
+\bibinfo{author}{Newey, W.K.}, \bibinfo{author}{West, K.D.},
+  \bibinfo{year}{1987}.
+\newblock \bibinfo{title}{A simple, positive semi-definite, heteroskedasticity
+  and autocorrelation consistent covariance matrix}.
+\newblock \bibinfo{journal}{Econometrica} \bibinfo{volume}{55},
+  \bibinfo{pages}{703--708}.
+\newblock \DOIprefix\doi{10.2307/1913610}.
+%Type = Article
+\bibitem[{Novy-Marx and Velikov(2016)}]{novymarx2016}
+\bibinfo{author}{Novy-Marx, R.}, \bibinfo{author}{Velikov, M.},
+  \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{A taxonomy of anomalies and their trading costs}.
+\newblock \bibinfo{journal}{Review of Financial Studies} \bibinfo{volume}{29},
+  \bibinfo{pages}{104--147}.
+\newblock \DOIprefix\doi{10.1093/rfs/hhv063}.
+%Type = Book
+\bibitem[{L{\'o}pez~de Prado(2018)}]{lopezdeprado2018}
+\bibinfo{author}{L{\'o}pez~de Prado, M.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Advances in Financial Machine Learning}.
+\newblock \bibinfo{publisher}{Wiley}, \bibinfo{address}{Hoboken, NJ}.
+%Type = Inproceedings
+\bibitem[{Shi et~al.(2026)Shi, Duan and Li}]{shi2026}
+\bibinfo{author}{Shi, Y.}, \bibinfo{author}{Duan, Y.}, \bibinfo{author}{Li,
+  J.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Navigating the alpha jungle: An {LLM}-powered {MCTS}
+  framework for formulaic alpha factor mining}, in:
+  \bibinfo{booktitle}{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, pp. \bibinfo{pages}{997--1005}.
+\newblock \DOIprefix\doi{10.1609/aaai.v40i2.37069}.
+%Type = Inproceedings
+\bibitem[{Tang et~al.(2025)Tang, Chen, Yang, Mai, Zheng, Wang, Chen and
+  Lin}]{tang2025}
+\bibinfo{author}{Tang, Z.}, \bibinfo{author}{Chen, Z.}, \bibinfo{author}{Yang,
+  J.}, \bibinfo{author}{Mai, J.}, \bibinfo{author}{Zheng, Y.},
+  \bibinfo{author}{Wang, K.}, \bibinfo{author}{Chen, J.}, \bibinfo{author}{Lin,
+  L.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{{AlphaAgent}: {LLM}-driven alpha mining with
+  regularized exploration to counteract alpha decay}, in:
+  \bibinfo{booktitle}{Proceedings of the 31st ACM SIGKDD Conference on
+  Knowledge Discovery and Data Mining}, pp. \bibinfo{pages}{2813--2822}.
+\newblock \DOIprefix\doi{10.1145/3711896.3736838}.
+%Type = Misc
+\bibitem[{Yi et~al.(2026)Yi, Yang, Jin, Li and Li}]{yi2026}
+\bibinfo{author}{Yi, J.}, \bibinfo{author}{Yang, J.}, \bibinfo{author}{Jin,
+  Y.}, \bibinfo{author}{Li, Y.}, \bibinfo{author}{Li, J.},
+  \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{{AlphaSchema}: Exploring the space of trading
+  semantics for {LLM}-based alpha mining}.
+\newblock \DOIprefix\doi{10.48550/arXiv.2607.26642}. \bibinfo{note}{arXiv
+  preprint arXiv:2607.26642}.
+%Type = Misc
+\bibitem[{Yu et~al.(2026)Yu, Fu, Fan, Li, Gao and Xu}]{yu2026}
+\bibinfo{author}{Yu, X.}, \bibinfo{author}{Fu, Y.}, \bibinfo{author}{Fan, M.},
+  \bibinfo{author}{Li, E.}, \bibinfo{author}{Gao, Y.}, \bibinfo{author}{Xu,
+  S.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Towards autonomous formulaic alpha discovery: An
+  evolutionary computation perspective}.
+\newblock \DOIprefix\doi{10.48550/arXiv.2608.01789}. \bibinfo{note}{arXiv
+  preprint arXiv:2608.01789}.
+%Type = Misc
+\bibitem[{Zhao et~al.(2026)Zhao, Yang and Zhu}]{zhao2026}
+\bibinfo{author}{Zhao, Y.}, \bibinfo{author}{Yang, Z.}, \bibinfo{author}{Zhu,
+  Z.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{{AlphaPareto}: Formulaic alpha discovery with
+  {LLM}-guided multi-objective reinforcement learning}.
+\newblock \DOIprefix\doi{10.48550/arXiv.2609.34188}. \bibinfo{note}{arXiv
+  preprint arXiv:2609.34188}.
+
+\end{thebibliography}

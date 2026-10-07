@@ -30,7 +30,11 @@ def load_curves() -> tuple[dict, dict]:
         combo_dir = GRID_DIR / cat / f"seed_{REPRESENTATIVE_SEED}"
         baseline = pd.read_csv(combo_dir / "net_returns_baseline.csv", index_col=0, parse_dates=True).iloc[:, 0]
         ea = pd.read_csv(combo_dir / "net_returns_execution_aware.csv", index_col=0, parse_dates=True).iloc[:, 0]
-        curves[cat] = {"Baseline": baseline, "Execution-Aware": ea}
+        curves[cat] = {"Baseline": baseline}
+        ro_path = combo_dir / "net_returns_reward_only.csv"
+        if ro_path.exists():
+            curves[cat]["Reward-Only"] = pd.read_csv(ro_path, index_col=0, parse_dates=True).iloc[:, 0]
+        curves[cat]["Execution-Aware"] = ea
 
         folds = pd.read_csv(combo_dir / "wfo_folds.csv")
         test_starts = folds.loc[folds["Mode"] == "Baseline", "Test"].str.split(" to ").str[0]
@@ -43,8 +47,10 @@ def load_bps_summary() -> dict:
     out = {}
     for cat in CATEGORIES:
         out[cat] = {}
-        for mode in ("Baseline", "Execution-Aware"):
+        for mode in ("Baseline", "Reward-Only", "Execution-Aware"):
             rows = summary[(summary["seed_alpha"] == cat) & (summary["mode"] == mode)]
+            if rows.empty:
+                continue
             means = rows[COST_SCENARIOS].mean()
             out[cat][mode] = dict(zip(SCENARIO_KEYS, means.values))
     return out

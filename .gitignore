@@ -8,3 +8,15 @@ models/
 *.gguf
 # Sharadar-derived panels: licensed data, regenerable via src/sharadar_universe.py; never commit
 data/processed_pit_sharadar/
+# LaTeX build artifacts and the locally fetched elsarticle class
+paper/latex/
+paper/fro/*.aux
+paper/fro/*.log
+paper/fro/*.blg
+paper/fro/*.out
+paper/fro/*.spl
+paper/fro/build.log
+paper/fro/submission/*.aux
+paper/fro/submission/*.log
+paper/fro/submission/*.out
+paper/fro/submission/*.spl

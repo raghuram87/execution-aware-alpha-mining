@@ -1,0 +1,15 @@
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ & \multicolumn{2}{c}{Reversal} & \multicolumn{2}{c}{Volume} & \multicolumn{2}{c}{Volatility} & \multicolumn{2}{c}{Momentum} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+Strategy & Net SR & TO/day & Net SR & TO/day & Net SR & TO/day & Net SR & TO/day \\
+\midrule
+Seed alpha, daily & $-$14.00 & 128.5\% & $-$14.17 & 96.6\% & 0.00 & 6.6\% & $-$1.26 & 16.5\% \\
+Seed alpha, monthly & $-$0.56 & 6.1\% & $-$1.14 & 6.6\% & 0.48 & 1.9\% & $-$0.42 & 3.7\% \\
+\texttt{decay\_linear}(seed, 252), daily & $-$0.60 & 10.9\% & $-$1.21 & 12.6\% & 0.48 & 1.4\% & $-$0.10 & 2.3\% \\
+Cost-blind winners, monthly & $-$0.36 & 5.2\% & $-$0.63 & 5.8\% & 0.17 & 3.1\% & $-$0.17 & 4.5\% \\
+\midrule
+Reward-only search & $-$4.64 & 46.0\% & $-$2.97 & 29.2\% & 0.25 & 2.7\% & $-$0.75 & 11.0\% \\
+Execution-aware search & $-$0.28 & 3.9\% & $-$0.25 & 3.7\% & 0.51 & 1.4\% & $-$0.03 & 1.8\% \\
+\bottomrule
+\end{tabular}

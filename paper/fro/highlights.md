@@ -1,0 +1,5 @@
+- An LLM factor search is run with cost-blind, reward-only and cost-explained feedback.
+- Cost-blind search reaches 36-103% daily turnover and loses all capital in each case.
+- A cost-penalized reward alone lifts net Sharpe by 7.9; explaining it adds 2.4 more.
+- Explicit cost guidance produces the long-horizon smoothing of the winning factors.
+- Only the low-volatility seed turns profitable, and simple smoothing rules match it.

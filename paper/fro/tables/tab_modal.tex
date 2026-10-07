@@ -1,0 +1,21 @@
+\begin{tabular}{llp{0.62\textwidth}r}
+\toprule
+Seed alpha & Arm & Most frequent winning expression & Count \\
+\midrule
+Reversal & Cost-blind & \texttt{\footnotesize rank(-1 * delta(close, 1))} & 3 \\
+ & Reward-only & \texttt{\footnotesize cs\_rank(-1 * ts\_rank(close, 21) + zscore(volume, 21) + sma(close, 21) - cs\_rank(high - low) + decay\_linear(vwap, 21))} & 1 \\
+ & Execution-aware & \texttt{\footnotesize decay\_linear(cs\_rank(-1 * delta(close, 504)), 252)} & 8 \\
+\addlinespace
+Volume & Cost-blind & \texttt{\footnotesize cs\_rank(vwap - open) * cs\_rank(zscore(volume, 20))} & 1 \\
+ & Reward-only & \texttt{\footnotesize cs\_rank(-1 * zscore(close, 20) + sma(vwap, 20) + decay\_linear(volume, 20))} & 1 \\
+ & Execution-aware & \texttt{\footnotesize decay\_linear(cs\_rank(-1 * zscore(volume, 252)), 252)} & 14 \\
+\addlinespace
+Volatility & Cost-blind & \texttt{\footnotesize rank(-1 * stddev(delta(close, 1), 20) / (cs\_rank(volume) + 1e-5))} & 3 \\
+ & Reward-only & \texttt{\footnotesize rank(-1 * decay\_linear(stddev(delta(close, 1), 20), 20) * cs\_rank(vwap))} & 2 \\
+ & Execution-aware & \texttt{\footnotesize decay\_linear(rank(-1 * stddev(delta(close, 1), 20)), 240)} & 17 \\
+\addlinespace
+Momentum & Cost-blind & \texttt{\footnotesize cs\_rank(volume / (vwap + 1e-5))} & 5 \\
+ & Reward-only & \texttt{\footnotesize rank(delta(close, 60) / (stddev(delta(close, 1), 60) + 1e-5))} & 13 \\
+ & Execution-aware & \texttt{\footnotesize decay\_linear(cs\_rank(delta(close, 240) / (stddev(delta(close, 1), 240) + 1e-5)), 252)} & 21 \\
+\bottomrule
+\end{tabular}

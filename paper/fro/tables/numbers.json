@@ -1,0 +1,202 @@
+{
+ "tests": [
+  {
+   "treated": "Reward-Only",
+   "control": "Baseline",
+   "mean": 7.915043068904531,
+   "ci_lo": 6.359439349159516,
+   "ci_hi": 9.563463827579207,
+   "n_pos": 12,
+   "n": 12,
+   "sign_p": 0.00048828125,
+   "fold_win_rate": {
+    "momentum": 0.8888888888888888,
+    "reversal": 0.7936507936507936,
+    "volatility": 0.8888888888888888,
+    "volume": 0.9206349206349206
+   }
+  },
+  {
+   "treated": "Execution-Aware",
+   "control": "Reward-Only",
+   "mean": 2.422874661076258,
+   "ci_lo": 1.3041145553587596,
+   "ci_hi": 3.6828890648236596,
+   "n_pos": 12,
+   "n": 12,
+   "sign_p": 0.00048828125,
+   "fold_win_rate": {
+    "momentum": 0.8253968253968254,
+    "reversal": 0.7777777777777778,
+    "volatility": 0.6190476190476191,
+    "volume": 0.8412698412698413
+   }
+  },
+  {
+   "treated": "Execution-Aware",
+   "control": "Baseline",
+   "mean": 10.337917729980788,
+   "ci_lo": 8.132882809367848,
+   "ci_hi": 12.416324185687172,
+   "n_pos": 12,
+   "n": 12,
+   "sign_p": 0.00048828125,
+   "fold_win_rate": {
+    "momentum": 0.9206349206349206,
+    "reversal": 0.873015873015873,
+    "volatility": 0.9682539682539683,
+    "volume": 1.0
+   }
+  }
+ ],
+ "mechanism": {
+  "Baseline": {
+   "decay": 0.21428571428571427,
+   "lookback": 28.31605222734255,
+   "nodes": 9.19047619047619,
+   "modal_min": 1,
+   "modal_max": 5
+  },
+  "Reward-Only": {
+   "decay": 0.6150793650793651,
+   "lookback": 32.565843621399175,
+   "nodes": 8.869047619047619,
+   "modal_min": 1,
+   "modal_max": 13
+  },
+  "Execution-Aware": {
+   "decay": 1.0,
+   "lookback": 214.23015873015873,
+   "nodes": 6.067460317460317,
+   "modal_min": 8,
+   "modal_max": 21
+  }
+ },
+ "gamma_net_min": 0.2915237061973975,
+ "gamma_net_max": 0.5247813102344253,
+ "gamma_to_min": 1.409830171953313,
+ "gamma_to_max": 3.287972045613375,
+ "baseline_gross_by_cat": {
+  "momentum": 0.5135926547766038,
+  "reversal": 0.6519690671505479,
+  "volatility": 0.7367697032202605,
+  "volume": 0.33134231727564856
+ },
+ "baseline_gross_mean": 0.5584184356057652,
+ "vol_ea_net_range": [
+  0.4754379636108423,
+  0.5565669109358412
+ ],
+ "vol_ea_maxdd_range": [
+  -0.2207532776145491,
+  -0.1955162083479034
+ ],
+ "spanning": {
+  "Reversal: cost-blind": {
+   "alpha_ann": -1.280758516667847,
+   "alpha_t": -50.603639916804234,
+   "R2": 0.023582485906408546
+  },
+  "Reversal: reward-only": {
+   "alpha_ann": -0.6172364877328013,
+   "alpha_t": -30.11522657404109,
+   "R2": 0.059347574801480674
+  },
+  "Reversal: execution-aware": {
+   "alpha_ann": -0.04920716318597508,
+   "alpha_t": -1.908797521518947,
+   "R2": 0.5697202350372492
+  },
+  "Volume: cost-blind": {
+   "alpha_ann": -1.4402769555302717,
+   "alpha_t": -71.12640200130087,
+   "R2": 0.04157082375583898
+  },
+  "Volume: reward-only": {
+   "alpha_ann": -0.38933012851779686,
+   "alpha_t": -18.978012882542583,
+   "R2": 0.016156840315750043
+  },
+  "Volume: execution-aware": {
+   "alpha_ann": -0.04313684156237462,
+   "alpha_t": -1.669337619289999,
+   "R2": 0.4120800903595858
+  },
+  "Volatility: cost-blind": {
+   "alpha_ann": -0.39423368921140367,
+   "alpha_t": -18.40060657499389,
+   "R2": 0.13893293902504233
+  },
+  "Volatility: reward-only": {
+   "alpha_ann": 0.038806247026133105,
+   "alpha_t": 1.9713440416690045,
+   "R2": 0.15586806257117847
+  },
+  "Volatility: execution-aware": {
+   "alpha_ann": 0.07797364365019843,
+   "alpha_t": 3.4752188077493757,
+   "R2": 0.2744489588636423
+  },
+  "Momentum: cost-blind": {
+   "alpha_ann": -0.9831626087014086,
+   "alpha_t": -37.73075806726893,
+   "R2": 0.03858839607734177
+  },
+  "Momentum: reward-only": {
+   "alpha_ann": -0.12217260909760973,
+   "alpha_t": -5.200765639000913,
+   "R2": 0.3038103511123621
+  },
+  "Momentum: execution-aware": {
+   "alpha_ann": -0.01831658460935136,
+   "alpha_t": -0.9786997652118375,
+   "R2": 0.7233066583260456
+  },
+  "Volatility: seed, monthly": {
+   "alpha_ann": 0.07333711988074952,
+   "alpha_t": 3.4209973985652193,
+   "R2": 0.26478601052290507
+  },
+  "Volatility: \\texttt{decay\\_linear}(seed, 252)": {
+   "alpha_ann": 0.07703543293827497,
+   "alpha_t": 3.4282101949888935,
+   "R2": 0.2810941515448454
+  }
+ },
+ "turnover_Baseline": {
+  "momentum": 73.17640609242447,
+  "reversal": 94.92173107951554,
+  "volatility": 35.8811027364734,
+  "volume": 103.04807020284784
+ },
+ "net_Baseline": {
+  "momentum": -7.508585600345273,
+  "reversal": -10.100424592912438,
+  "volatility": -3.6058104532948057,
+  "volume": -11.711688752463104
+ },
+ "turnover_Reward-Only": {
+  "momentum": 11.046723665490338,
+  "reversal": 45.965418190857726,
+  "volatility": 2.7120781543450008,
+  "volume": 29.24944129414583
+ },
+ "net_Reward-Only": {
+  "momentum": -0.7500767655698972,
+  "reversal": -4.63551347224413,
+  "volatility": 0.24766100739214622,
+  "volume": -2.969534115523592
+ },
+ "turnover_Execution-Aware": {
+  "momentum": 1.832154884495661,
+  "reversal": 3.9353224150159036,
+  "volatility": 1.4149428415814844,
+  "volume": 3.725269187810874
+ },
+ "net_Execution-Aware": {
+  "momentum": -0.02560885214017784,
+  "reversal": -0.2777665616765778,
+  "volatility": 0.509381901060402,
+  "volume": -0.25032887883157867
+ }
+}

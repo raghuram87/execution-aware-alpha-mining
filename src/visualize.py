@@ -12,6 +12,8 @@ from __future__ import annotations
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+plt.rcParams["pdf.fonttype"] = 42  # embed TrueType, not Type 3, in PDF figures (publisher requirement)
+plt.rcParams["ps.fonttype"] = 42
 import pandas as pd
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
@@ -20,6 +22,7 @@ from . import config
 COLOR_BASELINE = "#2a78d6"       # categorical slot 1 (blue)
 COLOR_EXECUTION_AWARE = "#eb6834"  # categorical slot 2 (orange)
 COLOR_SEED_ONLY = "#1baf7a"      # categorical slot 3 (aqua) -- no-LLM-feedback control series
+COLOR_REWARD_ONLY = "#1baf7a"    # same slot: the paper figures never show seed-only and reward-only together
 COLOR_TEXT = "#0b0b0b"
 COLOR_TEXT_SECONDARY = "#52514e"
 COLOR_GRID = "#e3e2dd"
@@ -173,7 +176,7 @@ def plot_grid_cumulative_returns(
     curves: dict[str, dict[str, pd.Series]],
     fold_boundaries: dict[str, list] | None = None,
     out_path: str | Path = config.FIGURES / "fig2_cumulative_returns_grid.png",
-    title: str = "Out-of-Sample Cumulative Net Return by Seed-Alpha Category (representative seed)",
+    title: str | None = None,
 ) -> Path:
     """Paper Figure 2: one small-multiples panel per seed-alpha category
     (curves.keys(), e.g. reversal/volume/volatility/momentum), each showing
@@ -187,7 +190,7 @@ def plot_grid_cumulative_returns(
     nrows = (n + ncols - 1) // ncols
     fig, axes = plt.subplots(nrows, ncols, figsize=(6.6 * ncols, 3.6 * nrows), dpi=300, squeeze=False)
     fig.patch.set_facecolor("white")
-    colors = {"Baseline": COLOR_BASELINE, "Execution-Aware": COLOR_EXECUTION_AWARE}
+    colors = {"Baseline": COLOR_BASELINE, "Reward-Only": COLOR_REWARD_ONLY, "Execution-Aware": COLOR_EXECUTION_AWARE}
 
     for i, cat in enumerate(categories):
         ax = axes[i // ncols][i % ncols]
@@ -207,14 +210,16 @@ def plot_grid_cumulative_returns(
         for spine in ("left", "bottom"):
             ax.spines[spine].set_color(COLOR_GRID)
         ax.tick_params(colors=COLOR_TEXT_SECONDARY, labelsize=8)
-        ax.legend(frameon=False, loc="lower left", fontsize=7.5, labelcolor=COLOR_TEXT)
+        ax.legend(frameon=True, facecolor="white", edgecolor="none", framealpha=0.9, loc="best",
+                  fontsize=7.5, labelcolor=COLOR_TEXT)
         if i % ncols == 0:
             ax.set_ylabel("Cumulative net return (%)", fontsize=9, color=COLOR_TEXT_SECONDARY)
 
     for j in range(n, nrows * ncols):
         axes[j // ncols][j % ncols].axis("off")
 
-    fig.suptitle(title, fontsize=11.5, color=COLOR_TEXT, y=1.01)
+    if title:
+        fig.suptitle(title, fontsize=11.5, color=COLOR_TEXT, y=1.01)
     fig.tight_layout()
 
     out_path = Path(out_path)
@@ -227,7 +232,7 @@ def plot_grid_cumulative_returns(
 def plot_grid_bps_sensitivity(
     summary_by_category: dict[str, dict[str, dict[str, float]]],
     out_path: str | Path = config.FIGURES / "fig3_bps_sensitivity_grid.png",
-    title: str = "Net Sharpe vs. Assumed Trading Cost, by Seed-Alpha Category (mean across 3 LLM seeds)",
+    title: str | None = None,
 ) -> Path:
     """Paper Figure 3: one small-multiples panel per seed-alpha category,
     each plotting Net Sharpe (full cost model) at three flat-cost book-ends
@@ -245,13 +250,15 @@ def plot_grid_bps_sensitivity(
     nrows = (n + ncols - 1) // ncols
     fig, axes = plt.subplots(nrows, ncols, figsize=(5.6 * ncols, 3.6 * nrows), dpi=300, squeeze=False)
     fig.patch.set_facecolor("white")
-    colors = {"Baseline": COLOR_BASELINE, "Execution-Aware": COLOR_EXECUTION_AWARE}
+    colors = {"Baseline": COLOR_BASELINE, "Reward-Only": COLOR_REWARD_ONLY, "Execution-Aware": COLOR_EXECUTION_AWARE}
     x = range(len(scenario_order))
 
     for i, cat in enumerate(categories):
         ax = axes[i // ncols][i % ncols]
         ax.set_facecolor("white")
         for mode, color in colors.items():
+            if mode not in summary_by_category[cat]:
+                continue
             vals = [summary_by_category[cat][mode][s] for s in scenario_order]
             ax.plot(x, vals, marker="o", markersize=4, linewidth=1.8, color=color, label=mode)
         ax.axhline(0, color=COLOR_TEXT_SECONDARY, linewidth=0.8, linestyle=":", zorder=0)
@@ -272,7 +279,8 @@ def plot_grid_bps_sensitivity(
     for j in range(n, nrows * ncols):
         axes[j // ncols][j % ncols].axis("off")
 
-    fig.suptitle(title, fontsize=11.5, color=COLOR_TEXT, y=1.01)
+    if title:
+        fig.suptitle(title, fontsize=11.5, color=COLOR_TEXT, y=1.01)
     fig.tight_layout()
 
     out_path = Path(out_path)
@@ -375,7 +383,7 @@ def plot_architecture(out_path: str | Path = config.FIGURES / "fig1_architecture
     _box(ax, cost_box[:2], cost_box[2], cost_box[3], "Cost Engine",
          "Corwin-Schultz spread +\nsqrt impact model", COLOR_ACCENT_FILL, COLOR_ACCENT, title_color=COLOR_ACCENT)
     _box(ax, diag_box[:2], diag_box[2], diag_box[3], "Diagnostics",
-         "Gross_IR, Turnover,\nCost_Impact, Net_IR, Reward", "#eaf2fc", COLOR_BASELINE, title_color=COLOR_BASELINE)
+         "metrics, reward,\nrule-based critique", "#eaf2fc", COLOR_BASELINE, title_color=COLOR_BASELINE)
 
     # outer loop: LLM -> code -> evaluator -> cost -> diagnostics -> back to LLM
     _arrow(ax, (llm_box[0] + llm_box[2], llm_box[1] + llm_box[3] * 0.6),
@@ -392,7 +400,7 @@ def plot_architecture(out_path: str | Path = config.FIGURES / "fig1_architecture
            connectionstyle="arc3,rad=-0.18", label="net returns", label_pos=(5.0, 1.62))
     _arrow(ax, (diag_box[0] + diag_box[2] * 0.8, diag_box[1] + diag_box[3]),
            (llm_box[0] + llm_box[2] * 0.8, llm_box[1]),
-           connectionstyle="arc3,rad=0.0", label="feedback (reward)", label_pos=(4.15, 3.2))
+           connectionstyle="arc3,rad=0.0", label="feedback", label_pos=(4.15, 3.2))
 
     fig.tight_layout()
     out_path = Path(out_path)

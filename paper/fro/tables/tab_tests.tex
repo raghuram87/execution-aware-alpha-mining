@@ -1,0 +1,11 @@
+\begin{tabular}{lrcccrrrr}
+\toprule
+ & & & \multicolumn{2}{c}{Combinations} & \multicolumn{4}{c}{Folds won} \\
+\cmidrule(lr){4-5}\cmidrule(lr){6-9}
+Comparison & $\Delta$ Net SR & 95\% CI & positive & sign-test $p$ & Rev. & Vol. & Volat. & Mom. \\
+\midrule
+Reward-only $-$ cost-blind & +7.92 & [6.36, 9.56] & 12/12 & 0.0005 & 79\% & 92\% & 89\% & 89\% \\
+Execution-aware $-$ reward-only & +2.42 & [1.30, 3.68] & 12/12 & 0.0005 & 78\% & 84\% & 62\% & 83\% \\
+Execution-aware $-$ cost-blind & +10.34 & [8.13, 12.42] & 12/12 & 0.0005 & 87\% & 100\% & 97\% & 92\% \\
+\bottomrule
+\end{tabular}

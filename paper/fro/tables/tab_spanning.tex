@@ -1,0 +1,24 @@
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Strategy & $\alpha$ (\%/yr) & ($t$) & Mkt & SMB & HML & RMW & CMA & Mom & $R^2$ \\
+\midrule
+Reversal: cost-blind & $-$128.1 & ($-$50.60) & 0.05 & 0.01 & 0.06 & $-$0.07 & $-$0.06 & 0.00 & 0.02 \\
+Reversal: reward-only & $-$61.7 & ($-$30.12) & 0.01 & $-$0.05 & 0.12 & $-$0.12 & $-$0.12 & $-$0.04 & 0.06 \\
+Reversal: execution-aware & $-$4.9 & ($-$1.91) & 0.12 & 0.02 & 0.20 & $-$0.16 & 0.17 & $-$0.62 & 0.57 \\
+\addlinespace
+Volume: cost-blind & $-$144.0 & ($-$71.13) & 0.03 & 0.01 & 0.11 & $-$0.08 & $-$0.11 & 0.02 & 0.04 \\
+Volume: reward-only & $-$38.9 & ($-$18.98) & 0.01 & 0.01 & 0.00 & $-$0.01 & $-$0.09 & $-$0.03 & 0.02 \\
+Volume: execution-aware & $-$4.3 & ($-$1.67) & $-$0.08 & 0.11 & $-$0.20 & 0.09 & 0.16 & 0.45 & 0.41 \\
+\addlinespace
+Volatility: cost-blind & $-$39.4 & ($-$18.40) & $-$0.09 & 0.12 & 0.10 & 0.02 & 0.23 & $-$0.05 & 0.14 \\
+Volatility: reward-only & +3.9 & (1.97) & $-$0.09 & 0.08 & 0.05 & 0.09 & 0.23 & $-$0.14 & 0.16 \\
+Volatility: execution-aware & +7.8 & (3.48) & $-$0.22 & 0.14 & 0.04 & 0.21 & 0.40 & 0.04 & 0.27 \\
+\addlinespace
+Momentum: cost-blind & $-$98.3 & ($-$37.73) & 0.02 & 0.05 & $-$0.05 & $-$0.10 & 0.02 & 0.08 & 0.04 \\
+Momentum: reward-only & $-$12.2 & ($-$5.20) & $-$0.11 & 0.06 & $-$0.16 & 0.13 & 0.14 & 0.30 & 0.30 \\
+Momentum: execution-aware & $-$1.8 & ($-$0.98) & $-$0.02 & $-$0.17 & $-$0.07 & 0.06 & $-$0.17 & 0.72 & 0.72 \\
+\midrule
+Volatility: seed, monthly & +7.3 & (3.42) & $-$0.21 & 0.12 & 0.05 & 0.18 & 0.38 & $-$0.09 & 0.26 \\
+Volatility: \texttt{decay\_linear}(seed, 252) & +7.7 & (3.43) & $-$0.23 & 0.16 & 0.04 & 0.21 & 0.42 & 0.01 & 0.28 \\
+\bottomrule
+\end{tabular}
