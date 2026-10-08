@@ -113,7 +113,7 @@ Iterated search over many candidates scored on the same data overstates skill \c
 
 We seed the search with four signals from economically distinct predictor families: one-day reversal \citep{jegadeesh1990}, an abnormal-volume fade \citep{gervais2001}, low realized volatility \citep{ang2006} and volatility-scaled 60-day momentum \citep{jegadeesh1993}. Each seed is run with three LLM sampling seeds, giving 12 combinations per arm. Within a combination, the arms start from the same expression and use identically seeded but independent model instances, so they differ only in the feedback they receive.
 
-Our main statistic is the paired difference in out-of-sample net Sharpe ratio between two arms in the same fold, combination and test year, which gives 252 fold pairs per comparison. Folds within a combination share overlapping training windows, so we resample whole combinations (10,000 cluster-bootstrap draws) to form confidence intervals and complement them with an exact sign test on the 12 combination-level mean differences.
+Our main statistic is the paired difference in out-of-sample net Sharpe ratio between two arms in the same fold, combination and test year, which gives 252 fold pairs per comparison. Folds within a combination share overlapping training windows, so we resample the 12 combinations with replacement, keeping each combination's 21 folds together (10,000 cluster-bootstrap draws), to form confidence intervals and complement them with an exact sign test on the 12 combination-level mean differences.
 
 \section{Results}\label{sec:results}
 
