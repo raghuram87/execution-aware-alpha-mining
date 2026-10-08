@@ -17,7 +17,7 @@ Since the version submitted to *Finance Research Letters*, the work has been sub
 3. **New analyses.** These are comparisons with rules that use no search, factor regressions on the Fama–French five factors plus momentum, and a rerun of the penalty-weight sensitivity analysis.
 4. **Format.** The paper is now a full-length article prepared with Elsevier's elsarticle template.
 
-The manuscript is original, has not been published elsewhere, and is not under consideration at any other journal. A preprint of the earlier version appeared on SSRN when the paper entered review at *Finance Research Letters* (https://www.ssrn.com/abstract=7498983); I will replace it with the revised version. The manuscript file has been prepared for double-anonymized review: the code repository's URL appears only on the title page. I have no competing interests to declare and received no funding for this research.
+The manuscript is original, has not been published elsewhere, and is not under consideration at any other journal. A preprint appeared on SSRN when the paper entered review at *Finance Research Letters* (https://www.ssrn.com/abstract=7498983); it has since been replaced with the revised version submitted here. The manuscript file has been prepared for double-anonymized review: the code repository's URL appears only on the title page. I have no competing interests to declare and received no funding for this research.
 
 Thank you for your consideration.
 
