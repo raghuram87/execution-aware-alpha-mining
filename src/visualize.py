@@ -343,9 +343,9 @@ def _pill(ax, xy, text, facecolor, textcolor):
 
 
 def plot_architecture(out_path: str | Path = config.FIGURES / "fig1_architecture.png") -> Path:
-    """Figure 1: LLM outer loop (propose factor, repeated each round) wrapping
-    a backtest inner loop (evaluate -> cost engine -> diagnostics), evaluated
-    once per candidate."""
+    """Figure 1: the LLM search loop (propose factor, repeated each round)
+    and the backtest (evaluate -> cost engine -> diagnostics) run once per
+    candidate."""
     fig, ax = plt.subplots(figsize=(8.6, 5.1), dpi=300)
     ax.set_xlim(0, 10.3)
     ax.set_ylim(0, 6.5)
@@ -370,9 +370,9 @@ def plot_architecture(out_path: str | Path = config.FIGURES / "fig1_architecture
         linewidth=1.2, edgecolor=COLOR_REGION_EDGE, facecolor=COLOR_REGION_FILL, zorder=0,
     ))
     _pill(ax, (region_xy[0] + 0.18, region_xy[1] + region_h - 0.22),
-          "INNER LOOP · per candidate", COLOR_ACCENT, "white")
+          "BACKTEST · once per candidate", COLOR_ACCENT, "white")
     _pill(ax, (llm_box[0] + 0.05, llm_box[1] + llm_box[3] + 0.28),
-          "OUTER LOOP · N rounds", COLOR_BASELINE, "white")
+          "SEARCH LOOP · 50 rounds", COLOR_BASELINE, "white")
 
     _box(ax, llm_box[:2], llm_box[2], llm_box[3], "LLM Agent",
          "system prompt +\nround feedback", "#eaf2fc", COLOR_BASELINE, title_color=COLOR_BASELINE)
