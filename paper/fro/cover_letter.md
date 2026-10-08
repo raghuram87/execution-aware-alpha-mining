@@ -6,7 +6,7 @@ The paper asks how cost-awareness inside an automated search changes what a larg
 
 - Cost-blind search reaches 36–103% daily turnover and loses its entire capital in every category, despite positive gross Sharpe ratios.
 - The cost-penalized reward alone raises fold-level net Sharpe by 7.9 (95% CI 6.4–9.6). Explicit guidance adds a further 2.4 (1.3–3.7) and produces the long-horizon smoothing found in the winning factors.
-- Only the low-volatility seed becomes profitable (net Sharpe 0.51; five-factor-plus-momentum alpha of 7.8% per year, t = 3.5), and there simple smoothing or monthly rebalancing rules do as well.
+- Only one category, low volatility, becomes profitable after costs (net Sharpe 0.51; five-factor-plus-momentum alpha of 7.8% per year, t = 3.5). Even there, the search adds little: smoothing the original signal or rebalancing it monthly, without any search, earns a similar net Sharpe (0.48).
 
 I believe the paper suits the journal's emphasis on methodologically sound research across finance, including asset pricing and digital finance. Several of its results are deliberately reported as limits on what LLM-driven search delivers, notably that simple rules match it in the one profitable category.
 
