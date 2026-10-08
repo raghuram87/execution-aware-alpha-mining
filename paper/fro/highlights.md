@@ -2,4 +2,4 @@
 - Cost-blind search reaches 36-103% daily turnover and loses all capital in each case.
 - Cost reward lifts deeply negative net Sharpe by 7.9 points; explaining it adds 2.4.
 - Explicit cost guidance produces the long-horizon smoothing of the winning factors.
-- Only low volatility turns profitable; even there, simple rules match the LLM search.
+- Only the low-volatility seed turns profitable, and simple smoothing rules match it.
