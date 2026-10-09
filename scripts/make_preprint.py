@@ -17,7 +17,7 @@ REPO = "https://github.com/raghuram87/execution-aware-alpha-mining"
 REPLACEMENTS = [
     ("\\linenumbers\n", ""),
     # slightly tighter than \onehalfspacing (1.241 at 12pt) to absorb the author block
-    ("\\onehalfspacing\n", "\\setstretch{1.22}\n"),
+    ("\\onehalfspacing\n", "\\setstretch{1.2}\n"),
     ("\\journal{Finance Research Open}\n",
      "\\makeatletter\n\\def\\ps@pprintTitle{\\let\\@oddhead\\@empty\\let\\@evenhead\\@empty"
      "\\def\\@oddfoot{\\footnotesize\\itshape Working paper. This version: \\today\\hfill}"
