@@ -23,6 +23,8 @@ COLOR_BASELINE = "#2a78d6"       # categorical slot 1 (blue)
 COLOR_EXECUTION_AWARE = "#eb6834"  # categorical slot 2 (orange)
 COLOR_SEED_ONLY = "#1baf7a"      # categorical slot 3 (aqua) -- no-LLM-feedback control series
 COLOR_REWARD_ONLY = "#1baf7a"    # same slot: the paper figures never show seed-only and reward-only together
+# Arm names as used in the paper text
+ARM_DISPLAY_NAMES = {"Baseline": "Cost-blind", "Reward-Only": "Reward-only", "Execution-Aware": "Execution-aware"}
 COLOR_TEXT = "#0b0b0b"
 COLOR_TEXT_SECONDARY = "#52514e"
 COLOR_GRID = "#e3e2dd"
@@ -198,7 +200,7 @@ def plot_grid_cumulative_returns(
         for label, series in curves[cat].items():
             cum = (1 + series.dropna()).cumprod() - 1
             ax.plot(cum.index, cum.values * 100, linewidth=1.8, color=colors.get(label, COLOR_TEXT),
-                     label=f"{label}: {cum.iloc[-1] * 100:+.0f}%")
+                     label=f"{ARM_DISPLAY_NAMES.get(label, label)}: {cum.iloc[-1] * 100:+.0f}%")
         if fold_boundaries and cat in fold_boundaries:
             for b in fold_boundaries[cat]:
                 ax.axvline(b, color=COLOR_GRID, linewidth=0.8, linestyle="--", zorder=0)
@@ -260,7 +262,7 @@ def plot_grid_bps_sensitivity(
             if mode not in summary_by_category[cat]:
                 continue
             vals = [summary_by_category[cat][mode][s] for s in scenario_order]
-            ax.plot(x, vals, marker="o", markersize=4, linewidth=1.8, color=color, label=mode)
+            ax.plot(x, vals, marker="o", markersize=4, linewidth=1.8, color=color, label=ARM_DISPLAY_NAMES.get(mode, mode))
         ax.axhline(0, color=COLOR_TEXT_SECONDARY, linewidth=0.8, linestyle=":", zorder=0)
         ax.set_xticks(list(x))
         ax.set_xticklabels(scenario_labels, fontsize=8)
